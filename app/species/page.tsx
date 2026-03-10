@@ -224,7 +224,7 @@ function SpeciesListItem({ species }: { species: Species }) {
       className="group flex items-center gap-4 p-4 rounded-2xl border border-white/6 bg-[#0D1B2E] hover:border-[#2ECC71]/20 hover:bg-[#2ECC71]/3 transition-all duration-300"
     >
       {/* Thumbnail */}
-      <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-white/5">
+      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden flex-shrink-0 bg-white/5">
         <Image
           src={species.image}
           alt={species.name}
@@ -395,7 +395,7 @@ function SpeciesPageContent() {
     <div className="min-h-screen pt-24 pb-16">
       {/* ==================== PAGE HEADER ==================== */}
       <div className="section-container px-4 mb-10">
-        <div className="relative rounded-3xl overflow-hidden border border-white/6 bg-[#060E1A] p-8 sm:p-12">
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/6 bg-[#060E1A] p-6 sm:p-8 lg:p-12">
           {/* BG glow */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -667,7 +667,7 @@ function SpeciesPageContent() {
         {filtered.length === 0 ? (
           <EmptyState onReset={resetFilters} />
         ) : viewMode === "grid" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-5">
             {filtered.map((species) => (
               <SpeciesCard key={species.id} species={species as Species} />
             ))}

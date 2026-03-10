@@ -1,6 +1,26 @@
 @import "tailwindcss";
 
 /* ============================================
+   RESPONSIVE BREAKPOINTS & FLUID TYPOGRAPHY
+   ============================================ */
+:root {
+  /* Breakpoint reference (Tailwind v4 compatible) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4k: 2560px;
+
+  /* Container query support */
+  --cq-small: 320px;
+  --cq-medium: 768px;
+  --cq-large: 1024px;
+  --cq-xlarge: 1440px;
+}
+
+/* ============================================
    DESIGN TOKENS — NusantaraHijau Light Theme
    ============================================ */
 :root {
@@ -81,6 +101,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   FLUID TYPOGRAPHY — Mobile First
+   ============================================ */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  html { font-size: 15px; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 16px; }
+}
+
+@media (min-width: 1536px) {
+  html { font-size: 17px; }
+}
+
+@media (min-width: 2560px) {
+  html { font-size: 20px; }
 }
 
 /* ============================================
@@ -125,21 +169,125 @@ h4 {
    UTILITY CLASSES
    ============================================ */
 
-/* Container */
+/* Container Queries Support */
+@supports (container-type: inline-size) {
+  .container-query {
+    container-type: inline-size;
+  }
+
+  .container-query-inline {
+    container-type: size;
+  }
+}
+
+/* Responsive Container */
 .container-main {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
 }
+
 @media (min-width: 640px) {
   .container-main {
     padding: 0 1.5rem;
+    max-width: 640px;
   }
 }
+
+@media (min-width: 768px) {
+  .container-main {
+    max-width: 768px;
+  }
+}
+
 @media (min-width: 1024px) {
   .container-main {
     padding: 0 2rem;
+    max-width: 1024px;
   }
+}
+
+@media (min-width: 1280px) {
+  .container-main {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-main {
+    max-width: 1440px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container-main {
+    padding: 0 3rem;
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .container-main {
+    max-width: 1920px;
+  }
+}
+
+/* Responsive Typography Classes */
+.text-responsive-xs {
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+}
+
+.text-responsive-sm {
+  font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+}
+
+.text-responsive-base {
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1.125rem, 1rem + 0.65vw, 1.25rem);
+}
+
+.text-responsive-xl {
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+}
+
+.text-responsive-2xl {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+}
+
+.text-responsive-3xl {
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+}
+
+.text-responsive-4xl {
+  font-size: clamp(2.5rem, 2rem + 3vw, 4rem);
+}
+
+/* Mobile-first responsive padding */
+.p-responsive {
+  padding: clamp(1rem, 0.5rem + 2vw, 3rem);
+}
+
+.py-responsive {
+  padding-top: clamp(1rem, 0.5rem + 2vw, 3rem);
+  padding-bottom: clamp(1rem, 0.5rem + 2vw, 3rem);
+}
+
+.px-responsive {
+  padding-left: clamp(1rem, 0.5rem + 2vw, 3rem);
+  padding-right: clamp(1rem, 0.5rem + 2vw, 3rem);
+}
+
+/* Gap responsive */
+.gap-responsive {
+  gap: clamp(0.5rem, 0.25rem + 1vw, 2rem);
+}
+
+.gap-responsive-lg {
+  gap: clamp(1rem, 0.5rem + 2vw, 3rem);
 }
 
 /* Cards */

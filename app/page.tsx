@@ -37,10 +37,7 @@ const REGION_LABELS: Record<string, string> = {
   "bali-nusra": "Bali & Nusa Tenggara",
 };
 
-const STATUS_STYLE: Record<
-  string,
-  { color: string; bg: string; border: string; label: string }
-> = {
+const STATUS_STYLE: Record<string, { color: string; bg: string; border: string; label: string }> = {
   kritis: {
     color: "var(--status-cr)",
     bg: "var(--status-cr-bg)",
@@ -85,21 +82,15 @@ function useCountUp(target: number, duration = 1400, active = false) {
 // ============================================
 // LEAF DECORATIVE SVG
 // ============================================
-function LeafDecor({ className = "" }: { className?: string }) {
+function LeafDecor({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <svg className={className} viewBox="0 0 80 80" fill="none">
+    <svg className={className} style={style} viewBox="0 0 80 80" fill="none">
       <path
         d="M40 8C25 20 12 35 18 50C24 65 40 72 40 72C40 72 56 65 62 50C68 35 55 20 40 8Z"
         fill="currentColor"
         opacity="0.12"
       />
-      <path
-        d="M40 8C40 8 40 30 40 72"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        opacity="0.2"
-        strokeDasharray="3 3"
-      />
+      <path d="M40 8C40 8 40 30 40 72" stroke="currentColor" strokeWidth="1.5" opacity="0.2" strokeDasharray="3 3" />
     </svg>
   );
 }
@@ -148,8 +139,7 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "linear-gradient(to top, rgba(26,46,26,0.5) 0%, transparent 60%)",
+            background: "linear-gradient(to top, rgba(26,46,26,0.5) 0%, transparent 60%)",
           }}
         />
         <div className="absolute top-3 right-3">
@@ -171,10 +161,7 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
-        <p
-          className="text-xs italic mb-0.5"
-          style={{ color: "var(--text-muted)" }}
-        >
+        <p className="text-xs italic mb-0.5" style={{ color: "var(--text-muted)" }}>
           {species.latinName}
         </p>
         <h3
@@ -183,20 +170,11 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
         >
           {species.name}
         </h3>
-        <p
-          className="text-sm leading-relaxed line-clamp-2 flex-1 mb-4"
-          style={{ color: "var(--text-muted)" }}
-        >
+        <p className="text-sm leading-relaxed line-clamp-2 flex-1 mb-4" style={{ color: "var(--text-muted)" }}>
           {species.description}
         </p>
-        <div
-          className="flex items-center justify-between pt-3"
-          style={{ borderTop: "1px solid var(--border-light)" }}
-        >
-          <span
-            className="flex items-center gap-1 text-xs"
-            style={{ color: "var(--text-muted)" }}
-          >
+        <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid var(--border-light)" }}>
+          <span className="flex items-center gap-1 text-xs" style={{ color: "var(--text-muted)" }}>
             <MapPin className="w-3 h-3" />
             {REGION_LABELS[species.region]}
           </span>
@@ -226,16 +204,8 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
 function StatsBar({ active }: { active: boolean }) {
   const total = useCountUp(speciesData.length, 1200, active);
   const regions = useCountUp(6, 800, active);
-  const kritis = useCountUp(
-    speciesData.filter((s) => s.status === "kritis").length,
-    1000,
-    active,
-  );
-  const terancam = useCountUp(
-    speciesData.filter((s) => s.status === "terancam").length,
-    1000,
-    active,
-  );
+  const kritis = useCountUp(speciesData.filter((s) => s.status === "kritis").length, 1000, active);
+  const terancam = useCountUp(speciesData.filter((s) => s.status === "terancam").length, 1000, active);
 
   const items = [
     { value: total, suffix: "+", label: "Spesies", color: "var(--green-500)" },
@@ -266,17 +236,11 @@ function StatsBar({ active }: { active: boolean }) {
             boxShadow: "var(--shadow-sm)",
           }}
         >
-          <div
-            className="text-3xl font-bold mb-1"
-            style={{ color: item.color, fontVariantNumeric: "tabular-nums" }}
-          >
+          <div className="text-3xl font-bold mb-1" style={{ color: item.color, fontVariantNumeric: "tabular-nums" }}>
             {item.value}
             {item.suffix}
           </div>
-          <div
-            className="text-xs font-medium"
-            style={{ color: "var(--text-muted)" }}
-          >
+          <div className="text-xs font-medium" style={{ color: "var(--text-muted)" }}>
             {item.label}
           </div>
         </div>
@@ -292,9 +256,9 @@ export default function HomePage() {
   const [statsActive, setStatsActive] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  const featured = FEATURED_IDS.map((id) =>
-    (speciesData as Species[]).find((s) => s.id === id),
-  ).filter(Boolean) as Species[];
+  const featured = FEATURED_IDS.map((id) => (speciesData as Species[]).find((s) => s.id === id)).filter(
+    Boolean,
+  ) as Species[];
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -319,8 +283,7 @@ export default function HomePage() {
         <div
           className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
           style={{
-            background:
-              "radial-gradient(ellipse at top right, var(--green-50) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at top right, var(--green-50) 0%, transparent 70%)",
           }}
         />
 
@@ -342,10 +305,7 @@ export default function HomePage() {
                 color: "var(--green-600)",
               }}
             >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: "var(--green-400)" }}
-              />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--green-400)" }} />
               Atlas Digital Keanekaragaman Hayati
             </div>
 
@@ -366,16 +326,13 @@ export default function HomePage() {
               className="text-lg leading-relaxed mb-9 max-w-lg animate-fade-up delay-2"
               style={{ color: "var(--text-secondary)" }}
             >
-              Indonesia menyimpan keanekaragaman hayati terkaya di dunia. Kenali
-              flora dan fauna endemiknya — sebelum terlambat.
+              Indonesia menyimpan keanekaragaman hayati terkaya di dunia. Kenali flora dan fauna endemiknya — sebelum
+              terlambat.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 animate-fade-up delay-3">
-              <Link
-                href="/species"
-                className="btn-primary px-7 py-3.5 text-base"
-              >
+              <Link href="/species" className="btn-primary px-7 py-3.5 text-base">
                 Jelajahi Spesies
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -415,10 +372,7 @@ export default function HomePage() {
             className="w-5 h-8 rounded-full border-2 flex items-start justify-center pt-1.5"
             style={{ borderColor: "var(--green-300)" }}
           >
-            <div
-              className="w-1 h-2 rounded-full animate-bounce"
-              style={{ background: "var(--green-400)" }}
-            />
+            <div className="w-1 h-2 rounded-full animate-bounce" style={{ background: "var(--green-400)" }} />
           </div>
         </div>
       </section>
@@ -439,29 +393,18 @@ export default function HomePage() {
       </section>
 
       {/* ============ MAP ============ */}
-      <section
-        id="peta"
-        className="py-20"
-        style={{ background: "var(--bg-base)" }}
-      >
+      <section id="peta" className="py-20" style={{ background: "var(--bg-base)" }}>
         <div className="container-main">
           {/* Header */}
           <div className="mb-10">
             <p className="section-label">Peta Interaktif</p>
-            <h2
-              className="text-3xl sm:text-4xl font-bold mb-3"
-              style={{ color: "var(--text-primary)" }}
-            >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>
               Sebaran Spesies
               <span className="text-gradient"> per Provinsi</span>
             </h2>
-            <p
-              className="text-sm max-w-lg leading-relaxed"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Klik pada provinsi mana saja untuk melihat spesies endemik yang
-              hidup di wilayah tersebut. Gunakan scroll atau tombol zoom untuk
-              memperbesar area tertentu.
+            <p className="text-sm max-w-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              Klik pada provinsi mana saja untuk melihat spesies endemik yang hidup di wilayah tersebut. Gunakan scroll
+              atau tombol zoom untuk memperbesar area tertentu.
             </p>
           </div>
 
@@ -481,10 +424,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
               <p className="section-label">Sorotan</p>
-              <h2
-                className="text-3xl sm:text-4xl font-bold"
-                style={{ color: "var(--text-primary)" }}
-              >
+              <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
                 Mereka Perlu
                 <span className="text-gradient"> Perhatianmu</span>
               </h2>
@@ -493,12 +433,8 @@ export default function HomePage() {
               href="/species"
               className="group inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
               style={{ color: "var(--green-500)" }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--green-600)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--green-500)")
-              }
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--green-600)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--green-500)")}
             >
               Lihat semua spesies
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -518,8 +454,7 @@ export default function HomePage() {
           <div
             className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center"
             style={{
-              background:
-                "linear-gradient(135deg, var(--green-500) 0%, var(--green-600) 100%)",
+              background: "linear-gradient(135deg, var(--green-500) 0%, var(--green-600) 100%)",
             }}
           >
             {/* Decorative leaves */}
@@ -533,18 +468,12 @@ export default function HomePage() {
             />
 
             <div className="relative z-10 max-w-xl mx-auto">
-              <h2
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
-                style={{ letterSpacing: "-0.02em" }}
-              >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" style={{ letterSpacing: "-0.02em" }}>
                 Jadilah Bagian dari Solusi
               </h2>
-              <p
-                className="text-base mb-8"
-                style={{ color: "rgba(255,255,255,0.85)" }}
-              >
-                Setiap spesies yang punah adalah kehilangan permanen. Kenali,
-                sebarkan, dan ambil tindakan nyata hari ini.
+              <p className="text-base mb-8" style={{ color: "rgba(255,255,255,0.85)" }}>
+                Setiap spesies yang punah adalah kehilangan permanen. Kenali, sebarkan, dan ambil tindakan nyata hari
+                ini.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link

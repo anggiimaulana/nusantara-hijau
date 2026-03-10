@@ -122,11 +122,11 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
   return (
     <Link
       href={`/species/${species.id}`}
-      className="card card-lift group flex flex-col overflow-hidden"
+      className="card card-lift group flex flex-col overflow-hidden h-full"
       style={{ animationDelay: `${index * 0.12}s` }}
     >
-      {/* Image */}
-      <div className="relative h-52 overflow-hidden flex-shrink-0">
+      {/* Image - Responsive heights */}
+      <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden flex-shrink-0">
         <Image
           src={species.image}
           alt={species.name}
@@ -159,8 +159,8 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
+      {/* Content - Responsive padding */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
         <p className="text-xs italic mb-0.5" style={{ color: "var(--text-muted)" }}>
           {species.latinName}
         </p>
@@ -225,18 +225,18 @@ function StatsBar({ active }: { active: boolean }) {
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       {items.map((item, i) => (
         <div
           key={i}
-          className="p-5 rounded-2xl text-center"
+          className="p-3 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl text-center"
           style={{
             background: "white",
             border: "1px solid var(--border-light)",
             boxShadow: "var(--shadow-sm)",
           }}
         >
-          <div className="text-3xl font-bold mb-1" style={{ color: item.color, fontVariantNumeric: "tabular-nums" }}>
+          <div className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1" style={{ color: item.color, fontVariantNumeric: "tabular-nums" }}>
             {item.value}
             {item.suffix}
           </div>
@@ -294,7 +294,7 @@ export default function HomePage() {
           style={{ transform: "rotate(120deg)" }}
         />
 
-        <div className="container-main relative z-10 py-20">
+        <div className="container-main relative z-10 py-16 sm:py-20 lg:py-24">
           <div className="max-w-2xl">
             {/* Eyebrow */}
             <div
@@ -380,7 +380,7 @@ export default function HomePage() {
       {/* ============ STATS ============ */}
       <section
         ref={statsRef}
-        className="py-14"
+        className="py-10 sm:py-14"
         style={{
           background: "var(--bg-muted)",
           borderTop: "1px solid var(--border-light)",
@@ -393,7 +393,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ MAP ============ */}
-      <section id="peta" className="py-20" style={{ background: "var(--bg-base)" }}>
+      <section id="peta" className="py-12 sm:py-16 lg:py-20" style={{ background: "var(--bg-base)" }}>
         <div className="container-main">
           {/* Header */}
           <div className="mb-10">
@@ -414,14 +414,14 @@ export default function HomePage() {
 
       {/* ============ FEATURED SPECIES ============ */}
       <section
-        className="py-20"
+        className="py-12 sm:py-16 lg:py-20"
         style={{
           background: "var(--bg-muted)",
           borderTop: "1px solid var(--border-light)",
         }}
       >
         <div className="container-main">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-10 gap-4">
             <div>
               <p className="section-label">Sorotan</p>
               <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
@@ -440,7 +440,7 @@ export default function HomePage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {featured.map((sp, i) => (
               <FeaturedCard key={sp.id} species={sp} index={i} />
             ))}
@@ -449,10 +449,10 @@ export default function HomePage() {
       </section>
 
       {/* ============ CTA BANNER ============ */}
-      <section className="py-20" style={{ background: "var(--bg-base)" }}>
+      <section className="py-12 sm:py-16 lg:py-20" style={{ background: "var(--bg-base)" }}>
         <div className="container-main">
           <div
-            className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center"
+            className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-6 sm:p-10 lg:p-16 text-center"
             style={{
               background: "linear-gradient(135deg, var(--green-500) 0%, var(--green-600) 100%)",
             }}

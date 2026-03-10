@@ -71,11 +71,18 @@ const PROV_REGION: Record<string, string> = {
   "SULAWESI TENGGARA": "sulawesi",
   "MALUKU UTARA": "papua",
   MALUKU: "papua",
+  // Nama modern (post-2022)
   "PAPUA BARAT": "papua",
   PAPUA: "papua",
   "PAPUA PEGUNUNGAN": "papua",
   "PAPUA SELATAN": "papua",
   "PAPUA TENGAH": "papua",
+  "PAPUA BARAT DAYA": "papua",
+  // Nama lama di GeoJSON superpikar (pre-2022)
+  "IRIAN JAYA BARAT": "papua",
+  "IRIAN JAYA TENGAH": "papua",
+  "IRIAN JAYA TIMUR": "papua",
+  "PAPUA BARAT (IRIAN JAYA BARAT)": "papua",
 };
 
 // Premium 3D color palette with depth

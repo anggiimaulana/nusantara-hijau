@@ -1071,60 +1071,12 @@
     "color": "#F1C40F"
   },
   {
-    "id": "yaki",
-    "name": "Yaki",
-    "latinName": "Macaca nigra",
-    "region": "sulawesi",
-    "province": [
-      "SULAWESI UTARA"
-    ],
-    "provinceMain": "SULAWESI UTARA",
-    "type": "fauna",
-    "status": "kritis",
-    "statusEN": "CR",
-    "population": "Kurang dari 5.000 ekor",
-    "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Sulawesi Utara",
-    "threat": "Perburuan untuk daging (bushmeat) dan perdagangan ilegal, hilangnya habitat.",
-    "description": "Yaki atau Celebes Crested Macaque adalah monyet endemik Sulawesi Utara dengan bulu hitam mengkilap dan jambul putih yang mencolok. Mereka hidup berkelompok besar yang kompleks dengan hierarki sosial yang ketat. Spesies ini sangat terancam karena perburuan intensif untuk konsumsi daging di Sulawesi Utara.",
-    "image": "/images/species/yaki.jpg",
-    "action": "Dukung Selamatkan Yaki dan program konservasi di Tangkoko Nature Reserve.",
-    "funFact": "Yaki adalah satu-satunya spesies Macaca yang menghadapi ancaman kepunahan kritis.",
-    "source": "IUCN Red List 2023",
-    "color": "#2C3E50"
-  },
-  {
-    "id": "monyet-moor",
-    "name": "Monyet Moor",
-    "latinName": "Macaca maura",
-    "region": "sulawesi",
-    "province": [
-      "SULAWESI SELATAN"
-    ],
-    "provinceMain": "SULAWESI SELATAN",
-    "type": "fauna",
-    "status": "terancam",
-    "statusEN": "EN",
-    "population": "Kurang dari 10.000 ekor",
-    "habitat": "Hutan pegunungan dan bukit di Sulawesi Selatan",
-    "threat": "Perburuan, hilangnya habitat, dan fragmentasi populasi.",
-    "description": "Monyet Moor atau Dog-faced Macaque adalah monyet endemik Sulawesi Selatan dengan wajah yang mirip anjing. Mereka memiliki bulu coklat kemerahan dan ekor yang sangat pendek. Spesies ini hidup di hutan pegunungan yang semakin terfragmentasi.",
-    "image": "/images/species/monyet-moor.jpg",
-    "action": "Dukung konservasi hutan pegunungan Sulawesi Selatan dan penegakan hukum anti-perburuan.",
-    "funFact": "Monyet Moor memiliki ekor sangat pendek hanya 2 cm sehingga tampak seperti tidak berekor.",
-    "source": "IUCN Red List 2023",
-    "color": "#A0522D"
-  },
-  {
-    "id": "monyet-tonkean",
-    "name": "Monyet Tonkean",
-    "latinName": "Macaca tonkeana",
-    "region": "sulawesi",
-    "province": [
-      "SULAWESI TENGAH",
-      "SULAWESI SELATAN",
-      "SULAWESI BARAT"
-    ],
-    "provinceMain": "SULAWESI TENGAH",
+    "id": "cenderawasih",
+    "name": "Cenderawasih",
+    "latinName": "Paradisaea apoda",
+    "region": "papua",
+    "province": ["PAPUA", "PAPUA BARAT"],
+    "provinceMain": "PAPUA",
     "type": "fauna",
     "status": "rentan",
     "statusEN": "VU",
@@ -1139,16 +1091,12 @@
     "color": "#E91E63"
   },
   {
-    "id": "kuskus-beruang",
-    "name": "Kuskus Beruang",
-    "latinName": "Ailurops ursinus",
-    "region": "sulawesi",
-    "province": [
-      "SULAWESI TENGAH",
-      "SULAWESI UTARA",
-      "GORONTALO"
-    ],
-    "provinceMain": "SULAWESI TENGAH",
+    "id": "kasuari",
+    "name": "Kasuari",
+    "latinName": "Casuarius casuarius",
+    "region": "papua",
+    "province": ["PAPUA", "PAPUA SELATAN"],
+    "provinceMain": "PAPUA",
     "type": "fauna",
     "status": "rentan",
     "statusEN": "VU",
@@ -1163,16 +1111,12 @@
     "color": "#78909C"
   },
   {
-    "id": "musang-sulawesi",
-    "name": "Musang Sulawesi",
-    "latinName": "Macrogalidia musschenbroekii",
-    "region": "sulawesi",
-    "province": [
-      "SULAWESI TENGAH",
-      "SULAWESI UTARA",
-      "GORONTALO"
-    ],
-    "provinceMain": "SULAWESI TENGAH",
+    "id": "kanguru-pohon",
+    "name": "Kanguru Pohon Mantel Emas",
+    "latinName": "Dendrolagus pulcherrimus",
+    "region": "papua",
+    "province": ["PAPUA PEGUNUNGAN", "PAPUA"],
+    "provinceMain": "PAPUA PEGUNUNGAN",
     "type": "fauna",
     "status": "rentan",
     "statusEN": "VU",

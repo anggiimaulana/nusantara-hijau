@@ -179,12 +179,16 @@ Proyek ini dibuat untuk keperluan edukasi dan kompetisi **TECHSOFT 2026**.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Authors
 
 **Anggi Maulana**
 - GitHub: [@anggiimaulana](https://github.com/anggiimaulana)
 - Email: nusantarahijau@example.com
 - Instagram: [@nusantarahijau](https://instagram.com/nusantarahijau)
+
+**Rifqy Saputra**
+- GitHub: [@muris11](https://github.com/muris11)
+- Email: rifqysaputra1102@gmail.com
 
 ---
 

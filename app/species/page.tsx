@@ -1,24 +1,25 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Search,
-  SlidersHorizontal,
-  X,
-  Leaf,
-  AlertTriangle,
-  Shield,
-  Eye,
-  MapPin,
-  ChevronRight,
-  Grid3X3,
-  List,
-} from "lucide-react";
 import speciesData from "@/data/species.json";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+    AlertTriangle,
+    ChevronRight,
+    Eye,
+    Grid3X3,
+    Leaf,
+    List,
+    MapPin,
+    Search,
+    Shield,
+    SlidersHorizontal,
+    X,
+} from "lucide-react";
+import { resolveSpeciesImage } from "@/lib/species-images";
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 // ============================================
 // TYPES & CONSTANTS
@@ -121,6 +122,8 @@ const REGION_LABELS: Record<string, string> = {
   papua: "Papua",
   "bali-nusra": "Bali & Nusa Tenggara",
 };
+const EASE_STANDARD: [number, number, number, number] = [0.4, 0, 0.2, 1];
+const EASE_OUT_BACK: [number, number, number, number] = [0.34, 1.56, 0.64, 1];
 
 // ============================================
 // ANIMATION VARIANTS
@@ -158,16 +161,17 @@ const cardVariants = {
 // ============================================
 // STATUS BADGE
 // ============================================
-function StatusBadge({ status }: { status: string }) {
+function StatusBadge({ status, overlay = false }: { status: string; overlay?: boolean }) {
   const cfg = STATUS_CONFIG[status];
   if (!cfg) return null;
   return (
     <span
       className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold"
       style={{
-        color: cfg.color,
-        backgroundColor: cfg.bg,
-        border: `1px solid ${cfg.border}`,
+        color: overlay ? "#fff" : cfg.color,
+        backgroundColor: overlay ? cfg.color : cfg.bg,
+        border: overlay ? "1px solid rgba(255,255,255,0.25)" : `1px solid ${cfg.border}`,
+        textShadow: overlay ? "0 1px 3px rgba(0,0,0,0.35)" : "none",
       }}
     >
       {cfg.icon}
@@ -177,109 +181,115 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 // ============================================
+// STATUS BADGE
+// ============================================
+
+// ============================================
 // SPECIES CARD (GRID VIEW)
 // ============================================
 function SpeciesCard({ species, index }: { species: Species; index: number }) {
+  const isCritical = species.status === "kritis";
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       transition={{ delay: index * 0.05 }}
-      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+      whileHover={{ y: -6, transition: { duration: 0.3, ease: EASE_OUT_BACK } }}
     >
       <Link
         href={`/species/${species.id}`}
-        className="group relative overflow-hidden rounded-2xl border flex flex-col h-full"
+        className="group relative flex flex-col overflow-hidden h-[260px] sm:h-[300px] lg:h-[360px] rounded-2xl sm:rounded-[24px]"
         style={{
           background: "var(--bg-surface)",
-          borderColor: "var(--border-light)",
-          boxShadow: "var(--shadow-sm)",
+          boxShadow: isCritical ? "0 10px 30px rgba(198,40,40,0.12)" : "var(--shadow-md)",
         }}
       >
-        {/* Image */}
-        <div className="relative h-48 overflow-hidden flex-shrink-0">
+        {/* Full-bleed background image with slow zoom hover */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-100">
           <Image
-            src={species.image}
+            src={resolveSpeciesImage(species.image)}
             alt={species.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/placeholder.jpg";
-            }}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(26,46,26,0.5) 0%, transparent 60%)",
-            }}
-          />
-
-          {/* Badges */}
-          <div className="absolute top-3 right-3">
-            <StatusBadge status={species.status} />
-          </div>
-          <div className="absolute top-3 left-3">
-            <span
-              className="px-2.5 py-1 rounded-full text-xs font-medium capitalize"
-              style={{
-                background: "rgba(255,255,255,0.92)",
-                color: "var(--text-secondary)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              {species.type}
-            </span>
-          </div>
         </div>
-
-        {/* Content */}
-        <div className="p-4 flex flex-col flex-1">
-          <p className="text-xs italic mb-1" style={{ color: "var(--text-muted)" }}>
-            {species.latinName}
-          </p>
-          <h3
-            className="font-bold text-base mb-2 line-clamp-1 transition-colors duration-200"
-            style={{ color: "var(--text-primary)" }}
-          >
-            <span className="group-hover:text-[var(--green-500)]">{species.name}</span>
-          </h3>
-          <p
-            className="text-sm leading-relaxed line-clamp-2 flex-1 mb-3"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {species.description}
-          </p>
-
-          {/* Footer */}
-          <div
-            className="flex items-center justify-between pt-3"
-            style={{ borderTop: "1px solid var(--border-light)" }}
-          >
-            <div
-              className="flex items-center gap-1 text-xs"
-              style={{ color: "var(--text-muted)" }}
-            >
-              <MapPin className="w-3 h-3" />
-              <span>{REGION_LABELS[species.region] || species.region}</span>
-            </div>
-            <span
-              className="flex items-center gap-0.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-200"
-              style={{ color: "var(--green-500)" }}
-            >
-              Detail <ChevronRight className="w-3 h-3" />
-            </span>
-          </div>
-        </div>
-
-        {/* Color accent bottom */}
+        
+        {/* Deep bottom gradient for text contrast */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-          style={{
-            background: `linear-gradient(90deg, ${species.color}, transparent)`,
-          }}
+          className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+          style={{ background: "linear-gradient(to top, rgba(5,12,5,0.98) 0%, rgba(5,12,5,0.7) 40%, transparent 80%)" }}
         />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10 scale-90 sm:scale-100 origin-top-right">
+          <div
+            className="rounded-full"
+            style={{
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.18)",
+              boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+            }}
+          >
+            <StatusBadge status={species.status} overlay />
+          </div>
+        </div>
+        <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10">
+          <span
+            className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[11px] font-bold uppercase tracking-widest text-white shadow-sm"
+            style={{
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.15)",
+            }}
+          >
+            {species.type}
+          </span>
+        </div>
+
+        {/* Bottom Floating Glass Panel */}
+        <div className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 z-10 flex flex-col justify-end">
+          <div 
+            className="p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all duration-300 transform group-hover:-translate-y-1"
+            style={{
+              background: "linear-gradient(180deg, rgba(18,26,18,0.38) 0%, rgba(10,16,10,0.48) 100%)",
+              backdropFilter: "blur(10px) saturate(120%)",
+              border: "1px solid rgba(255,255,255,0.28)",
+              boxShadow: "0 8px 28px rgba(0,0,0,0.35)",
+            }}
+          >
+            <p
+              className="text-[10px] sm:text-xs italic mb-0.5 sm:mb-1 font-serif line-clamp-1 drop-shadow-md"
+              style={{ color: "rgba(255,255,255,0.95)" }}
+            >
+              {species.latinName}
+            </p>
+            <h3
+              className="font-bold text-base sm:text-lg lg:text-xl leading-tight mb-1.5 sm:mb-2.5 drop-shadow-lg line-clamp-1"
+              style={{ color: "#ffffff", textShadow: "0 2px 8px rgba(0,0,0,0.85)" }}
+            >
+              {species.name}
+            </h3>
+             
+            <div className="flex items-center justify-between pt-2 sm:pt-2.5" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+              <span className="flex items-center gap-1.5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.92)" }}>
+                <MapPin className="w-3.5 h-3.5" style={{ color: "var(--green-400)" }} />
+                <span className="truncate max-w-[120px]">{REGION_LABELS[species.region] || species.region}</span>
+              </span>
+              <span
+                className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-3 group-hover:translate-x-0"
+                style={{ color: "#9EF0A8" }}
+              >
+                Detail <ChevronRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Outer glow frame on hover */}
+        <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/20 transition-colors duration-500 rounded-[24px] pointer-events-none" />
       </Link>
     </motion.div>
   );
@@ -288,7 +298,14 @@ function SpeciesCard({ species, index }: { species: Species; index: number }) {
 // ============================================
 // SPECIES LIST ITEM (LIST VIEW)
 // ============================================
+const STATUS_LEFT_COLOR: Record<string, string> = {
+  kritis: "#C0392B",
+  terancam: "#D35400",
+  rentan: "#B7950B",
+};
+
 function SpeciesListItem({ species, index }: { species: Species; index: number }) {
+  const leftColor = STATUS_LEFT_COLOR[species.status] || "var(--border-medium)";
   return (
     <motion.div
       variants={itemVariants}
@@ -299,22 +316,31 @@ function SpeciesListItem({ species, index }: { species: Species; index: number }
     >
       <Link
         href={`/species/${species.id}`}
-        className="group flex items-center gap-4 p-4 rounded-2xl border transition-all duration-200"
+        className="group flex items-center gap-4 p-4 rounded-2xl border transition-all duration-200 overflow-hidden relative"
         style={{
           background: "var(--bg-surface)",
           borderColor: "var(--border-light)",
+          borderLeft: `3px solid ${leftColor}`,
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-md)";
+          (e.currentTarget as HTMLElement).style.borderColor = "var(--border-medium)";
+          (e.currentTarget as HTMLElement).style.borderLeftColor = leftColor;
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.boxShadow = "none";
+          (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)";
+          (e.currentTarget as HTMLElement).style.borderLeftColor = leftColor;
         }}
       >
         {/* Thumbnail */}
         <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
           <Image
-            src={species.image}
+            src={resolveSpeciesImage(species.image)}
             alt={species.name}
             fill
+            sizes="64px"
             className="object-cover group-hover:scale-110 transition-transform duration-500"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/placeholder.jpg";
-            }}
           />
         </div>
 
@@ -457,6 +483,7 @@ function EmptyState({ onReset }: { onReset: () => void }) {
 // MAIN SPECIES PAGE CONTENT
 // ============================================
 function SpeciesPageContent() {
+  const ITEMS_PER_PAGE = 12;
   const searchParams = useSearchParams();
 
   const [search, setSearch] = useState("");
@@ -467,10 +494,13 @@ function SpeciesPageContent() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   useEffect(() => {
     const region = searchParams.get("region");
-    if (region) setRegionFilter(region);
+    if (!region) return;
+    const timer = window.setTimeout(() => setRegionFilter(region), 0);
+    return () => window.clearTimeout(timer);
   }, [searchParams]);
 
   const filtered = useMemo(() => {
@@ -485,6 +515,15 @@ function SpeciesPageContent() {
       return matchSearch && matchRegion && matchType && matchStatus;
     });
   }, [search, regionFilter, typeFilter, statusFilter]);
+  const visibleSpecies = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount]
+  );
+  const hasMore = filtered.length > visibleCount;
+
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [search, regionFilter, typeFilter, statusFilter, viewMode]);
 
   const activeFilterCount = [
     regionFilter !== "all",
@@ -516,7 +555,7 @@ function SpeciesPageContent() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.6, ease: EASE_STANDARD }}
           className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-6 sm:p-8 lg:p-12"
           style={{
             background: "linear-gradient(135deg, var(--green-500) 0%, var(--green-600) 100%)",
@@ -639,11 +678,21 @@ function SpeciesPageContent() {
                 placeholder="Cari nama spesies atau nama latin..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-11 pr-10 py-3 rounded-xl text-sm transition-all duration-200 focus:outline-none"
+                className="w-full pl-11 pr-10 py-3.5 rounded-xl text-sm transition-all duration-200 focus:outline-none"
                 style={{
                   background: "var(--bg-surface)",
-                  border: "1px solid var(--border-light)",
+                  border: "1.5px solid var(--border-light)",
                   color: "var(--text-primary)",
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "var(--green-400)";
+                  e.target.style.boxShadow = "var(--shadow-glow)";
+                  e.target.style.background = "white";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "var(--border-light)";
+                  e.target.style.boxShadow = "none";
+                  e.target.style.background = "var(--bg-surface)";
                 }}
               />
               {search && (
@@ -852,16 +901,16 @@ function SpeciesPageContent() {
                 className="font-semibold"
                 style={{ color: "var(--text-primary)" }}
               >
-                {filtered.length}
+                {visibleSpecies.length}
               </span>{" "}
               dari{" "}
               <span
                 className="font-semibold"
                 style={{ color: "var(--text-primary)" }}
               >
-                {speciesData.length}
+                {filtered.length}
               </span>{" "}
-              spesies
+              spesies hasil filter
               {kritisCount > 0 && (
                 <span style={{ color: "var(--status-cr)" }}>
                   {" "}
@@ -948,9 +997,9 @@ function SpeciesPageContent() {
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-5"
+              className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5"
             >
-              {filtered.map((species, index) => (
+              {visibleSpecies.map((species, index) => (
                 <SpeciesCard
                   key={species.id}
                   species={species as Species}
@@ -967,7 +1016,7 @@ function SpeciesPageContent() {
               exit={{ opacity: 0 }}
               className="space-y-3 max-w-3xl mx-auto"
             >
-              {filtered.map((species, index) => (
+              {visibleSpecies.map((species, index) => (
                 <SpeciesListItem
                   key={species.id}
                   species={species as Species}
@@ -977,6 +1026,21 @@ function SpeciesPageContent() {
             </motion.div>
           )}
         </AnimatePresence>
+        {hasMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
+              className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+              style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-light)",
+                color: "var(--text-primary)",
+              }}
+            >
+              Muat lagi ({Math.min(ITEMS_PER_PAGE, filtered.length - visibleCount)})
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   );

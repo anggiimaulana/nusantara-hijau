@@ -1,20 +1,26 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { geoMercator, geoPath } from "d3-geo";
+import {
+  geoMercator,
+  geoPath,
+  type ExtendedFeature,
+  type ExtendedFeatureCollection,
+  type GeoGeometryObjects,
+  type GeoPermissibleObjects,
+} from "d3-geo";
 import {
   X,
   ChevronRight,
-  MapPin,
   ZoomIn,
   ZoomOut,
   RotateCcw,
-  Loader2,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import speciesData from "@/data/species.json";
+import { resolveSpeciesImage } from "@/lib/species-images";
 
 const GEO_URL =
   "https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia-province-simple.json";
@@ -168,7 +174,7 @@ const STATUS_CLR: Record<string, string> = {
 interface GeoFeat {
   type: string;
   properties: Record<string, string>;
-  geometry: any;
+  geometry: GeoGeometryObjects;
 }
 interface TooltipSt {
   x: number;
@@ -245,11 +251,11 @@ export default function InteractiveMap() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [selProv, setSelProv] = useState<string | null>(null);
   const [tip, setTip] = useState<TooltipSt | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
   const dragging = useRef(false);
   const drag0 = useRef({ mx: 0, my: 0, px: 0, py: 0 });
 
@@ -286,7 +292,6 @@ export default function InteractiveMap() {
   // Load GeoJSON
   useEffect(() => {
     if (!dims.w) return;
-    setStatus("loading");
     fetch(GEO_URL)
       .then((r) => {
         if (!r.ok) throw new Error();
@@ -294,17 +299,31 @@ export default function InteractiveMap() {
       })
       .then((data) => {
         const features: GeoFeat[] = data.features ?? [];
-        const proj = geoMercator().fitSize([dims.w, dims.h], {
+        const featureCollection: ExtendedFeatureCollection<
+          ExtendedFeature<GeoGeometryObjects, Record<string, string>>
+        > = {
           type: "FeatureCollection",
-          features,
-        } as any);
+          features: features.map((feature) => ({
+            type: "Feature",
+            properties: feature.properties,
+            geometry: feature.geometry,
+          })),
+        };
+        const proj = geoMercator().fitSize(
+          [dims.w, dims.h],
+          featureCollection as GeoPermissibleObjects,
+        );
         const gen = geoPath().projection(proj);
         const pathMap: Record<string, string> = {};
         const regionMap: Record<string, string | null> = {};
         features.forEach((f, i) => {
           const nm = provName(f.properties) || `feat_${i}`;
           const reg = getRegion(nm);
-          const d = gen(f.geometry as any);
+          const d = gen({
+            type: "Feature",
+            properties: f.properties,
+            geometry: f.geometry,
+          });
           if (d) pathMap[nm] = d;
           regionMap[nm] = reg;
         });
@@ -339,7 +358,6 @@ export default function InteractiveMap() {
   );
 
   const onMove = useCallback((e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
     setTip((p) => (p ? { ...p, x: e.clientX, y: e.clientY } : null));
   }, []);
 
@@ -366,6 +384,7 @@ export default function InteractiveMap() {
   const onMDown = (e: React.MouseEvent) => {
     if (zoom <= 1) return;
     dragging.current = true;
+    setIsDragging(true);
     drag0.current = { mx: e.clientX, my: e.clientY, px: pan.x, py: pan.y };
   };
 
@@ -379,7 +398,9 @@ export default function InteractiveMap() {
   };
 
   const onMUp = () => {
+    if (!dragging.current) return;
     dragging.current = false;
+    setIsDragging(false);
   };
 
   const onWheel = (e: React.WheelEvent) => {
@@ -387,24 +408,11 @@ export default function InteractiveMap() {
     setZoom((z) => Math.min(5, Math.max(1, z - e.deltaY * 0.0015)));
   };
 
-  const getProvFill = (nm: string, isHov: boolean, isSel: boolean) => {
-    const reg = featRegion[nm] ?? null;
-    const cfg = reg
-      ? (REGION_CFG[reg] ?? REGION_CFG.unknown)
-      : REGION_CFG.unknown;
-    const hasSp = getSpeciesForProvince(nm).length > 0;
-
-    if (isSel) return cfg.active;
-    if (isHov) return cfg.hover;
-    if (hasSp) return cfg.hasSpecies;
-    return cfg.base;
-  };
-
   // 3D transform style
   const map3DStyle = {
     transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`,
     transformOrigin: "center center",
-    transition: dragging.current ? "none" : "transform 0.3s ease-out",
+    transition: isDragging ? "none" : "transform 0.3s ease-out",
   };
 
   return (
@@ -645,7 +653,6 @@ export default function InteractiveMap() {
                 const isHov = hovered === nm;
                 const isSel = selProv === nm;
                 const reg = featRegion[nm] ?? "unknown";
-                const cfg = REGION_CFG[reg] ?? REGION_CFG.unknown;
                 const hasSp = getSpeciesForProvince(nm).length > 0;
                 const dim = selProv !== null && !isSel && reg !== "unknown";
 
@@ -799,13 +806,11 @@ export default function InteractiveMap() {
                       >
                         <div className="relative w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 shadow-sm">
                           <Image
-                            src={sp.image}
+                            src={resolveSpeciesImage(sp.image)}
                             alt={sp.name}
                             fill
+                            sizes="48px"
                             className="object-cover"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = "/images/placeholder.jpg";
-                            }}
                           />
                         </div>
                         <div className="flex-1 min-w-0">

@@ -2,8 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Configure image domains if using external images
-    // domains: ['example.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
+    ],
     // Enable modern formats
     formats: ["image/webp", "image/avif"],
     // Optimize images

@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "latinName", "region", "province", "type", "status", "statusEN", "description", "image", "source"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "description": "URL-friendly identifier"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Common name in Indonesian"
+      },
+      "latinName": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Scientific name"
+      },
+      "region": {
+        "type": "string",
+        "enum": ["sumatera", "kalimantan", "jawa", "sulawesi", "papua", "bali-nusra", "maluku"],
+        "description": "Major biogeographic region"
+      },
+      "province": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "ACEH", "SUMATERA UTARA", "SUMATERA BARAT", "RIAU", "KEPULAUAN RIAU",
+            "JAMBI", "SUMATERA SELATAN", "BENGKULU", "LAMPUNG",
+            "DKI JAKARTA", "JAWA BARAT", "JAWA TENGAH", "DI YOGYAKARTA", "JAWA TIMUR", "BANTEN",
+            "BALI", "NUSA TENGGARA BARAT", "NUSA TENGGARA TIMUR",
+            "KALIMANTAN BARAT", "KALIMANTAN TENGAH", "KALIMANTAN SELATAN", "KALIMANTAN TIMUR", "KALIMANTAN UTARA",
+            "SULAWESI UTARA", "SULAWESI TENGAH", "SULAWESI SELATAN", "SULAWESI TENGGARA", "SULAWESI BARAT", "GORONTALO",
+            "MALUKU", "MALUKU UTARA",
+            "PAPUA", "PAPUA BARAT", "PAPUA SELATAN", "PAPUA TENGAH", "PAPUA PEGUNUNGAN", "PAPUA BARAT DAYA"
+          ]
+        },
+        "minItems": 1,
+        "description": "Provinces where species is found"
+      },
+      "provinceMain": {
+        "type": "string",
+        "description": "Primary province for this species"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["fauna", "flora"],
+        "description": "Species type"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["kritis", "terancam", "rentan"],
+        "description": "IUCN status in Indonesian"
+      },
+      "statusEN": {
+        "type": "string",
+        "enum": ["CR", "EN", "VU"],
+        "description": "IUCN status code"
+      },
+      "population": {
+        "type": "string",
+        "description": "Population estimate"
+      },
+      "habitat": {
+        "type": "string",
+        "description": "Habitat description"
+      },
+      "threat": {
+        "type": "string",
+        "description": "Main threats"
+      },
+      "description": {
+        "type": "string",
+        "minLength": 50,
+        "description": "Detailed description"
+      },
+      "image": {
+        "type": "string",
+        "pattern": "^/images/species/",
+        "description": "Path to species image"
+      },
+      "action": {
+        "type": "string",
+        "description": "Conservation action"
+      },
+      "funFact": {
+        "type": "string",
+        "description": "Interesting fact"
+      },
+      "source": {
+        "type": "string",
+        "description": "Data source reference"
+      },
+      "color": {
+        "type": "string",
+        "pattern": "^#[0-9A-Fa-f]{6}$",
+        "description": "Brand color in hex"
+      }
+    }
+  }
+}

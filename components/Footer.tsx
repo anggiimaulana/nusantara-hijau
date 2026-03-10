@@ -1,67 +1,99 @@
+"use client";
+
 import Link from "next/link";
-import { Leaf, Instagram, Mail, Heart, ExternalLink } from "lucide-react";
+import { Mail, Instagram, ExternalLink } from "lucide-react";
 
-const footerLinks = {
-  navigasi: [
-    { href: "/", label: "Beranda" },
-    { href: "/species", label: "Spesies" },
-    { href: "/about", label: "Tentang Kami" },
-    { href: "/contact", label: "Kontak" },
-  ],
-  konservasi: [
-    { href: "https://www.wwf.id", label: "WWF Indonesia", external: true },
-    { href: "https://iucnredlist.org", label: "IUCN Red List", external: true },
-    { href: "https://www.brin.go.id", label: "BRIN Indonesia", external: true },
-    { href: "https://ppid.menlhk.go.id", label: "KLHK", external: true },
-  ],
-};
+function LeafIcon() {
+  return (
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 5.5-8 5.5C12.83 6.63 10.55 7 8 7C8.21 5.71 8 4 4 3c0 0 8-2 13 5z" />
+    </svg>
+  );
+}
 
-const statusList = [
-  { label: "Kritis (CR)", color: "#E74C3C" },
-  { label: "Terancam (EN)", color: "#E67E22" },
-  { label: "Rentan (VU)", color: "#F1C40F" },
+const STATUS_LEGEND = [
+  { code: "CR", label: "Kritis", color: "var(--status-cr)" },
+  { code: "EN", label: "Terancam", color: "var(--status-en)" },
+  { code: "VU", label: "Rentan", color: "var(--status-vu)" },
+];
+
+const NAV_LINKS = [
+  { href: "/", label: "Beranda" },
+  { href: "/species", label: "Direktori Spesies" },
+  { href: "/about", label: "Tentang Kami" },
+  { href: "/contact", label: "Kontak" },
+];
+
+const SOURCES = [
+  { label: "IUCN Red List", href: "https://iucnredlist.org" },
+  { label: "WWF Indonesia", href: "https://wwf.id" },
+  { label: "KLHK RI", href: "https://ppid.menlhk.go.id" },
+  { label: "BRIN", href: "https://brin.go.id" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060E1A] border-t border-white/5">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer
+      style={{
+        background: "var(--bg-muted)",
+        borderTop: "1px solid var(--border-light)",
+      }}
+    >
+      {/* Main */}
+      <div className="container-main py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand Column */}
+          {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2ECC71] to-[#1a8a4a] flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-white" strokeWidth={2} />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span
-                  className="font-bold text-white text-base"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  Nusantara
-                </span>
-                <span className="text-[#2ECC71] text-[10px] font-semibold tracking-[0.2em] uppercase">
-                  Hijau
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 mb-4 group"
+            >
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "var(--green-500)" }}
+              >
+                <span className="text-white">
+                  <LeafIcon />
                 </span>
               </div>
+              <span
+                className="font-bold text-base"
+                style={{ color: "var(--text-primary)" }}
+              >
+                Nusantara
+                <span style={{ color: "var(--green-500)" }}>Hijau</span>
+              </span>
             </Link>
-            <p className="text-[#90A4AE] text-sm leading-relaxed mb-6">
+            <p
+              className="text-sm leading-relaxed mb-5"
+              style={{ color: "var(--text-muted)" }}
+            >
               Atlas digital keanekaragaman hayati Indonesia. Mengenal,
-              mencintai, dan melestarikan kekayaan alam Nusantara.
+              mencintai, dan melestarikan.
             </p>
-            {/* Status Legend */}
-            <div className="space-y-2">
-              <p className="text-white/40 text-xs uppercase tracking-widest font-medium mb-3">
-                Status Konservasi
+
+            {/* Status legend */}
+            <div className="space-y-1.5">
+              <p
+                className="text-xs font-semibold uppercase tracking-widest mb-2"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Status IUCN
               </p>
-              {statusList.map((s) => (
-                <div key={s.label} className="flex items-center gap-2">
+              {STATUS_LEGEND.map((s) => (
+                <div key={s.code} className="flex items-center gap-2">
                   <span
-                    className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: s.color }}
-                  />
-                  <span className="text-[#90A4AE] text-xs">{s.label}</span>
+                    className="w-5 h-5 rounded text-white text-[9px] font-bold flex items-center justify-center flex-shrink-0"
+                    style={{ background: s.color }}
+                  >
+                    {s.code}
+                  </span>
+                  <span
+                    className="text-xs"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {s.label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -69,39 +101,58 @@ export default function Footer() {
 
           {/* Navigasi */}
           <div>
-            <h4 className="text-white text-sm font-semibold uppercase tracking-widest mb-5">
+            <h4
+              className="text-xs font-semibold uppercase tracking-widest mb-4"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Navigasi
             </h4>
-            <ul className="space-y-3">
-              {footerLinks.navigasi.map((link) => (
-                <li key={link.href}>
+            <ul className="space-y-2.5">
+              {NAV_LINKS.map((l) => (
+                <li key={l.href}>
                   <Link
-                    href={link.href}
-                    className="text-[#90A4AE] text-sm hover:text-[#2ECC71] transition-colors duration-200 flex items-center gap-1.5 group"
+                    href={l.href}
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: "var(--text-muted)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "var(--green-500)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "var(--text-muted)")
+                    }
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-[#2ECC71] transition-all duration-300" />
-                    {link.label}
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Link Konservasi */}
+          {/* Sumber */}
           <div>
-            <h4 className="text-white text-sm font-semibold uppercase tracking-widest mb-5">
-              Sumber & Referensi
+            <h4
+              className="text-xs font-semibold uppercase tracking-widest mb-4"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Sumber Data
             </h4>
-            <ul className="space-y-3">
-              {footerLinks.konservasi.map((link) => (
-                <li key={link.href}>
+            <ul className="space-y-2.5">
+              {SOURCES.map((s) => (
+                <li key={s.label}>
                   <a
-                    href={link.href}
+                    href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#90A4AE] text-sm hover:text-[#2ECC71] transition-colors duration-200 flex items-center gap-1.5"
+                    className="flex items-center gap-1.5 text-sm transition-colors duration-200"
+                    style={{ color: "var(--text-muted)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "var(--green-500)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "var(--text-muted)")
+                    }
                   >
-                    {link.label}
+                    {s.label}
                     <ExternalLink className="w-3 h-3 opacity-50" />
                   </a>
                 </li>
@@ -111,55 +162,93 @@ export default function Footer() {
 
           {/* Kontak */}
           <div>
-            <h4 className="text-white text-sm font-semibold uppercase tracking-widest mb-5">
-              Hubungi Kami
+            <h4
+              className="text-xs font-semibold uppercase tracking-widest mb-4"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Kontak
             </h4>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <a
                 href="mailto:nusantarahijau@example.com"
-                className="flex items-center gap-3 text-[#90A4AE] text-sm hover:text-[#2ECC71] transition-colors duration-200 group"
+                className="flex items-center gap-3 group"
               >
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#2ECC71]/30 transition-colors">
-                  <Mail className="w-3.5 h-3.5" />
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--green-100)" }}
+                >
+                  <Mail
+                    className="w-3.5 h-3.5"
+                    style={{ color: "var(--green-500)" }}
+                  />
                 </div>
-                nusantarahijau@example.com
+                <span
+                  className="text-sm group-hover:text-green-600 transition-colors"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  nusantarahijau@example.com
+                </span>
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-[#90A4AE] text-sm hover:text-[#2ECC71] transition-colors duration-200 group"
+                className="flex items-center gap-3 group"
               >
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#2ECC71]/30 transition-colors">
-                  <Instagram className="w-3.5 h-3.5" />
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "var(--green-100)" }}
+                >
+                  <Instagram
+                    className="w-3.5 h-3.5"
+                    style={{ color: "var(--green-500)" }}
+                  />
                 </div>
-                @nusantarahijau
+                <span
+                  className="text-sm group-hover:text-green-600 transition-colors"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  @nusantarahijau
+                </span>
               </a>
             </div>
 
-            {/* Data Sources Note */}
-            <div className="mt-6 p-3 rounded-xl bg-white/3 border border-white/5">
-              <p className="text-[#90A4AE] text-xs leading-relaxed">
-                Data spesies bersumber dari{" "}
-                <span className="text-[#2ECC71]">IUCN Red List</span>,{" "}
-                <span className="text-[#2ECC71]">WWF Indonesia</span>, dan{" "}
-                <span className="text-[#2ECC71]">KLHK</span>.
-              </p>
+            {/* Note */}
+            <div
+              className="mt-5 p-3 rounded-xl text-xs leading-relaxed"
+              style={{
+                background: "var(--green-50)",
+                border: "1px solid var(--green-100)",
+                color: "var(--text-muted)",
+              }}
+            >
+              Data bersumber dari{" "}
+              <strong style={{ color: "var(--green-600)" }}>IUCN</strong>,{" "}
+              <strong style={{ color: "var(--green-600)" }}>WWF</strong>, dan{" "}
+              <strong style={{ color: "var(--green-600)" }}>KLHK</strong>.
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[#90A4AE] text-xs">
-            © 2026 NusantaraHijau. Dibuat untuk kompetisi TECHSOFT 2026.
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid var(--border-light)" }}>
+        <div className="container-main py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs" style={{ color: "var(--text-faint)" }}>
+            © 2026 NusantaraHijau · Dibuat untuk TECHSOFT 2026
           </p>
-          <p className="text-[#90A4AE] text-xs flex items-center gap-1">
-            Dibuat dengan{" "}
-            <Heart className="w-3 h-3 text-[#E74C3C] fill-[#E74C3C]" /> untuk
-            alam Indonesia
+          <p
+            className="text-xs flex items-center gap-1"
+            style={{ color: "var(--text-faint)" }}
+          >
+            Dibuat dengan
+            <svg
+              className="w-3.5 h-3.5 text-red-400 fill-red-400 mx-0.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            untuk alam Indonesia
           </p>
         </div>
       </div>

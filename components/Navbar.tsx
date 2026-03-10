@@ -3,151 +3,179 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const NAV_LINKS = [
   { href: "/", label: "Beranda" },
   { href: "/species", label: "Spesies" },
   { href: "/about", label: "Tentang" },
   { href: "/contact", label: "Kontak" },
 ];
 
+// Leaf SVG icon (inline, no external font)
+function LeafIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 5.5-8 5.5C12.83 6.63 10.55 7 8 7C8.21 5.71 8 4 4 3c0 0 8-2 13 5z" />
+    </svg>
+  );
+}
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Detect scroll untuk efek background navbar
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Tutup menu mobile saat navigasi
   useEffect(() => {
-    setIsOpen(false);
+    setOpen(false);
   }, [pathname]);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0A1628]/95 backdrop-blur-md shadow-lg shadow-black/20 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-sm border-b shadow-sm"
+          : "bg-transparent"
       }`}
+      style={{
+        borderColor: scrolled ? "var(--border-light)" : "transparent",
+        boxShadow: scrolled ? "var(--shadow-sm)" : "none",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+      <div className="container-main">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#2ECC71] to-[#1a8a4a] flex items-center justify-center shadow-lg shadow-green-900/30 group-hover:shadow-green-700/40 transition-all duration-300 group-hover:scale-105">
-              <Leaf className="w-5 h-5 text-white" strokeWidth={2} />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
+              style={{ background: "var(--green-500)" }}
+            >
+              <LeafIcon className="w-4 h-4 text-white" />
             </div>
-            <div className="flex flex-col leading-none">
+            <div className="leading-none">
               <span
-                className="font-bold text-white text-base tracking-wide"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="block font-bold text-base tracking-tight"
+                style={{ color: "var(--text-primary)" }}
               >
                 Nusantara
+                <span style={{ color: "var(--green-500)" }}>Hijau</span>
               </span>
-              <span className="text-[#2ECC71] text-[10px] font-semibold tracking-[0.2em] uppercase">
-                Hijau
+              <span
+                className="block text-[9px] font-medium tracking-[0.15em] uppercase"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Atlas Hayati
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+            {NAV_LINKS.map((link) => {
+              const active = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
-                    isActive
-                      ? "text-[#2ECC71]"
-                      : "text-[#90A4AE] hover:text-white"
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    active ? "font-semibold" : ""
                   }`}
+                  style={{
+                    color: active
+                      ? "var(--green-500)"
+                      : "var(--text-secondary)",
+                    background: active ? "var(--green-50)" : "transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active) {
+                      e.currentTarget.style.color = "var(--text-primary)";
+                      e.currentTarget.style.background = "var(--bg-muted)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) {
+                      e.currentTarget.style.color = "var(--text-secondary)";
+                      e.currentTarget.style.background = "transparent";
+                    }
+                  }}
                 >
-                  {/* Active indicator */}
-                  {isActive && (
-                    <span className="absolute inset-0 bg-[#2ECC71]/10 rounded-lg border border-[#2ECC71]/20" />
+                  {link.label}
+                  {active && (
+                    <span
+                      className="block h-0.5 rounded-full mt-0.5 mx-auto"
+                      style={{ width: "20px", background: "var(--green-400)" }}
+                    />
                   )}
-                  {/* Hover indicator */}
-                  <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 rounded-lg transition-all duration-300" />
-                  <span className="relative">{link.label}</span>
                 </Link>
               );
             })}
           </div>
 
-          {/* CTA Button Desktop */}
+          {/* CTA */}
           <div className="hidden md:block">
-            <Link
-              href="/species"
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] text-white text-sm font-semibold rounded-xl shadow-md shadow-green-900/30 hover:shadow-green-700/40 hover:scale-105 transition-all duration-300"
-            >
-              <Leaf className="w-4 h-4" />
+            <Link href="/species" className="btn-primary text-sm py-2.5 px-5">
+              <LeafIcon className="w-4 h-4" />
               Jelajahi Spesies
             </Link>
           </div>
 
-          {/* Hamburger Button Mobile */}
+          {/* Mobile hamburger */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all duration-300"
+            onClick={() => setOpen(!open)}
+            className="md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-200"
+            style={{
+              background: open ? "var(--green-50)" : "var(--bg-muted)",
+              color: "var(--text-secondary)",
+            }}
             aria-label="Toggle menu"
           >
-            <span
-              className={`absolute transition-all duration-300 ${isOpen ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}
-            >
-              <X className="w-5 h-5" />
-            </span>
-            <span
-              className={`absolute transition-all duration-300 ${isOpen ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"}`}
-            >
-              <Menu className="w-5 h-5" />
-            </span>
+            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          open ? "max-h-80" : "max-h-0"
         }`}
+        style={{
+          background: "white",
+          borderTop: open ? "1px solid var(--border-light)" : "none",
+        }}
       >
-        <div className="bg-[#0A1628]/98 backdrop-blur-md border-t border-white/5 px-4 py-4 space-y-1">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+        <div className="container-main py-3 space-y-1">
+          {NAV_LINKS.map((link) => {
+            const active = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? "bg-[#2ECC71]/10 text-[#2ECC71] border border-[#2ECC71]/20"
-                    : "text-[#90A4AE] hover:bg-white/5 hover:text-white"
-                }`}
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200"
+                style={{
+                  color: active ? "var(--green-600)" : "var(--text-secondary)",
+                  background: active ? "var(--green-50)" : "transparent",
+                  borderLeft: active
+                    ? "3px solid var(--green-400)"
+                    : "3px solid transparent",
+                }}
               >
-                {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC71]" />
-                )}
                 {link.label}
               </Link>
             );
           })}
-
-          {/* CTA Mobile */}
-          <div className="pt-2">
+          <div className="pt-2 pb-1">
             <Link
               href="/species"
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] text-white text-sm font-semibold rounded-xl"
+              className="btn-primary w-full justify-center text-sm"
             >
-              <Leaf className="w-4 h-4" />
+              <LeafIcon className="w-4 h-4" />
               Jelajahi Spesies
             </Link>
           </div>

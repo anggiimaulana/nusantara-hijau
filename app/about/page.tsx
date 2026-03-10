@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Leaf,
-  Target,
   Eye,
   Heart,
+  Shield,
   Users,
   Database,
   ExternalLink,
   ArrowRight,
   Globe,
-  Shield,
   BookOpen,
 } from "lucide-react";
 
@@ -131,7 +130,13 @@ export default function AboutPage() {
     <div className="min-h-screen pt-24 pb-16">
       {/* ==================== HERO ==================== */}
       <section className="section-container px-4 mb-20">
-        <div className="relative rounded-3xl overflow-hidden border border-white/6 bg-[#060E1A] p-10 sm:p-16 text-center">
+        <div
+          className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-light)",
+          }}
+        >
           {/* BG effects */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -140,20 +145,38 @@ export default function AboutPage() {
                 "radial-gradient(ellipse at center, rgba(46,204,113,0.07) 0%, transparent 65%)",
             }}
           />
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2ECC71]/30 to-transparent" />
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, var(--green-400), transparent)",
+            }}
+          />
 
           <div className="relative z-10">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#2ECC71]/10 border border-[#2ECC71]/20 mb-6 mx-auto">
-              <Leaf className="w-8 h-8 text-[#2ECC71]" />
+            <div
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 mx-auto"
+              style={{
+                background: "var(--green-50)",
+                border: "1px solid var(--border-light)",
+              }}
+            >
+              <Leaf className="w-8 h-8" style={{ color: "#2ECC71" }} />
             </div>
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                color: "var(--text-primary)",
+              }}
             >
               Tentang
               <span className="gradient-text"> NusantaraHijau</span>
             </h1>
-            <p className="text-[#90A4AE] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p
+              className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Atlas digital keanekaragaman hayati Indonesia — sebuah upaya kecil
               untuk memperkenalkan kekayaan alam Nusantara yang luar biasa
               kepada dunia, sebelum terlambat.
@@ -167,27 +190,50 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text */}
           <div>
-            <p className="text-[#2ECC71] text-xs font-semibold tracking-widest uppercase mb-3">
+            <p
+              className="text-xs font-semibold tracking-widest uppercase mb-3"
+              style={{ color: "#2ECC71" }}
+            >
               Latar Belakang
             </p>
             <h2
-              className="text-3xl sm:text-4xl font-bold text-white mb-5"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-3xl sm:text-4xl font-bold mb-5"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                color: "var(--text-primary)",
+              }}
             >
               Indonesia, Surga Hayati
               <span className="gradient-text"> yang Terancam</span>
             </h2>
-            <div className="space-y-4 text-[#90A4AE] text-sm leading-relaxed">
+            <div
+              className="space-y-4 text-sm leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
               <p>
                 Indonesia adalah salah satu negara dengan keanekaragaman hayati
                 tertinggi di dunia. Dengan hanya 1,3% luas daratan dunia,
                 Indonesia menyimpan sekitar{" "}
-                <span className="text-white font-semibold">
+                <span
+                  className="font-semibold"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   10% spesies tumbuhan berbunga
                 </span>
                 , lebih dari{" "}
-                <span className="text-white font-semibold">12% mamalia</span>,
-                dan <span className="text-white font-semibold">17% burung</span>{" "}
+                <span
+                  className="font-semibold"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  12% mamalia
+                </span>
+                , dan{" "}
+                <span
+                  className="font-semibold"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  17% burung
+                </span>{" "}
                 seluruh dunia.
               </p>
               <p>
@@ -200,7 +246,7 @@ export default function AboutPage() {
                 NusantaraHijau hadir untuk menjembatani jarak antara data
                 konservasi yang kompleks dengan pemahaman publik yang lebih luas
                 — karena kami percaya,{" "}
-                <span className="text-[#2ECC71] font-semibold">
+                <span className="font-semibold" style={{ color: "#2ECC71" }}>
                   kita tidak akan mau menjaga apa yang tidak kita kenal.
                 </span>
               </p>
@@ -212,18 +258,25 @@ export default function AboutPage() {
             {FACTS.map((fact, i) => (
               <div
                 key={i}
-                className="p-4 rounded-2xl border border-white/6 bg-[#0D1B2E] text-center group hover:border-white/10 transition-all duration-300"
+                className="p-4 rounded-2xl text-center group transition-all duration-300"
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-light)",
+                }}
               >
                 <div
                   className="text-2xl sm:text-3xl font-bold mb-1"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "var(--font-playfair), serif",
                     color: fact.color,
                   }}
                 >
                   {fact.value}
                 </div>
-                <div className="text-[#90A4AE] text-xs leading-tight">
+                <div
+                  className="text-xs leading-tight"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {fact.label}
                 </div>
               </div>
@@ -233,15 +286,28 @@ export default function AboutPage() {
       </section>
 
       {/* ==================== MISI ==================== */}
-      <section className="py-20 border-y border-white/5 bg-[#060E1A]/50 mb-20">
+      <section
+        className="py-20 mb-20"
+        style={{
+          background: "rgba(250, 252, 249, 0.5)",
+          borderTop: "1px solid var(--border-light)",
+          borderBottom: "1px solid var(--border-light)",
+        }}
+      >
         <div className="section-container px-4">
           <div className="text-center mb-12">
-            <p className="text-[#2ECC71] text-xs font-semibold tracking-widest uppercase mb-3">
+            <p
+              className="text-xs font-semibold tracking-widest uppercase mb-3"
+              style={{ color: "#2ECC71" }}
+            >
               Misi Kami
             </p>
             <h2
-              className="text-3xl sm:text-4xl font-bold text-white"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-3xl sm:text-4xl font-bold"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                color: "var(--text-primary)",
+              }}
             >
               Tiga Pilar
               <span className="gradient-text"> NusantaraHijau</span>
@@ -252,13 +318,17 @@ export default function AboutPage() {
             {MISSIONS.map((m, i) => (
               <div
                 key={i}
-                className="relative p-6 rounded-2xl border border-white/6 bg-[#0D1B2E] group hover:border-white/10 transition-all duration-300 hover:-translate-y-1"
+                className="relative p-6 rounded-2xl group transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-light)",
+                }}
               >
                 {/* Number */}
                 <div
                   className="absolute top-5 right-5 text-5xl font-bold opacity-5"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "var(--font-playfair), serif",
                     color: m.color,
                   }}
                 >
@@ -272,12 +342,18 @@ export default function AboutPage() {
                   {m.icon}
                 </div>
                 <h3
-                  className="text-white font-bold text-xl mb-3"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="font-bold text-xl mb-3"
+                  style={{
+                    fontFamily: "var(--font-playfair), serif",
+                    color: "var(--text-primary)",
+                  }}
                 >
                   {m.title}
                 </h3>
-                <p className="text-[#90A4AE] text-sm leading-relaxed">
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {m.desc}
                 </p>
 
@@ -295,17 +371,26 @@ export default function AboutPage() {
       {/* ==================== PANDUAN STATUS ==================== */}
       <section className="section-container px-4 mb-20">
         <div className="text-center mb-10">
-          <p className="text-[#2ECC71] text-xs font-semibold tracking-widest uppercase mb-3">
+          <p
+            className="text-xs font-semibold tracking-widest uppercase mb-3"
+            style={{ color: "#2ECC71" }}
+          >
             Panduan
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-3"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            className="text-3xl sm:text-4xl font-bold mb-3"
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              color: "var(--text-primary)",
+            }}
           >
             Memahami Status
             <span className="gradient-text"> Konservasi IUCN</span>
           </h2>
-          <p className="text-[#90A4AE] text-sm max-w-lg mx-auto">
+          <p
+            className="text-sm max-w-lg mx-auto"
+            style={{ color: "var(--text-secondary)" }}
+          >
             Setiap spesies di NusantaraHijau dikategorikan berdasarkan sistem
             penilaian IUCN Red List yang diakui secara internasional.
           </p>
@@ -328,33 +413,54 @@ export default function AboutPage() {
                 <span
                   className="font-bold text-lg"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "var(--font-playfair), serif",
                     color: s.color,
                   }}
                 >
                   {s.label}
                 </span>
               </div>
-              <p className="text-[#90A4AE] text-xs leading-relaxed">{s.desc}</p>
+              <p
+                className="text-xs leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {s.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ==================== SUMBER DATA ==================== */}
-      <section className="py-20 border-y border-white/5 bg-[#060E1A]/50 mb-20">
+      <section
+        className="py-20 mb-20"
+        style={{
+          background: "rgba(250, 252, 249, 0.5)",
+          borderTop: "1px solid var(--border-light)",
+          borderBottom: "1px solid var(--border-light)",
+        }}
+      >
         <div className="section-container px-4">
           <div className="text-center mb-12">
-            <p className="text-[#2ECC71] text-xs font-semibold tracking-widest uppercase mb-3">
+            <p
+              className="text-xs font-semibold tracking-widest uppercase mb-3"
+              style={{ color: "#2ECC71" }}
+            >
               Transparansi Data
             </p>
             <h2
-              className="text-3xl sm:text-4xl font-bold text-white mb-3"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-3xl sm:text-4xl font-bold mb-3"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                color: "var(--text-primary)",
+              }}
             >
               Sumber Data &<span className="gradient-text"> Referensi</span>
             </h2>
-            <p className="text-[#90A4AE] text-sm max-w-lg mx-auto">
+            <p
+              className="text-sm max-w-lg mx-auto"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Semua informasi di NusantaraHijau bersumber dari lembaga dan
               organisasi terpercaya di bidang konservasi dan keanekaragaman
               hayati.
@@ -368,7 +474,11 @@ export default function AboutPage() {
                 href={src.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-5 rounded-2xl border border-white/6 bg-[#0D1B2E] hover:border-white/12 transition-all duration-300 hover:-translate-y-1"
+                className="group p-5 rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-light)",
+                }}
               >
                 <div className="flex items-start justify-between mb-3">
                   <div
@@ -380,15 +490,24 @@ export default function AboutPage() {
                       style={{ color: src.color }}
                     />
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#546E7A] group-hover:text-[#2ECC71] transition-colors" />
+                  <ExternalLink
+                    className="w-3.5 h-3.5 transition-colors"
+                    style={{ color: "var(--text-muted)" }}
+                  />
                 </div>
                 <h3
-                  className="text-white font-bold text-base mb-2 group-hover:text-[#2ECC71] transition-colors"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="font-bold text-base mb-2 group-hover:transition-colors"
+                  style={{
+                    fontFamily: "var(--font-playfair), serif",
+                    color: "var(--text-primary)",
+                  }}
                 >
                   {src.name}
                 </h3>
-                <p className="text-[#90A4AE] text-xs leading-relaxed">
+                <p
+                  className="text-xs leading-relaxed"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {src.desc}
                 </p>
               </a>
@@ -399,19 +518,34 @@ export default function AboutPage() {
 
       {/* ==================== DISCLAIMER ==================== */}
       <section className="section-container px-4 mb-20">
-        <div className="p-6 rounded-2xl bg-[#0D1B2E] border border-[#F1C40F]/15">
+        <div
+          className="p-6 rounded-2xl"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid rgba(241, 196, 15, 0.15)",
+          }}
+        >
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#F1C40F]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <BookOpen className="w-4 h-4 text-[#F1C40F]" />
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+              style={{ background: "rgba(241, 196, 15, 0.1)" }}
+            >
+              <BookOpen className="w-4 h-4" style={{ color: "#F1C40F" }} />
             </div>
             <div>
               <h3
-                className="text-white font-bold text-base mb-2"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="font-bold text-base mb-2"
+                style={{
+                  fontFamily: "var(--font-playfair), serif",
+                  color: "var(--text-primary)",
+                }}
               >
                 Catatan Penting
               </h3>
-              <p className="text-[#90A4AE] text-sm leading-relaxed">
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 NusantaraHijau adalah platform edukasi non-komersial yang dibuat
                 untuk keperluan kompetisi TECHSOFT 2026. Data spesies bersumber
                 dari referensi terpercaya dan telah diparafrase untuk keperluan
@@ -427,7 +561,13 @@ export default function AboutPage() {
 
       {/* ==================== CTA ==================== */}
       <section className="section-container px-4">
-        <div className="relative rounded-3xl overflow-hidden border border-[#2ECC71]/10 bg-gradient-to-br from-[#0D1B2E] to-[#060E1A] p-10 sm:p-14 text-center">
+        <div
+          className="relative rounded-3xl overflow-hidden p-10 sm:p-14 text-center"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-light)",
+          }}
+        >
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -436,17 +576,29 @@ export default function AboutPage() {
             }}
           />
           <div className="relative z-10">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#2ECC71]/10 border border-[#2ECC71]/20 mb-5 mx-auto">
-              <Globe className="w-7 h-7 text-[#2ECC71]" />
+            <div
+              className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 mx-auto"
+              style={{
+                background: "var(--green-50)",
+                border: "1px solid var(--border-light)",
+              }}
+            >
+              <Globe className="w-7 h-7" style={{ color: "#2ECC71" }} />
             </div>
             <h2
-              className="text-3xl sm:text-4xl font-bold text-white mb-3"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-3xl sm:text-4xl font-bold mb-3"
+              style={{
+                fontFamily: "var(--font-playfair), serif",
+                color: "var(--text-primary)",
+              }}
             >
               Siap Menjelajah
               <span className="gradient-text"> Nusantara?</span>
             </h2>
-            <p className="text-[#90A4AE] text-sm max-w-md mx-auto mb-7 leading-relaxed">
+            <p
+              className="text-sm max-w-md mx-auto mb-7 leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Mulai perjalananmu mengenal kekayaan hayati Indonesia. Temukan
               spesies-spesies menakjubkan yang mungkin belum pernah kamu dengar
               sebelumnya.
@@ -454,7 +606,11 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/species"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#2ECC71] to-[#27AE60] text-white font-semibold rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg shadow-green-900/30"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 font-semibold rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg"
+                style={{
+                  background: "linear-gradient(to right, #2ECC71, #27AE60)",
+                  color: "white",
+                }}
               >
                 <Leaf className="w-4 h-4" />
                 Jelajahi Spesies
@@ -462,7 +618,12 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 border border-white/10 text-white font-semibold rounded-2xl hover:bg-white/10 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 font-semibold rounded-2xl transition-all duration-300"
+                style={{
+                  background: "var(--bg-muted)",
+                  border: "1px solid var(--border-light)",
+                  color: "var(--text-primary)",
+                }}
               >
                 <Users className="w-4 h-4" />
                 Hubungi Kami

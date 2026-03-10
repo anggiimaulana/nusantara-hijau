@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 NusantaraHijau
 
-## Getting Started
+<p align="center">
+  <img src="public/images/logo.png" alt="NusantaraHijau Logo" width="120" />
+</p>
 
-First, run the development server:
+<p align="center">
+  <strong>Atlas Digital Keanekaragaman Hayati Indonesia</strong><br/>
+  Jelajahi dan kenali flora fauna endemik Nusantara yang luar biasa
+</p>
+
+<p align="center">
+  <a href="https://nusantara-hijau.vercel.app" target="_blank">🌐 Live Demo</a> •
+  <a href="#features">✨ Features</a> •
+  <a href="#tech-stack">🛠 Tech Stack</a> •
+  <a href="#data-sources">📚 Data Sources</a>
+</p>
+
+---
+
+## 📖 Tentang
+
+**NusantaraHijau** adalah platform edukasi digital yang didedikasikan untuk memperkenalkan, mencintai, dan melestarikan keanekaragaman hayati Indonesia. Dengan visualisasi interaktif dan data yang akurat, platform ini menjembatani kesenjangan antara data konservasi kompleks dengan pemahaman publik.
+
+> *"Kita tidak akan mau menjaga apa yang tidak kita kenal."*
+
+### Mengapa NusantaraHijau?
+
+- 🏝️ **17.000+ pulau** di Indonesia dengan keanekaragaman hayati tertinggi dunia
+- 🔴 **Ratusan spesies** dalam status konservasi Kritis, Terancam, dan Rentan
+- 📊 Data dari sumber terpercaya: IUCN Red List, WWF Indonesia, KLHK
+
+---
+
+## ✨ Features
+
+### 🗺️ Peta Interaktif 3D
+- Peta Indonesia dengan efek 3D tilt dan hover
+- Filter spesies berdasarkan 6 wilayah: Sumatera, Jawa, Kalimantan, Sulawesi, Papua, Bali & Nusa Tenggara
+- Navigasi intuitif dengan animasi smooth
+
+### 🔍 Direktori Spesies
+- **40+ spesies endemik** Indonesia dengan data lengkap
+- Status konservasi IUCN (Kritis CR, Terancam EN, Rentan VU)
+- Informasi habitat, populasi, ancaman, dan tindakan konservasi
+- Pencarian real-time dan filter multi-kriteria
+
+### 🎨 Desain Premium
+- **Glassmorphism UI** dengan backdrop-filter effects
+- **Responsive design**: Mobile (320px) hingga 4K Desktop (2560px)
+- **Light nature theme**: Warna hijau-lembut yang nyaman di mata
+- **Framer Motion** animations untuk pengalaman yang halus
+
+### 📱 Teknologi Modern
+- Next.js 16 dengan App Router
+- React Server Components untuk performa optimal
+- Tailwind CSS v4 dengan custom design system
+- TypeScript untuk type safety
+
+---
+
+## 🛠 Tech Stack
+
+| Kategori | Teknologi |
+|----------|-----------|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS v4 |
+| **Animations** | Framer Motion |
+| **Icons** | Lucide React |
+| **Fonts** | Inter, Playfair Display (Google Fonts) |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm / yarn / pnpm
+
+### Installation
 
 ```bash
+# Clone repository
+git clone https://github.com/anggiimaulana/nusantara-hijau.git
+cd nusantara-hijau
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Build optimized production bundle
+npm run build
 
-## Learn More
+# Start production server
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+nusantara-hijau/
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # Homepage
+│   ├── species/           # Species directory & detail pages
+│   ├── about/             # About page
+│   ├── contact/           # Contact page
+│   ├── not-found.tsx      # 404 page
+│   ├── layout.tsx         # Root layout
+│   └── globals.css        # Global styles & CSS variables
+├── components/            # React components
+│   ├── Navbar.tsx
+│   ├── InteractiveMap.tsx
+│   └── ui/               # Reusable UI components
+│       ├── ImageWithFallback.tsx
+│       └── motion.tsx
+├── data/                 # Static data
+│   ├── species.json      # Species data (40+ entries)
+│   └── species.schema.json # JSON Schema validation
+├── public/               # Static assets
+│   └── images/           # Species images
+├── lib/                  # Utility functions
+└── types/                # TypeScript types
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📚 Data Sources
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Semua data spesies bersumber dari lembaga terpercaya:
+
+| Sumber | Deskripsi |
+|--------|-----------|
+| **IUCN Red List** | Database status konservasi global |
+| **WWF Indonesia** | Program konservasi satwa & habitat |
+| **KLHK** | Kementerian Lingkungan Hidup dan Kehutanan RI |
+| **BRIN** | Badan Riset dan Inovasi Nasional |
+| **Wikimedia Commons** | Foto-foto berlisensi Creative Commons |
+| **iNaturalist** | Platform citizen science |
+
+---
+
+## 🎯 Status Konservasi IUCN
+
+Platform ini menggunakan klasifikasi IUCN Red List:
+
+| Kode | Status | Deskripsi |
+|------|--------|-----------|
+| **CR** | Kritis | Risiko kepunahan sangat tinggi |
+| **EN** | Terancam | Risiko kepunahan tinggi |
+| **VU** | Rentan | Risiko kepunahan cukup tinggi |
+
+---
+
+## 🤝 Contributing
+
+Kontribusi selalu diterima! Untuk melaporkan bug atau request fitur:
+
+1. Buka [Issues](https://github.com/anggiimaulana/nusantara-hijau/issues)
+2. Pilih template yang sesuai
+3. Jelaskan secara detail
+
+---
+
+## 📝 License
+
+Proyek ini dibuat untuk keperluan edukasi dan kompetisi **TECHSOFT 2026**.
+
+---
+
+## 👨‍💻 Author
+
+**Anggi Maulana**
+- GitHub: [@anggiimaulana](https://github.com/anggiimaulana)
+- Email: nusantarahijau@example.com
+- Instagram: [@nusantarahijau](https://instagram.com/nusantarahijau)
+
+---
+
+<p align="center">
+  <sub>Dibuat dengan ❤️ di Indonesia untuk dunia</sub>
+</p>

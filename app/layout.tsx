@@ -77,8 +77,7 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          {/* pt-[4.5rem] offsets the fixed navbar height */}
-          <main className="flex-1 pt-[4.5rem]">{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </div>
       </body>

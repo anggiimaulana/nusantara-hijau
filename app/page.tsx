@@ -392,12 +392,12 @@ export default function HomePage() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative hidden lg:block w-full max-w-[640px] ml-auto"
+              className="relative w-full max-w-[500px] lg:max-w-[640px] mx-auto lg:ml-auto mt-12 lg:mt-0"
               style={{ paddingBottom: "2.5rem" }}
             >
               {/* Dot pattern background square */}
               <div
-                className="absolute -top-4 -left-4 w-full h-full rounded-3xl bg-dots"
+                className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full rounded-3xl bg-dots"
                 style={{ zIndex: 0, opacity: 0.6 }}
               />
 
@@ -420,7 +420,7 @@ export default function HomePage() {
                 />
                 {/* Caption sticker */}
                 <div
-                  className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl"
+                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-3.5 sm:p-4 rounded-2xl"
                   style={{
                     background: "rgba(255,253,245,0.95)",
                     border: "2px solid var(--border-hard)",
@@ -451,7 +451,7 @@ export default function HomePage() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-5 -right-5 p-4 rounded-2xl"
+                className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 p-3 sm:p-4 rounded-2xl"
                 style={{
                   background: "var(--pg-accent)",
                   border: "2px solid var(--border-hard)",
@@ -461,7 +461,7 @@ export default function HomePage() {
                 }}
               >
                 <div
-                  className="text-3xl font-bold leading-none"
+                  className="text-2xl sm:text-3xl font-bold leading-none"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   {speciesData.length}+
@@ -475,7 +475,7 @@ export default function HomePage() {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute -bottom-2 left-0 p-3.5 rounded-2xl flex items-center gap-2.5"
+                className="absolute -bottom-2 -left-2 sm:left-0 p-3 sm:p-3.5 rounded-2xl flex items-center gap-2 sm:gap-2.5"
                 style={{
                   background: "var(--pg-amber)",
                   border: "2px solid var(--border-hard)",
@@ -483,7 +483,7 @@ export default function HomePage() {
                   zIndex: 10,
                 }}
               >
-                <TreePine className="w-5 h-5 flex-shrink-0" strokeWidth={2.5} />
+                <TreePine className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" strokeWidth={2.5} />
                 <div>
                   <div
                     className="text-xs font-bold"

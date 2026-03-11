@@ -129,6 +129,7 @@ export default function InteractiveMap() {
   const [tip, setTip] = useState<Tip | null>(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
 
   const dragging = useRef(false);
   const drag0 = useRef({ mx: 0, my: 0, px: 0, py: 0 });
@@ -198,13 +199,17 @@ export default function InteractiveMap() {
   const onMD = (e: React.MouseEvent) => {
     if (zoom <= 1) return;
     dragging.current = true;
+    setIsDragging(true);
     drag0.current = { mx: e.clientX, my: e.clientY, px: pan.x, py: pan.y };
   };
   const onMM = (e: React.MouseEvent) => {
     if (!dragging.current) return;
     setPan({ x: drag0.current.px + e.clientX - drag0.current.mx, y: drag0.current.py + e.clientY - drag0.current.my });
   };
-  const onMU = () => { dragging.current = false; };
+  const onMU = () => {
+    dragging.current = false;
+    setIsDragging(false);
+  };
 
   return (
     <div
@@ -307,7 +312,7 @@ export default function InteractiveMap() {
             <g style={{
               transform: `scale(${zoom}) translate(${pan.x / zoom}px,${pan.y / zoom}px)`,
               transformOrigin: "center center",
-              transition: dragging.current ? "none" : "transform 0.15s ease-out",
+              transition: isDragging ? "none" : "transform 0.15s ease-out",
             }}>
               {feats.map((f, i) => {
                 const k = provKey(f.properties) || `feat_${i}`;
@@ -356,7 +361,6 @@ export default function InteractiveMap() {
                 total={total}
                 topSp={topSp}
                 selCfg={selCfg}
-                regMap={regMap}
                 onClose={() => setSelected(null)}
               />
             </motion.aside>
@@ -381,7 +385,6 @@ export default function InteractiveMap() {
               total={total}
               topSp={topSp}
               selCfg={selCfg}
-              regMap={regMap}
               onClose={() => setSelected(null)}
               mobile
             />
@@ -448,13 +451,11 @@ interface PanelProps {
   total: number;
   topSp: Sp[];
   selCfg: (typeof REGION_CFG)[string] | null;
-  regMap: Record<string, string>;
   onClose: () => void;
   mobile?: boolean;
 }
 
-function SpeciesPanel({ selected, total, topSp, selCfg, regMap, onClose, mobile = false }: PanelProps) {
-  const reg = regMap[selected] ?? "unknown";
+function SpeciesPanel({ selected, total, topSp, selCfg, onClose, mobile = false }: PanelProps) {
   const cfg = selCfg ?? REGION_CFG.unknown;
 
   return (

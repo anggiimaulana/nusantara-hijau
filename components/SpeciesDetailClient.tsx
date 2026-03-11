@@ -94,7 +94,13 @@ function RelatedCard({ sp }: { sp: Species }) {
         style={{ background: "white", border: "2px solid var(--border-hard)", borderRadius: "var(--radius-md)", boxShadow: "3px 3px 0px var(--border-hard)" }}
       >
         <div className="relative" style={{ aspectRatio: "3/2" }}>
-          <Image src={resolveSpeciesImage(sp.image)} alt={sp.name} fill className="object-cover" />
+          <Image
+            src={resolveSpeciesImage(sp.image)}
+            alt={sp.name}
+            fill
+            sizes="176px"
+            className="object-cover"
+          />
         </div>
         <div className="p-3">
           <p className="latin-name text-[10px] mb-0.5">{sp.latinName}</p>
@@ -122,6 +128,7 @@ export default function SpeciesDetailClient({ species, related }: Props) {
           src={resolveSpeciesImage(species.image)}
           alt={species.name}
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

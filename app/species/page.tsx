@@ -92,11 +92,9 @@ function SpeciesCard({ species, index }: { species: Species; index: number }) {
             borderRadius: "var(--radius-lg)", boxShadow: "4px 4px 0px var(--border-hard)",
           }}
           whileHover={{
-            rotate: -1, scale: 1.02,
             boxShadow: `8px 8px 0px ${shadowColor}`,
             transition: { duration: 0.2, ease: [0.34, 1.56, 0.64, 1] },
           }}
-          whileTap={{ scale: 0.98 }}
         >
           {/* Image */}
           <div className="relative overflow-hidden" style={{ aspectRatio: "3/2" }}>
@@ -106,6 +104,8 @@ function SpeciesCard({ species, index }: { species: Species; index: number }) {
               fill
               className="object-cover"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              loading={index === 0 ? "eager" : "lazy"}
+              priority={index === 0}
             />
             <div className="absolute top-2 left-2">
               <StatusBadge status={species.status} />
@@ -120,8 +120,8 @@ function SpeciesCard({ species, index }: { species: Species; index: number }) {
             <p className="text-xs line-clamp-2 flex-1 mt-1" style={{ color: "var(--text-muted)" }}>
               {species.description}
             </p>
-            <div className="flex items-center gap-1 mt-3 text-xs font-bold" style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}>
-              Detail <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+            <div className="flex items-center gap-1 mt-3 pl-2 text-sm font-bold" style={{ color: "var(--pg-accent)", fontFamily: "system-ui, sans-serif" }}>
+              Lihat detail <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
             </div>
           </div>
         </motion.div>
@@ -474,7 +474,7 @@ function SpeciesPageContent() {
             </motion.div>
           ) : loading ? (
             viewMode === "grid" ? (
-              <motion.div key="skel-g" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              <motion.div key="skel-g" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
                 {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => <SkeletonCard key={i} />)}
               </motion.div>
             ) : (
@@ -490,7 +490,7 @@ function SpeciesPageContent() {
               variants={stagger}
               initial="hidden"
               animate="visible"
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5"
             >
               {visible.map((s, i) => <SpeciesCard key={s.id} species={s as Species} index={i} />)}
             </motion.div>

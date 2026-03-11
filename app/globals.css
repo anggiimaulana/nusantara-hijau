@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../";
 
 /* ============================================
    BREAKPOINTS
@@ -132,6 +133,8 @@
   --indigo-700: #4338ca;
 }
 
+@layer base {
+
 /* ============================================
    BASE RESET
    ============================================ */
@@ -190,6 +193,10 @@ img {
   background-color: var(--pg-amber);
   color: var(--pg-dark);
 }
+
+}
+
+@layer components {
 
 /* ============================================
    CONTAINER
@@ -584,6 +591,10 @@ img {
   box-shadow: var(--shadow-hard-green);
 }
 
+}
+
+@layer utilities {
+
 /* ============================================
    LATIN NAME
    ============================================ */
@@ -896,4 +907,6 @@ img {
   display: flex;
   white-space: nowrap;
   will-change: transform;
+}
+
 }

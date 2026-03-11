@@ -329,11 +329,11 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="group flex items-center justify-between p-3 rounded-xl transition-all"
                       style={{ background: "var(--pg-bg)", border: "2px solid var(--border-hard)", boxShadow: "2px 2px 0px var(--border-hard)" }}
-                      whileHover={{ x: 2, boxShadow: `4px 3px 0px ${link.color}`, borderColor: link.color }}
+                      whileHover={{ boxShadow: `4px 3px 0px ${link.color}`, borderColor: link.color }}
                     >
                       <div>
                         <p className="text-sm font-bold" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>{link.name}</p>
-                        <p className="text-[11px]" style={{ color: "var(--text-muted)" }}>{link.desc}</p>
+                        <p className="text-xs leading-snug pl-2" style={{ color: "var(--text-secondary)", fontFamily: "system-ui, sans-serif" }}>{link.desc}</p>
                       </div>
                       <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 opacity-40 group-hover:opacity-70" style={{ color: link.color }} />
                     </motion.a>

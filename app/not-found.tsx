@@ -53,7 +53,7 @@ export default function NotFound() {
           <div
             className="text-[7rem] sm:text-[9rem] font-bold leading-none select-none"
             style={{
-              fontFamily: "var(--font-playfair), serif",
+              fontFamily: "var(--font-display), serif",
               background:
                 "linear-gradient(135deg, rgba(46,125,50,0.15), rgba(38,166,154,0.10))",
               WebkitBackgroundClip: "text",
@@ -81,7 +81,7 @@ export default function NotFound() {
         <h1
           className="font-bold mb-3"
           style={{
-            fontFamily: "var(--font-playfair), serif",
+            fontFamily: "var(--font-display), serif",
             fontSize: "clamp(1.6rem, 4vw, 2.4rem)",
             color: "var(--text-primary)",
             letterSpacing: "-0.02em",
@@ -127,3 +127,4 @@ export default function NotFound() {
     </div>
   );
 }
+

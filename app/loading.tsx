@@ -1,14 +1,24 @@
 
 export default function GlobalLoading() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-md">
-      <div className="flex flex-col items-center gap-4">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: "rgba(255, 253, 245, 0.82)", backdropFilter: "blur(12px)" }}
+    >
+      <div
+        className="flex flex-col items-center gap-4 rounded-3xl px-8 py-7"
+        style={{
+          background: "white",
+          border: "2px solid var(--border-hard)",
+          boxShadow: "var(--shadow-hard)",
+        }}
+      >
         <svg 
           width="48" 
           height="48" 
           viewBox="0 0 24 24" 
           xmlns="http://www.w3.org/2000/svg" 
-          className="text-green-600"
+          style={{ color: "var(--pg-accent)" }}
         >
           <style>
             {`
@@ -52,7 +62,10 @@ export default function GlobalLoading() {
             stroke="currentColor" 
           />
         </svg>
-        <span className="text-sm font-bold tracking-widest uppercase" style={{ color: "var(--green-700)" }}>
+        <span
+          className="text-sm font-bold tracking-widest uppercase"
+          style={{ color: "var(--pg-accent-dark)", fontFamily: "var(--font-heading)" }}
+        >
           Memuat...
         </span>
       </div>

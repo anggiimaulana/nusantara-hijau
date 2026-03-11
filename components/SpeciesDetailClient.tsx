@@ -1,580 +1,369 @@
 "use client";
 
+import { resolveSpeciesImage } from "@/lib/species-images";
 import { motion } from "framer-motion";
 import {
-    AlertTriangle,
-    ArrowLeft,
-    ChevronRight,
-    ExternalLink,
-    Eye,
-    Leaf,
-    MapPin,
-    Shield,
-    Users,
-    Zap,
+  AlertTriangle,
+  ArrowLeft,
+  ChevronRight,
+  ExternalLink,
+  Globe,
+  Leaf,
+  MapPin,
+  Shield,
+  Sparkles,
+  Users,
+  Zap,
 } from "lucide-react";
-import { resolveSpeciesImage } from "@/lib/species-images";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// Types matching the ones in page.tsx
+// ─── Types ────────────────────────────────────
 interface Species {
-  id: string;
-  name: string;
-  latinName: string;
-  region: string;
-  type: string;
-  status: string;
-  statusEN: string;
-  population: string;
-  habitat: string;
-  threat: string;
-  description: string;
-  image: string;
-  action: string;
-  funFact: string;
-  source: string;
-  color: string;
+  id: string; name: string; latinName: string; region: string; type: string;
+  status: string; statusEN: string; population: string; habitat: string;
+  threat: string; description: string; image: string; action: string;
+  funFact: string; source: string; color: string;
 }
+interface Props { species: Species; related: Species[] }
 
-interface SpeciesDetailClientProps {
-  species: Species;
-  related: Species[];
-}
-
-const STATUS_CONFIG: Record<
-  string,
-  {
-    label: string;
-    color: string;
-    bg: string;
-    border: string;
-    icon: React.ReactNode;
-    desc: string;
-  }
-> = {
+// ─── Status Config ────────────────────────────
+const STATUS_CFG: Record<string, {
+  label: string; color: string; bg: string; border: string;
+  icon: React.ReactNode; desc: string;
+}> = {
   kritis: {
-    label: "Kritis (CR)",
-    color: "#C0392B",
-    bg: "rgba(192,57,43,0.1)",
-    border: "rgba(192,57,43,0.25)",
-    icon: <AlertTriangle className="w-4 h-4" />,
+    label: "Kritis (CR)", color: "var(--status-cr)", bg: "var(--status-cr-bg)", border: "var(--status-cr-border)",
+    icon: <AlertTriangle className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang sangat tinggi di alam liar",
   },
   terancam: {
-    label: "Terancam (EN)",
-    color: "#D35400",
-    bg: "rgba(211,84,0,0.1)",
-    border: "rgba(211,84,0,0.25)",
-    icon: <Shield className="w-4 h-4" />,
+    label: "Terancam (EN)", color: "var(--status-en)", bg: "var(--status-en-bg)", border: "var(--status-en-border)",
+    icon: <Shield className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang tinggi di alam liar",
   },
   rentan: {
-    label: "Rentan (VU)",
-    color: "#B7950B",
-    bg: "rgba(183,149,11,0.1)",
-    border: "rgba(183,149,11,0.25)",
-    icon: <Eye className="w-4 h-4" />,
+    label: "Rentan (VU)", color: "var(--status-vu)", bg: "var(--status-vu-bg)", border: "var(--status-vu-border)",
+    icon: <Leaf className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang cukup tinggi di alam liar",
   },
 };
 
 const REGION_LABELS: Record<string, string> = {
-  sumatera: "Sumatera",
-  kalimantan: "Kalimantan",
-  jawa: "Jawa",
-  sulawesi: "Sulawesi",
-  papua: "Papua",
-  "bali-nusra": "Bali & Nusa Tenggara",
+  sumatera: "Sumatera", kalimantan: "Kalimantan", jawa: "Jawa",
+  sulawesi: "Sulawesi", papua: "Papua", "bali-nusra": "Bali & Nusa Tenggara",
 };
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
+// ─── Variants ────────────────────────────────
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
+const stagger = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.09 } } };
 
-const MAIN_CARD_CLASS =
-  "group p-6 sm:p-8 rounded-3xl relative overflow-hidden border shadow-sm transition-shadow duration-300";
-const SIDEBAR_CARD_CLASS =
-  "group p-5 rounded-2xl relative border shadow-sm transition-shadow duration-300";
+// ─── Stat Card ────────────────────────────────
+function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div
+      className="flex items-start gap-3 p-4 rounded-2xl"
+      style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)" }}
+    >
+      <div
+        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+        style={{ background: "var(--pg-accent-light)", color: "var(--pg-accent)" }}
+      >
+        {icon}
+      </div>
+      <div>
+        <p className="text-[10px] uppercase tracking-widest font-bold mb-0.5" style={{ color: "var(--text-faint)", fontFamily: "var(--font-heading)" }}>{label}</p>
+        <p className="text-sm font-bold leading-snug" style={{ color: "var(--text-primary)" }}>{value}</p>
+      </div>
+    </div>
+  );
+}
 
-export default function SpeciesDetailClient({ species, related }: SpeciesDetailClientProps) {
-  const statusCfg = STATUS_CONFIG[species.status];
+// ─── Related Card ────────────────────────────
+function RelatedCard({ sp }: { sp: Species }) {
+  return (
+    <Link href={`/species/${sp.id}`} className="block flex-shrink-0 w-44">
+      <motion.div
+        whileHover={{ rotate: -1, scale: 1.03, boxShadow: "6px 6px 0px var(--pg-pink)" }}
+        whileTap={{ scale: 0.98 }}
+        className="overflow-hidden"
+        style={{ background: "white", border: "2px solid var(--border-hard)", borderRadius: "var(--radius-md)", boxShadow: "3px 3px 0px var(--border-hard)" }}
+      >
+        <div className="relative" style={{ aspectRatio: "3/2" }}>
+          <Image src={resolveSpeciesImage(sp.image)} alt={sp.name} fill className="object-cover" />
+        </div>
+        <div className="p-3">
+          <p className="latin-name text-[10px] mb-0.5">{sp.latinName}</p>
+          <h4 className="font-bold text-xs leading-snug" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>{sp.name}</h4>
+        </div>
+      </motion.div>
+    </Link>
+  );
+}
+
+// ─── Main Component ───────────────────────────
+export default function SpeciesDetailClient({ species, related }: Props) {
+  const st = STATUS_CFG[species.status];
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-8" style={{ background: "var(--bg-base)" }}>
-      {/* ==================== HERO IMAGE ==================== */}
-      <div className="px-3 sm:px-4 lg:px-6">
-        <motion.div 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ duration: 0.8 }}
-          className="relative h-[56vh] min-h-[360px] max-h-[560px] overflow-hidden rounded-3xl shadow-xl"
-        >
+    <div style={{ background: "var(--pg-bg)" }} className="min-h-screen pb-20">
+
+      {/* ─── HERO ─── */}
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ height: "clamp(360px, 55vh, 640px)", borderBottom: "3px solid var(--border-hard)" }}
+      >
+        {/* Image */}
         <Image
           src={resolveSpeciesImage(species.image)}
           alt={species.name}
           fill
-          priority
-          sizes="100vw"
           className="object-cover"
+          priority
         />
-        {/* Gradient overlays */}
+        {/* Gradient overlay */}
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(8,20,8,0.92) 0%, rgba(18,38,18,0.55) 42%, rgba(18,38,18,0.12) 72%, transparent 100%)",
-          }}
+          style={{ background: "linear-gradient(to bottom, transparent 30%, rgba(30,41,59,0.85) 100%)" }}
         />
 
+        {/* Floating deco */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-24 right-8 text-4xl opacity-30 hidden sm:block"
+        >✦</motion.div>
+
         {/* Back button */}
-        <div className="absolute top-4 sm:top-6 left-0 right-0 z-20">
-          <div className="container-main px-4">
+        <div className="absolute top-24 left-0 right-0 z-10">
+          <div className="container-main">
             <Link
               href="/species"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 group hover:pr-5"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm text-white transition-all"
               style={{
-                background: "rgba(255,255,255,0.18)",
-                backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.28)",
-                color: "white",
-                boxShadow: "0 4px 14px rgba(0,0,0,0.16)",
+                fontFamily: "var(--font-heading)",
+                background: "rgba(255,255,255,0.15)",
+                border: "2px solid rgba(255,255,255,0.30)",
+                backdropFilter: "blur(8px)",
               }}
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-              Kembali ke Direktori
+              <ArrowLeft className="w-4 h-4" strokeWidth={2.5} />
+              Kembali
             </Link>
           </div>
         </div>
 
-        {/* Hero content */}
-        <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-10 z-10">
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="container-main px-4"
-          >
-            {/* Type + Region badges */}
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2.5 mb-3.5">
-              <span
-                className="px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase"
+        {/* Hero text */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 pb-8">
+          <div className="container-main">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {st && (
+                <span
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-bold mb-4"
+                  style={{
+                    background: "white", border: "2px solid var(--border-hard)",
+                    color: st.color, boxShadow: "3px 3px 0px var(--border-hard)",
+                  }}
+                >
+                  {st.icon} {st.label}
+                </span>
+              )}
+              <h1
+                className="text-white mb-2"
                 style={{
-                  background: "rgba(255,255,255,0.2)",
-                  backdropFilter: "blur(10px)",
-                  color: "white",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.14)",
+                  fontFamily: "var(--font-heading)", fontWeight: 800,
+                  fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", lineHeight: 1.1,
+                  textShadow: "0 2px 8px rgba(0,0,0,0.4)",
                 }}
               >
-                {species.type}
-              </span>
-              <span
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase"
-                style={{
-                  background: "rgba(255,255,255,0.2)",
-                  backdropFilter: "blur(10px)",
-                  color: "white",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.14)",
-                }}
-              >
-                <MapPin className="w-3.5 h-3.5" />
-                {REGION_LABELS[species.region]}
-              </span>
+                {species.name}
+              </h1>
+              <p className="latin-name text-white/65 text-sm">{species.latinName}</p>
             </motion.div>
-
-            {/* Name */}
-            <motion.h1
-              variants={fadeUp}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-1.5 leading-tight"
-              style={{
-                fontFamily: "var(--font-playfair), serif",
-                color: "#ffffff",
-                textShadow: "0 6px 24px rgba(0,0,0,0.55)",
-              }}
-            >
-              {species.name}
-            </motion.h1>
-            <motion.p 
-              variants={fadeUp}
-              className="text-white/85 text-base sm:text-lg italic mb-5 font-medium tracking-wide"
-            >
-              {species.latinName}
-            </motion.p>
-
-            {/* Status badge */}
-            {statusCfg && (
-              <motion.div
-                variants={fadeUp}
-                className="inline-flex items-start gap-3 px-4 py-3 rounded-2xl backdrop-blur-md max-w-2xl"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.92)",
-                  border: `1px solid ${statusCfg.color}`,
-                  color: statusCfg.color,
-                  boxShadow: `0 8px 24px ${statusCfg.color}22`,
-                }}
-              >
-                <div className="p-1.5 rounded-lg" style={{ backgroundColor: statusCfg.bg }}>
-                  {statusCfg.icon}
-                </div>
-                <div>
-                  <div className="font-bold text-sm tracking-wide">{statusCfg.label}</div>
-                  <div className="text-xs font-semibold opacity-80 mt-0.5 leading-relaxed" style={{ color: "var(--text-primary)" }}>{statusCfg.desc}</div>
-                </div>
-              </motion.div>
-            )}
-          </motion.div>
+          </div>
         </div>
-        </motion.div>
       </div>
 
-      {/* ==================== CONTENT ==================== */}
-      <div className="container-main px-4 mt-6 sm:mt-8 py-14 lg:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-9 lg:gap-12">
-          {/* ===== MAIN CONTENT (2/3) ===== */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-2 space-y-6"
-          >
+      {/* ─── CONTENT ─── */}
+      <div className="container-main py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start">
+
+          {/* ── LEFT: Description + Cards ── */}
+          <motion.div initial="hidden" animate="visible" variants={stagger}>
+
             {/* Description */}
             <motion.div
               variants={fadeUp}
-              className={MAIN_CARD_CLASS}
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-light)",
-              }}
+              className="p-7 sm:p-8 rounded-3xl mb-6"
+              style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110" />
-              <h2
-                className="text-2xl sm:text-3xl font-bold mb-6 relative z-10"
-                style={{ fontFamily: "var(--font-playfair), serif", color: "var(--text-primary)" }}
-              >
-                Tentang {species.name}
+              <h2 className="font-bold text-xl mb-4" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                Tentang Spesies Ini
               </h2>
-              <p className="leading-relaxed text-base sm:text-lg relative z-10" style={{ color: "var(--text-secondary)" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                 {species.description}
               </p>
             </motion.div>
 
-            {/* Fun Fact */}
-            <motion.div
-              variants={fadeUp}
-              className={MAIN_CARD_CLASS}
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: `${species.color}30`,
-              }}
-            >
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                style={{ background: `linear-gradient(135deg, ${species.color}, transparent)` }}
-              />
-              <div
-                className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10 -translate-y-1/3 translate-x-1/3 transition-transform duration-500 group-hover:scale-150"
-                style={{
-                  background: `radial-gradient(circle, ${species.color}, transparent)`,
-                }}
-              />
-              <div className="relative z-10 flex flex-col sm:flex-row items-start gap-5">
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-inner"
-                  style={{ backgroundColor: `${species.color}15` }}
-                >
-                  <Zap className="w-6 h-6" style={{ color: species.color }} />
-                </div>
-                <div>
-                  <p
-                    className="text-xs font-bold uppercase tracking-[0.2em] mb-2"
-                    style={{ color: species.color }}
-                  >
-                    Fakta Unik
-                  </p>
-                  <p
-                    className="text-base sm:text-lg leading-relaxed font-semibold italic"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    &quot;{species.funFact}&quot;
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Threat Section */}
-            <motion.div
-              variants={fadeUp}
-              className={MAIN_CARD_CLASS}
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--status-cr-border)",
-              }}
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-110" style={{ background: "var(--status-cr-bg)" }} />
-              
-              <div className="relative z-10 flex items-center gap-4 mb-6">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                  style={{ background: "var(--status-cr-bg)" }}
-                >
-                  <AlertTriangle className="w-6 h-6" style={{ color: "var(--status-cr)" }} />
-                </div>
-                <h2
-                  className="text-2xl sm:text-3xl font-bold"
-                  style={{ fontFamily: "var(--font-playfair), serif", color: "var(--text-primary)" }}
-                >
-                  Ancaman yang Dihadapi
-                </h2>
-              </div>
-              <p className="text-base sm:text-lg leading-relaxed relative z-10" style={{ color: "var(--text-secondary)" }}>
-                {species.threat}
-              </p>
-            </motion.div>
-
-            {/* Action CTA */}
-            <motion.div
-              variants={fadeUp}
-              className={MAIN_CARD_CLASS}
-              style={{
-                background: "linear-gradient(135deg, var(--green-600), var(--green-500))",
-                border: "1px solid var(--green-400)",
-                color: "white"
-              }}
-            >
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "radial-gradient(ellipse at top right, rgba(255,255,255,0.2) 0%, transparent 60%)",
-                }}
-              />
-              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-8">
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-white/20 backdrop-blur-sm border border-white/30"
-                >
-                  <Leaf className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h2
-                    className="text-2xl sm:text-3xl font-bold mb-2 text-white"
-                    style={{ fontFamily: "var(--font-playfair), serif" }}
-                  >
-                    Apa yang Bisa Kamu Lakukan?
-                  </h2>
-                  <p className="text-sm sm:text-base text-white/80 font-medium">
-                    Setiap tindakan kecilmu berarti besar bagi kelangsungan hidup mereka
-                  </p>
-                </div>
-              </div>
-              <p className="text-base sm:text-lg leading-relaxed mb-8 relative z-10 text-white/90">
-                {species.action}
-              </p>
-              <a
-                href="https://www.wwf.id"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-10 inline-flex items-center gap-3 px-8 py-4 rounded-xl text-base font-bold transition-all duration-300 group/btn bg-white text-green-700 hover:shadow-lg hover:-translate-y-1"
-              >
-                <ExternalLink className="w-5 h-5 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                Kunjungi WWF Indonesia
-              </a>
-            </motion.div>
-          </motion.div>
-
-          {/* ===== SIDEBAR (1/3) ===== */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-5 lg:sticky lg:top-24 h-fit"
-          >
-            {/* Info Cards */}
-            {[
-              {
-                icon: <Users className="w-5 h-5" />,
-                label: "Estimasi Populasi",
-                value: species.population,
-                color: species.color,
-              },
-              {
-                icon: <MapPin className="w-5 h-5" />,
-                label: "Habitat",
-                value: species.habitat,
-                color: "#3498DB",
-              },
-              {
-                icon: <Leaf className="w-5 h-5" />,
-                label: "Wilayah",
-                value: REGION_LABELS[species.region],
-                color: "var(--green-600)",
-              },
-            ].map((item) => (
+            {/* Fun Fact — amber card */}
+            {species.funFact && (
               <motion.div
                 variants={fadeUp}
-                key={item.label}
-                className={SIDEBAR_CARD_CLASS}
+                className="relative p-7 rounded-3xl mb-6 overflow-hidden"
+                style={{ background: "var(--pg-amber)", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
+              >
+                <div className="absolute -right-4 -top-4 text-7xl opacity-15 select-none">✨</div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-5 h-5" strokeWidth={2.5} />
+                    <h3 className="font-bold text-base" style={{ fontFamily: "var(--font-heading)" }}>
+                      Tahukah Kamu?
+                    </h3>
+                  </div>
+                  <p className="text-sm leading-relaxed font-medium">{species.funFact}</p>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Threat — pink card */}
+            {species.threat && (
+              <motion.div
+                variants={fadeUp}
+                className="p-7 rounded-3xl mb-6"
                 style={{
-                  background: "var(--bg-surface)",
-                  border: "1px solid var(--border-light)",
+                  background: "var(--pg-pink-light)", border: "2px solid var(--pg-pink)",
+                  boxShadow: "4px 4px 0px var(--pg-pink)",
                 }}
               >
-                {/* Colored top border */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
-                  style={{ background: item.color }}
-                />
-                <div className="flex items-center gap-4 mb-4 mt-1">
-                  <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      backgroundColor: `${item.color}15`,
-                      color: item.color,
-                    }}
-                  >
-                    {item.icon}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "var(--pg-pink)", color: "white" }}>
+                    <AlertTriangle className="w-4 h-4" strokeWidth={2.5} />
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: "var(--text-muted)" }}>
-                    {item.label}
-                  </span>
+                  <h3 className="font-bold text-base" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                    Ancaman Utama
+                  </h3>
                 </div>
-                <p className="text-base font-bold leading-relaxed" style={{ color: "var(--text-primary)" }}>
-                  {item.value}
-                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{species.threat}</p>
               </motion.div>
-            ))}
+            )}
+
+            {/* Stats grid */}
+            <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+              {species.population && (
+                <StatCard icon={<Users className="w-4 h-4" strokeWidth={2.5} />} label="Populasi Tersisa" value={species.population} />
+              )}
+              {species.habitat && (
+                <StatCard icon={<MapPin className="w-4 h-4" strokeWidth={2.5} />} label="Habitat" value={species.habitat} />
+              )}
+              {species.region && (
+                <StatCard icon={<Globe className="w-4 h-4" strokeWidth={2.5} />} label="Wilayah" value={REGION_LABELS[species.region] ?? species.region} />
+              )}
+              {species.type && (
+                <StatCard icon={<Zap className="w-4 h-4" strokeWidth={2.5} />} label="Klasifikasi" value={species.type.charAt(0).toUpperCase() + species.type.slice(1)} />
+              )}
+            </motion.div>
 
             {/* Source */}
-            <motion.div
-              variants={fadeUp}
-              className={SIDEBAR_CARD_CLASS}
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-light)",
-              }}
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: "var(--text-muted)" }}>
-                Sumber Data
-              </p>
-              <p className="text-sm leading-relaxed mb-5 font-medium" style={{ color: "var(--text-secondary)" }}>
-                {species.source}
-              </p>
-              <a
-                href="https://iucnredlist.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-xl transition-all duration-300 hover:bg-green-500 hover:text-white"
-                style={{ background: "rgba(34,197,94,0.1)", color: "var(--green-700)", border: "1px solid rgba(34,197,94,0.2)" }}
-              >
-                IUCN Red List <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </motion.div>
+            {species.source && (
+              <motion.div variants={fadeUp}>
+                <a
+                  href={species.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold transition-colors"
+                  style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--pg-accent)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" strokeWidth={2.5} /> Sumber Data
+                </a>
+              </motion.div>
+            )}
+          </motion.div>
 
-            {/* Navigation */}
-            <motion.div
-              variants={fadeUp}
-              className={SIDEBAR_CARD_CLASS}
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-light)",
-              }}
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: "var(--text-muted)" }}>
-                Eksplorasi Lanjut
-              </p>
-              <Link
-                href="/species"
-                className="flex items-center justify-between text-base font-bold transition-all duration-300"
-                style={{ color: "var(--green-600)" }}
+          {/* ── RIGHT: Sidebar ── */}
+          <motion.aside
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="flex flex-col gap-5 lg:sticky lg:top-28"
+          >
+            {/* Status card */}
+            {st && (
+              <motion.div
+                variants={fadeUp}
+                className="p-6 rounded-2xl"
+                style={{
+                  background: st.bg, border: `2px solid ${st.color}`,
+                  boxShadow: `4px 4px 0px ${st.color}`,
+                }}
               >
-                <span className="group-hover:translate-x-1 transition-transform">Lihat semua spesies</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: st.color, color: "white" }}>
+                    {st.icon}
+                  </div>
+                  <h3 className="font-bold text-sm" style={{ fontFamily: "var(--font-heading)", color: st.color }}>{st.label}</h3>
+                </div>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{st.desc}</p>
+              </motion.div>
+            )}
+
+            {/* Action card — violet */}
+            {species.action && (
+              <motion.div
+                variants={fadeUp}
+                className="p-6 rounded-2xl relative overflow-hidden"
+                style={{ background: "var(--pg-accent)", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
+              >
+                <div className="absolute -right-4 -bottom-4 text-6xl opacity-15 select-none">🌿</div>
+                <div className="relative z-10">
+                  <h3 className="font-bold text-base text-white mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                    Apa Yang Bisa Kita Lakukan?
+                  </h3>
+                  <p className="text-xs leading-relaxed text-white/80 mb-4">{species.action}</p>
+                  <Link href="/contact" className="btn-ghost-dark py-2 px-5 text-xs w-full justify-center">
+                    Hubungi Kami <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Back to listing */}
+            <motion.div variants={fadeUp}>
+              <Link href="/species" className="btn-outline-pg w-full justify-center py-3 text-sm">
+                <ArrowLeft className="w-4 h-4" strokeWidth={2.5} /> Kembali ke Direktori
               </Link>
             </motion.div>
-          </motion.div>
+          </motion.aside>
         </div>
 
-        {/* ==================== RELATED SPECIES ==================== */}
+        {/* ─── Related Species ─── */}
         {related.length > 0 && (
           <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="mt-24 pt-14 border-t"
-            style={{ borderColor: "var(--border-light)" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-14"
           >
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
-              <motion.div variants={fadeUp}>
-                <p className="text-xs font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "var(--green-600)" }}>
-                  Satu Habitat
-                </p>
-                <h2
-                  className="text-3xl sm:text-4xl font-bold"
-                  style={{ fontFamily: "var(--font-playfair), serif", color: "var(--text-primary)" }}
-                >
-                  Spesies dari {REGION_LABELS[species.region]}
-                </h2>
-              </motion.div>
-              <motion.div variants={fadeUp}>
-                <Link
-                  href={`/species?region=${species.region}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all group hover:shadow-md"
-                  style={{ background: "rgba(34,197,94,0.1)", color: "var(--green-700)" }}
-                >
-                  Lihat Wilayah Ini
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-bold text-xl" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                Spesies Terkait
+              </h2>
+              <Link href="/species" className="text-xs font-bold flex items-center gap-1" style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}>
+                Lihat Semua <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+              </Link>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {related.map((rel) => (
-                <motion.div variants={fadeUp} key={rel.id}>
-                  <Link
-                    href={`/species/${rel.id}`}
-                    className="group flex flex-col p-4 rounded-3xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg relative overflow-hidden"
-                    style={{
-                      background: "var(--bg-surface)",
-                      border: "1px solid var(--border-light)",
-                    }}
-                  >
-                    <div className="relative w-full h-44 rounded-2xl overflow-hidden mb-4">
-                      <Image
-                        src={resolveSpeciesImage(rel.image)}
-                        alt={rel.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    <div className="px-2">
-                      <h3
-                        className="font-bold text-xl mb-1 transition-colors group-hover:text-green-600"
-                        style={{ fontFamily: "var(--font-playfair), serif", color: "var(--text-primary)" }}
-                      >
-                        {rel.name}
-                      </h3>
-                      <p className="text-sm italic font-medium" style={{ color: "var(--text-muted)" }}>
-                        {rel.latinName}
-                      </p>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+            <div className="flex gap-4 overflow-x-auto pb-4">
+              {related.map((sp) => <RelatedCard key={sp.id} sp={sp} />)}
             </div>
           </motion.div>
         )}

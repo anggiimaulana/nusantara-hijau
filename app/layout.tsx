@@ -28,11 +28,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NusantaraHijau — Atlas Keanekaragaman Hayati Indonesia",
+    default: "NusantaraHijau - Atlas Keanekaragaman Hayati Indonesia",
     template: "%s | NusantaraHijau",
   },
   description:
-    "Jelajahi keanekaragaman hayati Indonesia. Atlas digital flora & fauna endemik Nusantara yang interaktif — kenali, cintai, lestarikan.",
+    "Jelajahi keanekaragaman hayati Indonesia. Atlas digital flora & fauna endemik Nusantara yang interaktif - kenali, cintai, lestarikan.",
   keywords: [
     "keanekaragaman hayati Indonesia",
     "flora fauna endemik",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: "NusantaraHijau",
-    title: "NusantaraHijau — Atlas Keanekaragaman Hayati Indonesia",
+    title: "NusantaraHijau - Atlas Keanekaragaman Hayati Indonesia",
     description: "Atlas digital interaktif keanekaragaman hayati Nusantara.",
   },
   twitter: {
@@ -66,6 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
+      data-scroll-behavior="smooth"
       className={`${outfit.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}
     >
       <body

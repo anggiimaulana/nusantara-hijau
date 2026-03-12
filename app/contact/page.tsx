@@ -220,7 +220,7 @@ export default function ContactPage() {
     <main style={{ background: "var(--pg-bg)" }} className="min-h-screen">
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-32 pb-16 overflow-hidden" style={{ background: "var(--pg-bg)", borderBottom: "2px solid var(--border-hard)" }}>
+      <section className="relative py-12 overflow-hidden" style={{ background: "var(--pg-bg)", borderBottom: "2px solid var(--border-hard)" }}>
         <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
 
         {/* Geometric deco */}
@@ -249,7 +249,7 @@ export default function ContactPage() {
               className="mb-4"
               style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, color: "var(--text-primary)",
-                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)", lineHeight: 1.1,
+                fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.1,
               }}
             >
               Bersama Kita{" "}

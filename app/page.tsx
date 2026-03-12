@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import {
   AlertTriangle,
   ArrowRight,
+  ChevronLeft,
   ChevronRight,
   Leaf,
   MapPin,
@@ -16,7 +17,7 @@ import {
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // ─── Dynamic Map ──────────────────────────────
 function MapSkeleton() {
@@ -39,7 +40,10 @@ function MapSkeleton() {
         />
         <p
           className="text-sm font-semibold"
-          style={{ fontFamily: "var(--font-heading)", color: "var(--text-muted)" }}
+          style={{
+            fontFamily: "var(--font-heading)",
+            color: "var(--text-muted)",
+          }}
         >
           Memuat Peta…
         </p>
@@ -69,7 +73,13 @@ interface Species {
 
 const STATUS_CFG: Record<
   string,
-  { label: string; color: string; bg: string; border: string; icon: React.ReactNode }
+  {
+    label: string;
+    color: string;
+    bg: string;
+    border: string;
+    icon: React.ReactNode;
+  }
 > = {
   kritis: {
     label: "Kritis",
@@ -100,10 +110,10 @@ const CARD_SHADOW_COLORS = [
   "var(--pg-amber)",
 ];
 
-const FEATURED_IDS = ["harimau-sumatera", "orangutan-kalimantan", "komodo"];
-const featured = FEATURED_IDS.map((id) => speciesData.find((s) => s.id === id)).filter(
-  Boolean
-) as Species[];
+const FEATURED_IDS = ["harimau-sumatera", "orangutan-kalimantan", "badak-jawa"];
+const featured = FEATURED_IDS.map((id) =>
+  speciesData.find((s) => s.id === id),
+).filter(Boolean) as Species[];
 
 const STATS = [
   { value: "17.000+", label: "Pulau" },
@@ -120,7 +130,10 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      duration: 0.55,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   },
 };
 const stagger = {
@@ -151,7 +164,10 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
       }}
     >
       {/* Image */}
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ aspectRatio: "4/3" }}
+      >
         <Image
           src={resolveSpeciesImage(species.image)}
           alt={species.name}
@@ -159,7 +175,6 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
           className="object-cover transition-transform duration-500 hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {/* Status badge */}
         {st && (
           <div
             className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold"
@@ -180,24 +195,137 @@ function FeaturedCard({ species, index }: { species: Species; index: number }) {
         <p className="latin-name text-xs">{species.latinName}</p>
         <h3
           className="text-lg font-bold leading-snug"
-          style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}
+          style={{
+            fontFamily: "var(--font-heading)",
+            color: "var(--text-primary)",
+          }}
         >
           {species.name}
         </h3>
-        <p className="text-sm line-clamp-2 flex-1" style={{ color: "var(--text-muted)" }}>
+        <p
+          className="text-sm line-clamp-2 flex-1"
+          style={{ color: "var(--text-muted)" }}
+        >
           {species.description}
         </p>
         <Link
           href={`/species/${species.id}`}
           className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold transition-colors"
-          style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--pg-accent-dark)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--pg-accent)")}
+          style={{
+            color: "var(--pg-accent)",
+            fontFamily: "var(--font-heading)",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--pg-accent-dark)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--pg-accent)")
+          }
         >
           Selengkapnya <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
         </Link>
       </div>
     </motion.div>
+  );
+}
+
+// ─── Featured Carousel (mobile only) ────────
+function FeaturedCarousel({ items }: { items: Species[] }) {
+  const n = items.length;
+  const [idx, setIdx] = useState(n);
+  const [anim, setAnim] = useState(true);
+  const cloned = [...items, ...items, ...items];
+
+  const go = (newIdx: number) => {
+    setAnim(true);
+    setIdx(newIdx);
+  };
+
+  const handleEnd = () => {
+    if (idx >= n * 2) {
+      setAnim(false);
+      setIdx(idx - n);
+    } else if (idx < n) {
+      setAnim(false);
+      setIdx(idx + n);
+    }
+  };
+
+  const active = ((idx % n) + n) % n;
+
+  return (
+    <div>
+      <div
+        className="overflow-hidden"
+        style={{ borderRadius: "var(--radius-lg)" }}
+      >
+        <div
+          className="flex"
+          style={{
+            transform: `translateX(-${idx * 100}%)`,
+            transition: anim
+              ? "transform 0.42s cubic-bezier(0.16, 1, 0.3, 1)"
+              : "none",
+          }}
+          onTransitionEnd={handleEnd}
+        >
+          {cloned.map((sp, i) => (
+            <div key={i} className="flex-shrink-0 w-full">
+              <FeaturedCard species={sp} index={i % n} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-3 mt-5">
+        <button
+          onClick={() => go(idx - 1)}
+          aria-label="Sebelumnya"
+          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{
+            background: "white",
+            border: "2px solid var(--border-hard)",
+            boxShadow: "2px 2px 0px var(--border-hard)",
+            color: "var(--text-primary)",
+          }}
+        >
+          <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => go(i + n)}
+              aria-label={`Slide ${i + 1}`}
+              className="h-2.5 rounded-full"
+              style={{
+                width: active === i ? "1.5rem" : "0.625rem",
+                background:
+                  active === i ? "var(--pg-accent)" : "var(--border-hard)",
+                border: "2px solid var(--border-hard)",
+                transition: "all 0.3s ease",
+              }}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => go(idx + 1)}
+          aria-label="Berikutnya"
+          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{
+            background: "white",
+            border: "2px solid var(--border-hard)",
+            boxShadow: "2px 2px 0px var(--border-hard)",
+            color: "var(--text-primary)",
+          }}
+        >
+          <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -256,7 +384,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════
           HERO
       ═══════════════════════════════════════ */}
-      <section className="relative min-h-[calc(100vh-4.5rem)] flex items-center overflow-x-clip pt-12 pb-12">
+      <section className="relative min-h-[calc(100vh-4.5rem)] md:min-h-32 lg:min-h-[calc(100vh-4.5rem)] flex items-center overflow-x-clip pt-12 pb-12">
         {/* Background pattern */}
         <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
 
@@ -283,7 +411,12 @@ export default function HomePage() {
         />
         <motion.div
           animate={{ y: [0, 14, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
           className="absolute bottom-28 right-1/3 w-8 h-8 rounded-full hidden lg:block pointer-events-none"
           style={{
             background: "var(--pg-pink)",
@@ -295,12 +428,20 @@ export default function HomePage() {
           animate={{ rotate: [0, 360] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute top-20 left-1/4 w-10 h-10 hidden xl:block pointer-events-none"
-          style={{ border: "3px solid var(--pg-accent)", borderRadius: "4px", opacity: 0.25 }}
+          style={{
+            border: "3px solid var(--pg-accent)",
+            borderRadius: "4px",
+            opacity: 0.25,
+          }}
         />
 
-        <div className="container-main relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
+        <div className="container-main relative z-10 w-full">
+          {/*
+            FIX 2: Grid aktif dari md (tablet) — konsisten dengan breakpoint navbar.
+            gap lebih kecil di md agar image tidak terlalu terhimpit.
+            items-center agar teks dan gambar sejajar vertikal di semua ukuran.
+          */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 lg:gap-14 items-center">
             {/* ── Left: Text ── */}
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
@@ -315,28 +456,30 @@ export default function HomePage() {
                 style={{
                   fontFamily: "var(--font-heading)",
                   fontWeight: 800,
-                  fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)",
+                  fontSize: "clamp(2rem, 4vw + 0.5rem, 4.2rem)",
                   lineHeight: 1.1,
                   letterSpacing: "-0.02em",
                   color: "var(--text-primary)",
                   marginBottom: "1.25rem",
                 }}
               >
-                Jelajahi
+                Jelajahi{" "}
                 <span
-                  className="squiggle-underline inline-block ml-6"
+                  className="squiggle-underline inline-block"
                   style={{ color: "var(--pg-accent)" }}
                 >
                   Kekayaan
                 </span>
-                {" "}Hayati
                 <br />
-                <span style={{ color: "var(--pg-dark)" }}>Nusantara</span>
+                Hayati{" "}
+                <span style={{ color: "var(--pg-dark)" }}>
+                  Nusantara
+                </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="text-base sm:text-lg mb-8 max-w-lg"
+                className="text-sm md:text-base lg:text-lg mb-8 max-w-lg"
                 style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}
               >
                 Indonesia menyimpan keanekaragaman hayati terkaya di dunia.
@@ -344,30 +487,42 @@ export default function HomePage() {
                 <strong style={{ color: "var(--text-primary)" }}>
                   flora dan fauna endemik
                 </strong>{" "}
-                Nusantara — sebelum terlambat.
+                Nusantara - sebelum terlambat.
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-10">
-                <Link href="/species" className="btn-candy px-7 py-3.5">
+              <motion.div
+                variants={fadeUp}
+                className="flex flex-wrap gap-3 mb-8 md:mb-10"
+              >
+                <Link
+                  href="/species"
+                  className="btn-candy px-6 md:px-7 py-3 md:py-3.5"
+                >
                   Jelajahi Spesies
                   <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </Link>
-                <a href="#peta" className="btn-outline-pg px-7 py-3.5">
+                <a
+                  href="#peta"
+                  className="btn-outline-pg px-6 md:px-7 py-3 md:py-3.5"
+                >
                   Lihat Peta
                   <MapPin className="w-4 h-4" strokeWidth={2.5} />
                 </a>
               </motion.div>
 
               {/* Mini stat pills */}
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5">
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-2">
                 {[
                   { label: "17.000+ Pulau", color: "var(--pg-amber)" },
                   { label: "#2 Megabiodiversitas", color: "var(--pg-mint)" },
-                  { label: `${speciesData.length} Spesies`, color: "var(--pg-pink)" },
+                  {
+                    label: `${speciesData.length} Spesies`,
+                    color: "var(--pg-pink)",
+                  },
                 ].map((p) => (
                   <span
                     key={p.label}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold"
+                    className="inline-flex items-center gap-1.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-bold"
                     style={{
                       background: "white",
                       border: "2px solid var(--border-hard)",
@@ -387,15 +542,19 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* ── Right: Hero Image composition ── */}
+            {/* ── Right: Hero Image ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[500px] lg:max-w-[640px] mx-auto lg:ml-auto mt-12 lg:mt-0"
+              transition={{
+                delay: 0.3,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="relative w-full max-w-[420px] md:max-w-full mx-auto md:mx-0"
               style={{ paddingBottom: "2.5rem" }}
             >
-              {/* Dot pattern background square */}
+              {/* Dot pattern background */}
               <div
                 className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full rounded-3xl bg-dots"
                 style={{ zIndex: 0, opacity: 0.6 }}
@@ -415,12 +574,13 @@ export default function HomePage() {
                   src="/images/species/harimau-sumatera.jpg"
                   alt="Harimau Sumatera — Panthera tigris sumatrae"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 500px"
                   className="object-cover"
                   priority
                 />
                 {/* Caption sticker */}
                 <div
-                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-3.5 sm:p-4 rounded-2xl"
+                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-3 sm:p-4 rounded-2xl"
                   style={{
                     background: "rgba(255,253,245,0.95)",
                     border: "2px solid var(--border-hard)",
@@ -435,10 +595,11 @@ export default function HomePage() {
                       color: "var(--status-cr)",
                     }}
                   >
-                    <AlertTriangle className="w-3 h-3" strokeWidth={2.5} /> Status Kritis (CR)
+                    <AlertTriangle className="w-3 h-3" strokeWidth={2.5} />{" "}
+                    Status Kritis (CR)
                   </div>
                   <h3
-                    className="font-bold text-base mb-0.5"
+                    className="font-bold text-sm md:text-base mb-0.5"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
                     Harimau Sumatera
@@ -450,7 +611,11 @@ export default function HomePage() {
               {/* Floating badge — count */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 p-3 sm:p-4 rounded-2xl"
                 style={{
                   background: "var(--pg-accent)",
@@ -474,7 +639,12 @@ export default function HomePage() {
               {/* Floating badge — region */}
               <motion.div
                 animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5,
+                }}
                 className="absolute -bottom-2 -left-2 sm:left-0 p-3 sm:p-3.5 rounded-2xl flex items-center gap-2 sm:gap-2.5"
                 style={{
                   background: "var(--pg-amber)",
@@ -483,7 +653,10 @@ export default function HomePage() {
                   zIndex: 10,
                 }}
               >
-                <TreePine className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" strokeWidth={2.5} />
+                <TreePine
+                  className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
+                  strokeWidth={2.5}
+                />
                 <div>
                   <div
                     className="text-xs font-bold"
@@ -502,12 +675,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════
-      </div>
-
-      {/* ═══════════════════════════════════════
           STATS GRID
       ═══════════════════════════════════════ */}
-      <section ref={statRef} className="py-14 sm:py-20">
+      <section ref={statRef} className="py-14 md:pt-8 md:pb-14">
         <div className="container-main">
           <motion.div
             initial="hidden"
@@ -516,14 +686,18 @@ export default function HomePage() {
           >
             <motion.div variants={fadeUp} className="text-center mb-10">
               <span className="section-eyebrow justify-center">
-                <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} /> Fakta Nusantara
+                <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} /> Fakta
+                Nusantara
               </span>
               <h2
                 className="text-3xl sm:text-4xl font-bold"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 Negeri{" "}
-                <span className="squiggle-underline" style={{ color: "var(--pg-accent)" }}>
+                <span
+                  className="squiggle-underline"
+                  style={{ color: "var(--pg-accent)" }}
+                >
                   Mega
                 </span>
                 biodiversitas
@@ -532,7 +706,7 @@ export default function HomePage() {
 
             <motion.div
               variants={stagger}
-              className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
             >
               {STATS.map((s, i) => {
                 const accents = [
@@ -545,7 +719,11 @@ export default function HomePage() {
                 ];
                 return (
                   <motion.div key={i} variants={fadeUp} className="h-full">
-                    <StatCard value={s.value} label={s.label} accent={accents[i % accents.length]} />
+                    <StatCard
+                      value={s.value}
+                      label={s.label}
+                      accent={accents[i % accents.length]}
+                    />
                   </motion.div>
                 );
               })}
@@ -594,15 +772,25 @@ export default function HomePage() {
                   </span>
                 </h2>
               </div>
-              <Link href="/species" className="btn-outline-pg py-2.5 px-5 text-sm flex-shrink-0">
+              <Link
+                href="/species"
+                className="btn-outline-pg py-2.5 px-5 text-sm flex-shrink-0"
+              >
                 Lihat Semua <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
               </Link>
             </motion.div>
 
-            {/* Cards grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+            {/* Mobile: infinite carousel */}
+            <div className="md:hidden">
+              <FeaturedCarousel items={featured} />
+            </div>
+
+            {/* md+: grid — 2 cols at md, 3 cols at lg */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
               {featured.map((sp, i) => (
-                <FeaturedCard key={sp.id} species={sp} index={i} />
+                <div key={sp.id} className={i === 2 ? "hidden lg:block" : ""}>
+                  <FeaturedCard species={sp} index={i} />
+                </div>
               ))}
             </div>
           </motion.div>
@@ -612,11 +800,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════
           MAP SECTION
       ═══════════════════════════════════════ */}
-      <section
-        id="peta"
-        ref={mapRef}
-        className="py-16 sm:py-24"
-      >
+      <section id="peta" ref={mapRef} className="py-16 sm:py-24">
         <div className="container-main">
           <motion.div
             initial="hidden"
@@ -625,7 +809,8 @@ export default function HomePage() {
           >
             <motion.div variants={fadeUp} className="mb-10">
               <span className="section-eyebrow">
-                <MapPin className="w-3.5 h-3.5" strokeWidth={2.5} /> Peta Interaktif
+                <MapPin className="w-3.5 h-3.5" strokeWidth={2.5} /> Peta
+                Interaktif
               </span>
               <h2
                 className="text-3xl sm:text-4xl font-bold mb-3"
@@ -634,7 +819,10 @@ export default function HomePage() {
                 Sebaran Spesies{" "}
                 <span style={{ color: "var(--pg-accent)" }}>per Provinsi</span>
               </h2>
-              <p className="text-sm max-w-lg" style={{ color: "var(--text-secondary)" }}>
+              <p
+                className="text-sm max-w-lg"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Klik pada provinsi mana saja untuk melihat spesies endemik yang
                 hidup di wilayah tersebut.
               </p>
@@ -677,7 +865,10 @@ export default function HomePage() {
             {/* Decorative circles */}
             <div
               className="absolute -top-10 -right-10 w-48 h-48 rounded-full opacity-20 pointer-events-none"
-              style={{ background: "var(--pg-pink)", border: "3px solid white" }}
+              style={{
+                background: "var(--pg-pink)",
+                border: "3px solid white",
+              }}
             />
             <div
               className="absolute -bottom-8 -left-8 w-32 h-32 rounded-xl opacity-20 pointer-events-none"
@@ -713,16 +904,22 @@ export default function HomePage() {
               </h2>
 
               <p className="text-white/80 text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-                Platform ini didedikasikan untuk mendokumentasikan keajaiban alam
-                Nusantara. Aksi pelestarian nyata ada di tangan kita.
+                Platform ini didedikasikan untuk mendokumentasikan keajaiban
+                alam Nusantara. Aksi pelestarian nyata ada di tangan kita.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link href="/species" className="btn-ghost-dark px-8 py-3.5 text-base">
+                <Link
+                  href="/species"
+                  className="btn-ghost-dark px-8 py-3.5 text-base"
+                >
                   Lihat Semua Spesies
                   <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
                 </Link>
-                <Link href="/about" className="btn-ghost-dark px-8 py-3.5 text-base">
+                <Link
+                  href="/about"
+                  className="btn-ghost-dark px-8 py-3.5 text-base"
+                >
                   Tentang Platform
                 </Link>
               </div>

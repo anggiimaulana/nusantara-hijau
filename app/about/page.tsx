@@ -63,7 +63,7 @@ export default function AboutPage() {
 
       {/* ─── HERO ─── */}
       <section
-        className="relative pt-32 pb-20 overflow-hidden"
+        className="relative py-12 overflow-hidden"
         style={{ background: "var(--pg-dark)", borderBottom: "3px solid var(--border-hard)" }}
       >
         <div className="absolute inset-0 bg-dots-dark opacity-40 pointer-events-none" />
@@ -88,11 +88,12 @@ export default function AboutPage() {
               className="text-white mb-5"
               style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.1, letterSpacing: "-0.02em",
+                fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.1, letterSpacing: "-0.02em",
               }}
             >
-              Menjaga Harapan untuk<br />
-              <span style={{ color: "var(--pg-amber)" }}>Satwa & Puspa Nusantara</span>
+              Menjaga Harapan untuk
+              <br className="hidden md:block" />
+              <span style={{ color: "var(--pg-amber)" }}> Satwa & Puspa Nusantara</span>
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.60)" }}>
@@ -104,26 +105,44 @@ export default function AboutPage() {
       </section>
 
       {/* ─── QUOTE ─── */}
-      <section className="py-16" style={{ background: "var(--pg-muted)", borderBottom: "2px solid var(--border-hard)" }}>
-        <div className="container-main">
+      <section className="relative py-12 overflow-hidden" style={{ background: "var(--pg-bg)", borderBottom: "2px solid var(--border-hard)" }}>
+        <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+
+        {/* Geometric deco */}
+        <motion.div
+          animate={{ y: [0, -16, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-24 right-16 w-16 h-16 rounded-2xl hidden lg:block"
+          style={{ background: "var(--pg-accent)", border: "2px solid var(--border-hard)", boxShadow: "var(--shadow-hard)", transform: "rotate(12deg)" }}
+        />
+        <motion.div
+          animate={{ y: [0, 12, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-8 right-1/3 w-10 h-10 rounded-full hidden lg:block"
+          style={{ background: "var(--pg-pink)", border: "2px solid var(--border-hard)", boxShadow: "var(--shadow-hard)" }}
+        />
+        <div
+          className="absolute top-36 left-8 w-12 h-12 hidden lg:block"
+          style={{ border: "3px solid var(--pg-amber)", borderRadius: "6px", opacity: 0.4, transform: "rotate(20deg)" }}
+        />
+
+        <div className="container-main relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center"
+            className="max-w-2xl"
           >
             <div className="text-4xl mb-4">🌿</div>
             <p
               className="mb-4 squiggle-underline inline-block"
               style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(1.2rem, 2.5vw, 1.75rem)", color: "var(--text-primary)",
-                lineHeight: 1.4,
+                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "var(--text-primary)",
+                lineHeight: 1.3,
               }}
             >
               &ldquo;Kita tidak akan menjaga apa yang tidak kita kenal.&rdquo;
             </p>
-            <p className="text-sm font-bold mt-6" style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}>
+            <p className="text-sm font-bold mt-4" style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}>
               — Prinsip Dasar Konservasi
             </p>
           </motion.div>

@@ -31,7 +31,10 @@ export default function Navbar() {
         <div className="container-main">
           <div className="flex items-center justify-between h-16 sm:h-[4.5rem]">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group select-none">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 group select-none"
+            >
               <motion.div
                 whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.05 }}
                 transition={{ duration: 0.4 }}
@@ -45,13 +48,19 @@ export default function Navbar() {
                 <Leaf className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
                 <span
                   className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full"
-                  style={{ background: "var(--pg-amber)", border: "1.5px solid var(--border-hard)" }}
+                  style={{
+                    background: "var(--pg-amber)",
+                    border: "1.5px solid var(--border-hard)",
+                  }}
                 />
               </motion.div>
               <div className="flex flex-col leading-none">
                 <span
                   className="font-bold text-base tracking-tight"
-                  style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    color: "var(--text-primary)",
+                  }}
                 >
                   Nusantara
                   <span style={{ color: "var(--pg-accent)" }}>Hijau</span>
@@ -78,14 +87,18 @@ export default function Navbar() {
                       fontFamily: "var(--font-heading)",
                       color: active ? "white" : "var(--text-secondary)",
                       background: active ? "var(--pg-accent)" : "transparent",
-                      border: active ? "2px solid var(--border-hard)" : "2px solid transparent",
+                      border: active
+                        ? "2px solid var(--border-hard)"
+                        : "2px solid transparent",
                       boxShadow: active ? "var(--shadow-hard-xs)" : "none",
                     }}
                     onMouseEnter={(e) => {
-                      if (!active) e.currentTarget.style.color = "var(--text-primary)";
+                      if (!active)
+                        e.currentTarget.style.color = "var(--text-primary)";
                     }}
                     onMouseLeave={(e) => {
-                      if (!active) e.currentTarget.style.color = "var(--text-secondary)";
+                      if (!active)
+                        e.currentTarget.style.color = "var(--text-secondary)";
                     }}
                   >
                     {link.label}
@@ -93,7 +106,10 @@ export default function Navbar() {
                       <motion.span
                         layoutId="nav-dot"
                         className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
-                        style={{ background: "var(--pg-amber)", border: "1.5px solid var(--border-hard)" }}
+                        style={{
+                          background: "var(--pg-amber)",
+                          border: "1.5px solid var(--border-hard)",
+                        }}
                       />
                     )}
                   </Link>
@@ -116,12 +132,15 @@ export default function Navbar() {
                   border: "2px solid var(--border-hard)",
                   background: "white",
                   boxShadow: "var(--shadow-hard-xs)",
+                  cursor: "pointer",
                 }}
                 aria-label="Toggle menu"
               >
-                {menuOpen
-                  ? <X className="w-4.5 h-4.5" strokeWidth={2.5} />
-                  : <Menu className="w-4.5 h-4.5" strokeWidth={2.5} />}
+                {menuOpen ? (
+                  <X className="w-4.5 h-4.5" strokeWidth={2.5} />
+                ) : (
+                  <Menu className="w-4.5 h-4.5" strokeWidth={2.5} />
+                )}
               </button>
             </div>
           </div>
@@ -148,22 +167,68 @@ export default function Navbar() {
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: 24 }}
-                  animate={menuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
+                  animate={
+                    menuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }
+                  }
                   transition={{ delay: i * 0.07 + 0.1 }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold transition-all"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold transition-all duration-200 group"
                     style={{
                       fontFamily: "var(--font-heading)",
                       background: active ? "var(--pg-accent)" : "white",
                       color: active ? "white" : "var(--text-primary)",
                       border: "2px solid var(--border-hard)",
-                      boxShadow: active ? "var(--shadow-hard-xs)" : "none",
+                      boxShadow: active
+                        ? "var(--shadow-hard-xs)"
+                        : "2px 2px 0px var(--border-hard)",
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (active) return;
+                      e.currentTarget.style.background = "var(--pg-amber)";
+                      e.currentTarget.style.color = "var(--text-primary)";
+                      e.currentTarget.style.boxShadow =
+                        "4px 4px 0px var(--border-hard)";
+                      e.currentTarget.style.transform = "translate(-2px, -2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (active) return;
+                      e.currentTarget.style.background = "white";
+                      e.currentTarget.style.color = "var(--text-primary)";
+                      e.currentTarget.style.boxShadow =
+                        "2px 2px 0px var(--border-hard)";
+                      e.currentTarget.style.transform = "translate(0, 0)";
                     }}
                   >
+                    {/* Color accent dot per link */}
+                    <span
+                      className="w-2 h-2 rounded-full flex-shrink-0 transition-transform duration-200"
+                      style={{
+                        background: active
+                          ? "white"
+                          : [
+                              "var(--pg-accent)",
+                              "var(--pg-pink)",
+                              "var(--pg-amber)",
+                              "var(--pg-mint)",
+                            ][i],
+                      }}
+                    />
                     {link.label}
+                    {active && (
+                      <span
+                        className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full"
+                        style={{
+                          background: "rgba(255,255,255,0.25)",
+                          color: "white",
+                        }}
+                      >
+                        Aktif
+                      </span>
+                    )}
                   </Link>
                 </motion.div>
               );
@@ -180,7 +245,10 @@ export default function Navbar() {
                 boxShadow: "var(--shadow-hard)",
               }}
             >
-              <p className="text-xs font-bold mb-3" style={{ fontFamily: "var(--font-heading)" }}>
+              <p
+                className="text-xs font-bold mb-3"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
                 🌿 Jaga Nusantara Kita
               </p>
               <Link
@@ -203,7 +271,11 @@ export default function Navbar() {
           exit={{ opacity: 0 }}
           onClick={() => setMenuOpen(false)}
           className="fixed inset-0 z-30 md:hidden"
-          style={{ background: "rgba(15,23,42,0.4)", backdropFilter: "blur(4px)" }}
+          style={{
+            background: "rgba(15,23,42,0.4)",
+            backdropFilter: "blur(4px)",
+            cursor: "pointer",
+          }}
         />
       )}
     </>

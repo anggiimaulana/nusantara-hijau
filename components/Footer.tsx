@@ -63,7 +63,7 @@ export default function Footer() {
                 Nusantara<span style={{ color: "var(--pg-accent)" }}>Hijau</span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
               Atlas digital keanekaragaman hayati Indonesia. Dokumentasi flora & fauna endemik Nusantara.
             </p>
 
@@ -100,7 +100,7 @@ export default function Footer() {
           {/* Spesies col */}
           <div>
             <h4
-              className="text-xs font-bold uppercase tracking-widest mb-4"
+              className="text-sm font-bold uppercase tracking-widest mb-4"
               style={{ fontFamily: "var(--font-heading)", color: "var(--pg-amber)" }}
             >
               Spesies Populer
@@ -110,7 +110,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm transition-colors"
+                    className="text-base transition-colors"
                     style={{ color: "rgba(255,255,255,0.55)" }}
                     onMouseEnter={(e) => e.currentTarget.style.color = "white"}
                     onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
@@ -125,7 +125,7 @@ export default function Footer() {
           {/* Pages col */}
           <div>
             <h4
-              className="text-xs font-bold uppercase tracking-widest mb-4"
+              className="text-sm font-bold uppercase tracking-widest mb-4"
               style={{ fontFamily: "var(--font-heading)", color: "var(--pg-mint)" }}
             >
               Navigasi
@@ -135,7 +135,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm transition-colors"
+                    className="text-base transition-colors"
                     style={{ color: "rgba(255,255,255,0.55)" }}
                     onMouseEnter={(e) => e.currentTarget.style.color = "white"}
                     onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.55)"}
@@ -150,7 +150,7 @@ export default function Footer() {
           {/* CTA / Conservation col */}
           <div>
             <h4
-              className="text-xs font-bold uppercase tracking-widest mb-4"
+              className="text-sm font-bold uppercase tracking-widest mb-4"
               style={{ fontFamily: "var(--font-heading)", color: "var(--pg-pink)" }}
             >
               Lestarikan Bersama
@@ -162,11 +162,11 @@ export default function Footer() {
                 border: "2px solid rgba(255,255,255,0.1)",
               }}
             >
-              <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
+              <p className="text-base mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
                 Data spesies kami bersumber dari IUCN Red List & KLHK. Bersama jaga kekayaan hayati Nusantara.
               </p>
               <div
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-bold"
                 style={{
                   background: "var(--pg-accent)",
                   color: "white",
@@ -181,22 +181,14 @@ export default function Footer() {
 
         {/* Divider */}
         <div
-          className="my-10"
+          className="my-5"
           style={{ borderTop: "2px dashed rgba(255,255,255,0.1)" }}
         />
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-heading)" }}>
+        <div className="flex items-center justify-center">
+          <p className="text-base text-center" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-heading)" }}>
             © {new Date().getFullYear()} NusantaraHijau · Atlas Keanekaragaman Hayati Indonesia
-          </p>
-          <p
-            className="text-xs flex items-center gap-1.5"
-            style={{ color: "rgba(255,255,255,0.3)" }}
-          >
-            Dibuat dengan{" "}
-            <Heart className="w-3 h-3 text-red-400 fill-red-400" />
-            {" "}untuk Nusantara
           </p>
         </div>
       </div>

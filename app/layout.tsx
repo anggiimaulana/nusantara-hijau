@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { JetBrains_Mono, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import QuizButton from "@/components/QuizButton";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <QuizButton />
         </div>
       </body>
     </html>

@@ -549,7 +549,7 @@ export default function InteractiveMap() {
             >
               {zoom > 1
                 ? "✋ Geser · Cubit zoom"
-                : "👆 Tap / Klik provinsi untuk melihat cakupan rekaman wilayah"}
+                : "👆 Klik untuk melihat cakupan wilayah."}
             </span>
           </div>
 
@@ -1066,7 +1066,7 @@ function SpeciesPanel({
         className={`flex-1 p-4 space-y-3 ${mobile ? "" : "overflow-y-auto"}`}
         style={{ overscrollBehavior: "contain", background: "#fafaf8" }}
       >
-          {total > 3 && (
+        {total > 3 && (
           <p
             className="text-[10px] font-bold uppercase tracking-widest"
             style={{ color: "var(--text-faint)" }}

@@ -46,3 +46,4 @@ next-env.d.ts
 # documentation and local config
 docs/
 CLAUDE.md
+AGENTS.md

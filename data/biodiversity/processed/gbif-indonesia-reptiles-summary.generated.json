@@ -1,0 +1,373 @@
+{
+  "generatedAt": "2026-03-12T20:44:58.712Z",
+  "sourceId": "gbif-indonesia-reptiles",
+  "sourceUrl": "https://api.gbif.org/v1/occurrence/search?country=ID",
+  "groups": [
+    {
+      "id": "squamata",
+      "label": "Squamata",
+      "taxonKey": 11592253,
+      "occurrenceCount": 83936,
+      "topSpecies": [
+        {
+          "count": 6452,
+          "key": "2447367",
+          "scientificName": "Gekko gecko (Linnaeus, 1758)",
+          "canonicalName": "Gekko gecko",
+          "family": "Gekkonidae",
+          "order": null,
+          "genus": "Gekko",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 3494,
+          "key": "2460886",
+          "scientificName": "Eutropis multifasciata (Kuhl, 1820)",
+          "canonicalName": "Eutropis multifasciata",
+          "family": "Scincidae",
+          "order": null,
+          "genus": "Eutropis",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 3188,
+          "key": "9537238",
+          "scientificName": "Hemidactylus frenatus Duméril & Bibron, 1836",
+          "canonicalName": "Hemidactylus frenatus",
+          "family": "Gekkonidae",
+          "order": null,
+          "genus": "Hemidactylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 2666,
+          "key": "5816059",
+          "scientificName": "Hemidactylus platyurus (Schneider, 1797)",
+          "canonicalName": "Hemidactylus platyurus",
+          "family": "Gekkonidae",
+          "order": null,
+          "genus": "Hemidactylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 2207,
+          "key": "2470685",
+          "scientificName": "Varanus salvator (Laurenti, 1768)",
+          "canonicalName": "Varanus salvator",
+          "family": "Varanidae",
+          "order": null,
+          "genus": "Varanus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1768,
+          "key": "9125207",
+          "scientificName": "Calotes versicolor (Daudin, 1802)",
+          "canonicalName": "Calotes versicolor",
+          "family": "Agamidae",
+          "order": null,
+          "genus": "Calotes",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1677,
+          "key": "2466849",
+          "scientificName": "Bronchocela jubata Duméril & Bibron, 1837",
+          "canonicalName": "Bronchocela jubata",
+          "family": "Agamidae",
+          "order": null,
+          "genus": "Bronchocela",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1573,
+          "key": "2453368",
+          "scientificName": "Ahaetulla prasina (Boie, 1827)",
+          "canonicalName": "Ahaetulla prasina",
+          "family": "Colubridae",
+          "order": null,
+          "genus": "Ahaetulla",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1528,
+          "key": "5225525",
+          "scientificName": "Lamprolepis smaragdina (Lesson, 1829)",
+          "canonicalName": "Lamprolepis smaragdina",
+          "family": "Scincidae",
+          "order": null,
+          "genus": "Lamprolepis",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1519,
+          "key": "2459346",
+          "scientificName": "Dendrelaphis pictus (Gmelin, 1789)",
+          "canonicalName": "Dendrelaphis pictus",
+          "family": "Colubridae",
+          "order": null,
+          "genus": "Dendrelaphis",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        }
+      ]
+    },
+    {
+      "id": "testudines",
+      "label": "Testudines",
+      "taxonKey": 11418114,
+      "occurrenceCount": 6643,
+      "topSpecies": [
+        {
+          "count": 1482,
+          "key": "2442153",
+          "scientificName": "Lepidochelys olivacea (Eschscholtz, 1829)",
+          "canonicalName": "Lepidochelys olivacea",
+          "family": "Cheloniidae",
+          "order": null,
+          "genus": "Lepidochelys",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1408,
+          "key": "2442225",
+          "scientificName": "Chelonia mydas (Linnaeus, 1758)",
+          "canonicalName": "Chelonia mydas",
+          "family": "Cheloniidae",
+          "order": null,
+          "genus": "Chelonia",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1049,
+          "key": "8841716",
+          "scientificName": "Eretmochelys imbricata (Linnaeus, 1766)",
+          "canonicalName": "Eretmochelys imbricata",
+          "family": "Cheloniidae",
+          "order": null,
+          "genus": "Eretmochelys",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 250,
+          "key": "2443521",
+          "scientificName": "Cuora amboinensis (Daudin, 1801)",
+          "canonicalName": "Cuora amboinensis",
+          "family": "Geoemydidae",
+          "order": null,
+          "genus": "Cuora",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 176,
+          "key": "2442561",
+          "scientificName": "Amyda cartilaginea (Boddaert, 1770)",
+          "canonicalName": "Amyda cartilaginea",
+          "family": "Trionychidae",
+          "order": null,
+          "genus": "Amyda",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 141,
+          "key": "9789983",
+          "scientificName": "Dermochelys coriacea (Vandelli, 1761)",
+          "canonicalName": "Dermochelys coriacea",
+          "family": "Dermochelyidae",
+          "order": null,
+          "genus": "Dermochelys",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 125,
+          "key": "2443326",
+          "scientificName": "Heosemys spinosa (Gray, 1831)",
+          "canonicalName": "Heosemys spinosa",
+          "family": "Geoemydidae",
+          "order": null,
+          "genus": "Heosemys",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 102,
+          "key": "2443436",
+          "scientificName": "Cyclemys dentata (Gray, 1831)",
+          "canonicalName": "Cyclemys dentata",
+          "family": "Geoemydidae",
+          "order": null,
+          "genus": "Cyclemys",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 86,
+          "key": "2442742",
+          "scientificName": "Dogania subplana (Geoffroy Saint-Hilaire, 1809)",
+          "canonicalName": "Dogania subplana",
+          "family": "Trionychidae",
+          "order": null,
+          "genus": "Dogania",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 61,
+          "key": "2441830",
+          "scientificName": "Manouria emys (Schlegel & Müller, 1844)",
+          "canonicalName": "Manouria emys",
+          "family": "Testudinidae",
+          "order": null,
+          "genus": "Manouria",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        }
+      ]
+    },
+    {
+      "id": "crocodylia",
+      "label": "Crocodylia",
+      "taxonKey": 11493978,
+      "occurrenceCount": 876,
+      "topSpecies": [
+        {
+          "count": 270,
+          "key": "2441333",
+          "scientificName": "Crocodylus porosus Schneider, 1801",
+          "canonicalName": "Crocodylus porosus",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 194,
+          "key": "2441348",
+          "scientificName": "Crocodylus siamensis Schneider, 1801",
+          "canonicalName": "Crocodylus siamensis",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 93,
+          "key": "2441378",
+          "scientificName": "Tomistoma schlegelii (Müller, 1838)",
+          "canonicalName": "Tomistoma schlegelii",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Tomistoma",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 54,
+          "key": "8704427",
+          "scientificName": "Gavialis bengawanicus Dubois, 1908",
+          "canonicalName": "Gavialis bengawanicus",
+          "family": "Gavialidae",
+          "order": null,
+          "genus": "Gavialis",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 32,
+          "key": "2441326",
+          "scientificName": "Crocodylus novaeguineae Schmidt, 1928",
+          "canonicalName": "Crocodylus novaeguineae",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 11,
+          "key": "10671642",
+          "scientificName": "Crocodylus halli Murray, Russo, Zorilla & Mcmahan, 2019",
+          "canonicalName": "Crocodylus halli",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 3,
+          "key": "2441385",
+          "scientificName": "Osteolaemus tetraspis Cope, 1861",
+          "canonicalName": "Osteolaemus tetraspis",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Osteolaemus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 2,
+          "key": "11186376",
+          "scientificName": "Crocodylus raninus Ross, 1990",
+          "canonicalName": "Crocodylus raninus",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 2,
+          "key": "2441350",
+          "scientificName": "Crocodylus palustris (Lesson, 1831)",
+          "canonicalName": "Crocodylus palustris",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        },
+        {
+          "count": 1,
+          "key": "2441341",
+          "scientificName": "Crocodylus niloticus Laurenti, 1768",
+          "canonicalName": "Crocodylus niloticus",
+          "family": "Crocodylidae",
+          "order": null,
+          "genus": "Crocodylus",
+          "rank": "SPECIES",
+          "taxonomicStatus": "ACCEPTED"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "totalOccurrences": 91455,
+    "groupCount": 3
+  },
+  "provenance": {
+    "pipelineStage": "source-summary",
+    "rawSnapshotPath": "data\\biodiversity\\raw\\gbif-indonesia-reptiles",
+    "notes": [
+      "Derived from GBIF occurrence search filtered to Indonesia reptile groups.",
+      "Current scope is occurrence-backed reptile summary, not full canonical reptile taxa extraction."
+    ]
+  }
+}

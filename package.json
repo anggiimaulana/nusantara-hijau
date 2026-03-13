@@ -6,7 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit --incremental false",
+    "biodiversity:audit": "node scripts/biodiversity/audit-local-dataset.mjs",
+    "biodiversity:snapshot": "node scripts/biodiversity/fetch-public-source-snapshots.mjs",
+    "biodiversity:build-curated": "node scripts/biodiversity/build-curated-ui-taxa.mjs",
+    "biodiversity:build-public-catalog": "node scripts/biodiversity/build-public-catalog.mjs",
+    "biodiversity:fishbase": "node scripts/biodiversity/fetch-fishbase-indonesia-summary.mjs",
+    "biodiversity:gbif-flora": "node scripts/biodiversity/fetch-gbif-indonesia-flora.mjs",
+    "biodiversity:gbif-reptiles": "node scripts/biodiversity/fetch-gbif-indonesia-reptiles.mjs",
+    "biodiversity:dfi-angiosperms": "node scripts/biodiversity/fetch-dfi-angiosperms.mjs",
+    "biodiversity:mdd": "node scripts/biodiversity/fetch-mdd-indonesia.mjs",
+    "biodiversity:mdd-taxa": "python scripts/biodiversity/fetch-mdd-indonesia-taxa.py",
+    "biodiversity:validate": "node scripts/biodiversity/validate-artifacts.mjs",
+    "biodiversity:catalog-status": "node scripts/biodiversity/build-catalog-status.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",

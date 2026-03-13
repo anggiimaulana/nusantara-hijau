@@ -21,7 +21,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import speciesData from "@/data/species.json";
+import { catalogRecords, getCatalogRegions } from "@/lib/biodiversity-catalog";
 import { resolveSpeciesImage } from "@/lib/species-images";
 
 const GEO_URL =
@@ -214,10 +214,9 @@ interface Sp {
   name: string;
   latinName: string;
   region: string;
-  status: string;
-  image: string;
-  province: string[];
-  provinceMain: string;
+  regions: string[];
+  status: string | null;
+  image: string | null;
 }
 interface Tip {
   x: number;
@@ -253,18 +252,30 @@ function toTitle(s: string) {
     .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
     .join(" ");
 }
+
+const MAP_RECORDS: Sp[] = catalogRecords.map((species) => ({
+  id: species.id,
+  name: species.name,
+  latinName: species.latinName,
+  region: species.region,
+  regions: getCatalogRegions(species),
+  status: species.status,
+  image: species.image,
+}));
+
 function getSpecies(prov: string): Sp[] {
-  return (speciesData as Sp[]).filter((sp) =>
-    sp.province?.some((p) => p.toUpperCase() === prov),
-  );
+  const region = getRegion(prov);
+  if (region === "unknown") return [];
+  return MAP_RECORDS.filter((sp) => sp.regions.includes(region));
 }
 function getTop(prov: string, n = 3): Sp[] {
   const ord: Record<string, number> = { kritis: 0, terancam: 1, rentan: 2 };
   return [...getSpecies(prov)]
     .sort((a, b) => {
-      const am = a.provinceMain?.toUpperCase() === prov ? -1 : 0;
-      const bm = b.provinceMain?.toUpperCase() === prov ? -1 : 0;
-      return am !== bm ? am - bm : (ord[a.status] ?? 9) - (ord[b.status] ?? 9);
+      const aRank = a.status ? (ord[a.status] ?? 9) : 9;
+      const bRank = b.status ? (ord[b.status] ?? 9) : 9;
+      if (aRank !== bRank) return aRank - bRank;
+      return a.name.localeCompare(b.name, "id");
     })
     .slice(0, n);
 }
@@ -538,7 +549,7 @@ export default function InteractiveMap() {
             >
               {zoom > 1
                 ? "✋ Geser · Cubit zoom"
-                : "👆 Tap / Klik provinsi untuk spesies"}
+                : "👆 Tap / Klik provinsi untuk melihat cakupan rekaman wilayah"}
             </span>
           </div>
 
@@ -900,7 +911,7 @@ export default function InteractiveMap() {
                     className="text-[11px] font-bold mb-1.5"
                     style={{ color: "var(--pg-accent-dark)" }}
                   >
-                    {tip.count} spesies terdokumentasi
+                    {tip.count} rekaman biodiversitas wilayah
                   </p>
                   <ul className="space-y-1">
                     {tip.topNames.map((n, i) => (
@@ -929,7 +940,7 @@ export default function InteractiveMap() {
                     className="text-[10px] mt-2 font-bold"
                     style={{ color: "var(--pg-accent)" }}
                   >
-                    Klik untuk lihat detail →
+                    Klik untuk membuka sorotan wilayah →
                   </p>
                 </>
               ) : (
@@ -937,7 +948,7 @@ export default function InteractiveMap() {
                   className="text-[11px]"
                   style={{ color: "var(--text-faint)" }}
                 >
-                  Belum ada data spesies
+                  Belum ada data
                 </p>
               )}
             </div>
@@ -1016,14 +1027,13 @@ function SpeciesPanel({
               {toTitle(selected)}
             </h3>
 
-            {/* Species count */}
             <div className="flex items-center gap-2 mt-2">
               <div
                 className="flex items-center gap-1.5 px-3 py-1 rounded-full"
                 style={{ background: cfg.accent, color: "white" }}
               >
                 <Leaf className="w-3 h-3" />
-                <span className="text-xs font-bold">{total} spesies</span>
+                <span className="text-xs font-bold">{total} rekaman wilayah</span>
               </div>
             </div>
           </div>
@@ -1056,24 +1066,24 @@ function SpeciesPanel({
         className={`flex-1 p-4 space-y-3 ${mobile ? "" : "overflow-y-auto"}`}
         style={{ overscrollBehavior: "contain", background: "#fafaf8" }}
       >
-        {total > 3 && (
+          {total > 3 && (
           <p
             className="text-[10px] font-bold uppercase tracking-widest"
             style={{ color: "var(--text-faint)" }}
           >
-            Top 3 dari {total} spesies
+            Sorotan dari {total} rekaman wilayah
           </p>
         )}
 
         {topSp.length === 0 ? (
           <div className="py-10 text-center">
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              Belum ada data spesies
+              Belum ada data
             </p>
           </div>
         ) : (
           topSp.map((sp, idx) => {
-            const sc = STATUS_CFG[sp.status];
+            const sc = sp.status ? STATUS_CFG[sp.status] : null;
             return (
               <motion.div
                 key={sp.id}
@@ -1162,18 +1172,6 @@ function SpeciesPanel({
                         >
                           <span style={{ fontSize: 8 }}>{sc.emoji}</span>
                           {sc.label}
-                        </span>
-                      )}
-                      {sp.provinceMain?.toUpperCase() === selected && (
-                        <span
-                          className="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                          style={{
-                            background: cfg.accentLight,
-                            color: cfg.accent,
-                            border: `1px solid ${cfg.accent}40`,
-                          }}
-                        >
-                          Habitat Utama
                         </span>
                       )}
                     </div>

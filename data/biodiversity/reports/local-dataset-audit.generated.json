@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-03-12T13:21:22.863Z",
+  "sourceFiles": {
+    "speciesPath": "data\\species.json",
+    "schemaPath": "data\\species.schema.json",
+    "imageDirPath": "public\\images\\species"
+  },
+  "summary": {
+    "totalEntries": 52,
+    "availableImages": 58,
+    "entriesByType": {
+      "fauna": 48,
+      "flora": 4
+    },
+    "entriesByStatus": {
+      "kritis": 12,
+      "terancam": 21,
+      "rentan": 19
+    },
+    "entriesByStatusCode": {
+      "CR": 12,
+      "EN": 21,
+      "VU": 19
+    },
+    "entriesByRegion": {
+      "sumatera": 16,
+      "kalimantan": 13,
+      "jawa": 12,
+      "sulawesi": 8,
+      "papua": 3
+    },
+    "entriesByProvinceMain": {
+      "RIAU": 2,
+      "ACEH": 3,
+      "SUMATERA BARAT": 6,
+      "KALIMANTAN SELATAN": 3,
+      "SUMATERA UTARA": 2,
+      "SUMATERA SELATAN": 1,
+      "BENGKULU": 1,
+      "KALIMANTAN UTARA": 2,
+      "KALIMANTAN TENGAH": 2,
+      "KALIMANTAN BARAT": 4,
+      "KALIMANTAN TIMUR": 3,
+      "BANTEN": 1,
+      "JAWA BARAT": 7,
+      "JAWA TENGAH": 2,
+      "JAWA TIMUR": 2,
+      "SULAWESI TENGAH": 6,
+      "SULAWESI UTARA": 2,
+      "PAPUA": 2,
+      "PAPUA PEGUNUNGAN": 1
+    },
+    "regionsMissingFromDataset": [
+      "bali-nusra",
+      "maluku"
+    ]
+  },
+  "quality": {
+    "duplicateIds": [],
+    "duplicateNames": [
+      {
+        "value": "Anoa",
+        "count": 2
+      },
+      {
+        "value": "Bekantan",
+        "count": 2
+      }
+    ],
+    "duplicateLatinNames": [
+      {
+        "value": "Bubalus depressicornis",
+        "count": 2
+      },
+      {
+        "value": "Nasalis larvatus",
+        "count": 2
+      }
+    ],
+    "missingRequiredFields": [],
+    "invalidRegions": [],
+    "invalidTypes": [],
+    "invalidStatuses": [],
+    "invalidStatusCodes": [],
+    "invalidImages": [],
+    "unusedImages": [
+      "/images/species/cenderawasih.jpg",
+      "/images/species/jalak-bali.jpg",
+      "/images/species/kanguru-pohon.jpg",
+      "/images/species/kasuari.jpg",
+      "/images/species/komodo.jpg",
+      "/images/species/monyet-moor.jpg",
+      "/images/species/rusa-timor.jpg",
+      "/images/species/yaki.jpg"
+    ],
+    "emptyProvinceMain": []
+  }
+}

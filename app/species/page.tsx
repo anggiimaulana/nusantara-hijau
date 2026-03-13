@@ -1,956 +1,612 @@
-"use client";
-
-import speciesData from "@/data/species.json";
-import { resolveSpeciesImage } from "@/lib/species-images";
-import { AnimatePresence, motion } from "framer-motion";
+import { catalogRecords, getCatalogRegions, getCatalogRegionText, type CatalogSpecies } from "@/lib/biodiversity-catalog";
+import { hasSpeciesImage, resolveSpeciesImage } from "@/lib/species-images";
 import {
   AlertTriangle,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Database,
+  Globe,
   Grid3X3,
   Leaf,
   List,
   Search,
   Shield,
-  SlidersHorizontal,
   Sparkles,
-  X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useCallback, useMemo, useState } from "react";
 
-// ─── Types & Config ───────────────────────────
-interface Species {
-  id: string;
-  name: string;
-  latinName: string;
-  region: string;
-  type: string;
-  status: string;
-  statusEN: string;
-  description: string;
-  image: string;
-  color: string;
-}
-const ITEMS_PER_PAGE = 12;
-
+const ITEMS_PER_PAGE = 24;
 const REGIONS = [
-  { value: "all", label: "🌏 Semua Wilayah" },
-  { value: "sumatera", label: "🦁 Sumatera" },
-  { value: "kalimantan", label: "🦧 Kalimantan" },
-  { value: "jawa", label: "🐆 Jawa" },
-  { value: "sulawesi", label: "🦜 Sulawesi" },
-  { value: "papua", label: "🦅 Papua" },
-  { value: "bali-nusra", label: "🦎 Bali & Nusra" },
-];
+  { value: "all", label: "Semua Wilayah" },
+  { value: "sumatera", label: "Sumatera" },
+  { value: "kalimantan", label: "Kalimantan" },
+  { value: "jawa", label: "Jawa" },
+  { value: "sulawesi", label: "Sulawesi" },
+  { value: "papua", label: "Papua" },
+  { value: "maluku", label: "Maluku" },
+  { value: "bali-nusra", label: "Bali & Nusa Tenggara" },
+  { value: "nasional", label: "Nasional / Multiwilayah" },
+] as const;
 const STATUSES = [
   { value: "all", label: "Semua Status" },
-  { value: "kritis", label: "⚠️ Kritis" },
-  { value: "terancam", label: "🛡️ Terancam" },
-  { value: "rentan", label: "🌿 Rentan" },
-];
+  { value: "kritis", label: "Kritis" },
+  { value: "terancam", label: "Terancam" },
+  { value: "rentan", label: "Rentan" },
+] as const;
 const TYPES = [
   { value: "all", label: "Semua Jenis" },
   { value: "flora", label: "Flora" },
   { value: "fauna", label: "Fauna" },
-];
-
+] as const;
 const STATUS_CFG: Record<
   string,
-  { label: string; color: string; icon: React.ReactNode }
+  { label: string; color: string; icon: React.ReactNode; bg: string }
 > = {
   kritis: {
     label: "Kritis",
     color: "var(--status-cr)",
-    icon: <AlertTriangle className="w-3 h-3" strokeWidth={2.5} />,
+    icon: <AlertTriangle className="w-3.5 h-3.5" strokeWidth={2.5} />,
+    bg: "var(--status-cr-bg)",
   },
   terancam: {
     label: "Terancam",
     color: "var(--status-en)",
-    icon: <Shield className="w-3 h-3" strokeWidth={2.5} />,
+    icon: <Shield className="w-3.5 h-3.5" strokeWidth={2.5} />,
+    bg: "var(--status-en-bg)",
   },
   rentan: {
     label: "Rentan",
     color: "var(--status-vu)",
-    icon: <Leaf className="w-3 h-3" strokeWidth={2.5} />,
+    icon: <Leaf className="w-3.5 h-3.5" strokeWidth={2.5} />,
+    bg: "var(--status-vu-bg)",
   },
 };
-const SHADOW_COLORS = [
-  "var(--pg-pink)",
-  "var(--pg-accent)",
-  "var(--pg-amber)",
-  "var(--pg-mint)",
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  },
-};
-const stagger = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+const SOURCE_ACCENTS: Record<string, string> = {
+  curated: "var(--pg-accent)",
+  dfi: "#2F855A",
+  mdd: "#7C5E3C",
+  fishbase: "#0F766E",
 };
 
-// ─── Badge ────────────────────────────────────
-function StatusBadge({ status }: { status: string }) {
-  const cfg = STATUS_CFG[status];
-  if (!cfg) return null;
+type SpeciesSearchParams = Promise<{
+  q?: string;
+  region?: string;
+  status?: string;
+  type?: string;
+  view?: string;
+  p?: string;
+}>;
+
+function parsePositiveInt(value?: string) {
+  const parsed = Number.parseInt(value ?? "1", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function buildHref(params: {
+  q?: string;
+  region?: string;
+  status?: string;
+  type?: string;
+  view?: string;
+  p?: number;
+}) {
+  const searchParams = new URLSearchParams();
+
+  if (params.q) searchParams.set("q", params.q);
+  if (params.region && params.region !== "all") searchParams.set("region", params.region);
+  if (params.status && params.status !== "all") searchParams.set("status", params.status);
+  if (params.type && params.type !== "all") searchParams.set("type", params.type);
+  if (params.view && params.view !== "grid") searchParams.set("view", params.view);
+  if (params.p && params.p > 1) searchParams.set("p", String(params.p));
+
+  const query = searchParams.toString();
+  return query ? `/species?${query}` : "/species";
+}
+
+function getVisiblePages(currentPage: number, totalPages: number) {
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  const pages = [1];
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  if (start > 2) pages.push(-1);
+  for (let page = start; page <= end; page += 1) pages.push(page);
+  if (end < totalPages - 1) pages.push(-1);
+  pages.push(totalPages);
+
+  return pages;
+}
+
+function FilterChip({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
   return (
-    <span
-      className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-bold"
+    <Link
+      href={href}
+      className="inline-flex items-center justify-center px-3.5 py-2 rounded-full text-sm font-bold transition-colors"
       style={{
-        background: "white",
+        fontFamily: "var(--font-heading)",
         border: "2px solid var(--border-hard)",
-        color: cfg.color,
-        boxShadow: "2px 2px 0px var(--border-hard)",
+        background: active ? "var(--pg-accent)" : "white",
+        color: active ? "white" : "var(--text-primary)",
+        boxShadow: active ? "3px 3px 0px var(--border-hard)" : "2px 2px 0px var(--border-hard)",
       }}
     >
-      {cfg.icon} {cfg.label}
-    </span>
+      {children}
+    </Link>
   );
 }
 
-// ─── Grid Card ────────────────────────────────
-function SpeciesCard({ species, index }: { species: Species; index: number }) {
-  const shadowColor = SHADOW_COLORS[index % SHADOW_COLORS.length];
+function PaginationLink({ href, active, disabled, children }: { href: string; active?: boolean; disabled?: boolean; children: React.ReactNode }) {
+  if (disabled) {
+    return (
+      <span
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
+        style={{
+          fontFamily: "var(--font-heading)",
+          border: "2px solid var(--border-light)",
+          color: "var(--text-faint)",
+          background: "white",
+          opacity: 0.45,
+        }}
+      >
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <motion.div variants={fadeUp}>
-      <Link href={`/species/${species.id}`} className="block h-full">
-        <motion.div
-          className="relative flex flex-col h-full overflow-hidden"
-          style={{
-            background: "white",
-            border: "2px solid var(--border-hard)",
-            borderRadius: "var(--radius-lg)",
-            boxShadow: "4px 4px 0px var(--border-hard)",
-          }}
-          whileHover={{
-            boxShadow: `8px 8px 0px ${shadowColor}`,
-            transition: { duration: 0.2, ease: [0.34, 1.56, 0.64, 1] },
-          }}
-        >
-          <div
-            className="relative overflow-hidden"
-            style={{ aspectRatio: "3/2" }}
-          >
-            <Image
-              src={resolveSpeciesImage(species.image)}
-              alt={species.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              loading={index === 0 ? "eager" : "lazy"}
-              priority={index === 0}
-            />
-            <div className="absolute top-2 left-2">
-              <StatusBadge status={species.status} />
-            </div>
-          </div>
-          <div className="p-4 flex flex-col gap-1 flex-1">
-            <p className="latin-name text-[10px]">{species.latinName}</p>
-            <h3
-              className="font-bold text-base leading-snug"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-primary)",
-              }}
-            >
-              {species.name}
-            </h3>
-            <p
-              className="text-sm line-clamp-2 flex-1 mt-1"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {species.description}
-            </p>
-            <div
-              className="flex items-center gap-1 mt-3 pl-2 text-base font-bold"
-              style={{
-                color: "var(--pg-accent)",
-                fontFamily: "system-ui, sans-serif",
-              }}
-            >
-              Lihat detail{" "}
-              <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
-            </div>
-          </div>
-        </motion.div>
-      </Link>
-    </motion.div>
+    <Link
+      href={href}
+      className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
+      style={{
+        fontFamily: "var(--font-heading)",
+        border: "2px solid var(--border-hard)",
+        background: active ? "var(--pg-accent)" : "white",
+        color: active ? "white" : "var(--text-primary)",
+        boxShadow: active ? "3px 3px 0px var(--border-hard)" : "2px 2px 0px var(--border-hard)",
+      }}
+    >
+      {children}
+    </Link>
   );
 }
 
-// ─── List Item ────────────────────────────────
-const REGION_LABELS: Record<string, string> = {
-  sumatera: "Sumatera",
-  kalimantan: "Kalimantan",
-  jawa: "Jawa",
-  sulawesi: "Sulawesi",
-  papua: "Papua",
-  "bali-nusra": "Bali & Nusra",
-};
+function SpeciesImagePanel({ species, compact = false }: { species: CatalogSpecies; compact?: boolean }) {
+  const hasImage = hasSpeciesImage(species.image);
+  const accent = species.color ?? SOURCE_ACCENTS[species.sourceKey] ?? "var(--pg-accent)";
 
-function SpeciesListItem({
-  species,
-  index,
-}: {
-  species: Species;
-  index: number;
-}) {
-  const shadowColor = SHADOW_COLORS[index % SHADOW_COLORS.length];
-  const statusColor = STATUS_CFG[species.status]?.color ?? "var(--pg-accent)";
+  if (hasImage) {
+    return (
+      <Image
+        src={resolveSpeciesImage(species.image)}
+        alt={species.name}
+        fill
+        className="object-cover"
+        sizes={compact ? "130px" : "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"}
+      />
+    );
+  }
+
   return (
-    <motion.div variants={fadeUp}>
-      <Link href={`/species/${species.id}`} className="block group">
-        <motion.div
-          className="relative flex items-stretch gap-0 overflow-hidden"
-          style={{
-            background: "white",
-            border: "2px solid var(--border-hard)",
-            borderRadius: "var(--radius-lg)",
-            boxShadow: "4px 4px 0px var(--border-hard)",
-            transition: "box-shadow 0.2s",
-          }}
-          whileHover={{
-            boxShadow: `7px 7px 0px ${shadowColor}`,
-            transition: { duration: 0.18, ease: [0.34, 1.56, 0.64, 1] },
-          }}
-          whileTap={{ scale: 0.995 }}
-        >
-          {/* Colored left accent bar */}
-          <div
-            className="w-1.5 flex-shrink-0 self-stretch"
-            style={{ background: statusColor }}
-          />
+    <div
+      className="absolute inset-0 flex flex-col justify-between p-4"
+      style={{
+        background: `linear-gradient(145deg, ${accent}22 0%, white 100%)`,
+      }}
+    >
+      <span
+        className="inline-flex self-start px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em]"
+        style={{
+          background: "rgba(255,255,255,0.88)",
+          border: "1px solid rgba(15,23,42,0.10)",
+          color: accent,
+        }}
+      >
+        {species.sourceLabel}
+      </span>
+      <div>
+        <p className="latin-name text-[11px] mb-1" style={{ color: "var(--text-muted)" }}>
+          {species.latinName}
+        </p>
+        <p className="text-sm font-bold leading-snug" style={{ color: "var(--text-primary)", fontFamily: "var(--font-heading)" }}>
+          Data gambar belum tersedia
+        </p>
+      </div>
+    </div>
+  );
+}
 
-          {/* Image */}
-          <div
-            className="relative flex-shrink-0 overflow-hidden"
-            style={{
-              width: "130px",
-              aspectRatio: "4/3",
-              borderRight: "2px solid var(--border-hard)",
-            }}
-          >
-            <Image
-              src={resolveSpeciesImage(species.image)}
-              alt={species.name}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="130px"
-            />
-            {/* Type chip overlay */}
+function SpeciesGridCard({ species }: { species: CatalogSpecies }) {
+  const status = species.status ? STATUS_CFG[species.status] : null;
+
+  return (
+    <Link href={`/species/${species.id}`} className="block h-full">
+      <article
+        className="h-full overflow-hidden flex flex-col"
+        style={{
+          background: "white",
+          border: "2px solid var(--border-hard)",
+          borderRadius: "var(--radius-lg)",
+          boxShadow: "4px 4px 0px var(--border-hard)",
+        }}
+      >
+        <div className="relative" style={{ aspectRatio: "3 / 2" }}>
+          <SpeciesImagePanel species={species} />
+          {status && (
             <span
-              className="absolute bottom-1.5 left-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded-full capitalize"
+              className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold"
               style={{
-                background: "rgba(0,0,0,0.55)",
-                color: "white",
-                letterSpacing: "0.04em",
-                backdropFilter: "blur(4px)",
+                background: "white",
+                color: status.color,
+                border: "2px solid var(--border-hard)",
+                boxShadow: "2px 2px 0px var(--border-hard)",
+              }}
+            >
+              {status.icon}
+              {status.label}
+            </span>
+          )}
+        </div>
+        <div className="p-5 flex flex-col gap-3 flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="latin-name text-[11px] mb-1">{species.latinName}</p>
+              <h2 className="text-lg font-bold leading-snug" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                {species.name}
+              </h2>
+            </div>
+            <span
+              className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
+              style={{
+                background: species.type === "flora" ? "#DCFCE7" : "#CCFBF1",
+                color: species.type === "flora" ? "#166534" : "#0F766E",
               }}
             >
               {species.type}
             </span>
           </div>
-
-          {/* Body */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center gap-1.5 px-5 py-4">
-            <p
-              className="latin-name text-[10px] tracking-wide"
-              style={{ color: "var(--text-faint)" }}
-            >
-              {species.latinName}
-            </p>
-            <h3
-              className="font-bold leading-snug"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-primary)",
-                fontSize: "clamp(0.95rem, 1.2vw, 1.1rem)",
-              }}
-            >
-              {species.name}
-            </h3>
-            <p
-              className="text-sm leading-relaxed line-clamp-2"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {species.description}
-            </p>
-            {/* Region tag */}
-            {REGION_LABELS[species.region] && (
-              <span
-                className="self-start text-[10px] font-bold px-2 py-0.5 rounded-full mt-0.5"
-                style={{
-                  background: "var(--pg-muted)",
-                  border: "1.5px solid var(--border-light)",
-                  color: "var(--text-muted)",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
-                📍 {REGION_LABELS[species.region]}
-              </span>
-            )}
-          </div>
-
-          {/* Right: status + arrow */}
-          <div
-            className="flex flex-col items-center justify-between gap-3 px-5 py-4 flex-shrink-0"
-            style={{
-              borderLeft: "2px solid var(--border-light)",
-              minWidth: "120px",
-            }}
-          >
-            <StatusBadge status={species.status} />
-            <motion.div
-              className="flex items-center gap-1 text-sm font-bold"
-              style={{
-                color: "var(--pg-accent)",
-                fontFamily: "var(--font-heading)",
-              }}
-              initial={{ x: 0 }}
-              whileHover={{ x: 3 }}
-            >
-              <span>Detail</span>
-              <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
-            </motion.div>
-          </div>
-        </motion.div>
-      </Link>
-    </motion.div>
-  );
-}
-
-// ─── Skeleton ─────────────────────────────────
-function SkeletonCard() {
-  return (
-    <div
-      className="overflow-hidden"
-      style={{
-        border: "2px solid var(--border-hard)",
-        borderRadius: "var(--radius-lg)",
-        boxShadow: "4px 4px 0px var(--border-hard)",
-      }}
-    >
-      <div className="shimmer" style={{ aspectRatio: "3/2" }} />
-      <div className="p-4 space-y-2">
-        <div className="shimmer h-2.5 rounded-full w-2/3" />
-        <div className="shimmer h-4 rounded-full w-full" />
-        <div className="shimmer h-3 rounded-full w-5/6" />
-      </div>
-    </div>
-  );
-}
-
-// ─── Pagination Button ────────────────────────
-function PageBtn({
-  onClick,
-  disabled = false,
-  active = false,
-  children,
-  isArrow = false,
-}: {
-  onClick: () => void;
-  disabled?: boolean;
-  active?: boolean;
-  children: React.ReactNode;
-  isArrow?: boolean;
-}) {
-  return (
-    <motion.button
-      onClick={onClick}
-      disabled={disabled}
-      whileHover={!disabled ? { y: -2, scale: 1.05 } : {}}
-      whileTap={!disabled ? { y: 1, scale: 0.95 } : {}}
-      transition={{ duration: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
-      className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base select-none"
-      style={{
-        cursor: disabled ? "not-allowed" : "pointer",
-        fontFamily: "var(--font-heading)",
-        border: "2px solid var(--border-hard)",
-        background: active ? "var(--pg-accent)" : "white",
-        color: active
-          ? "white"
-          : disabled
-            ? "var(--text-faint)"
-            : "var(--text-primary)",
-        boxShadow: active
-          ? "3px 3px 0px var(--border-hard)"
-          : disabled
-            ? "none"
-            : "2px 2px 0px var(--border-hard)",
-        opacity: disabled ? 0.4 : 1,
-        // hover bg handled via CSS var trick — motion handles transform
-        transition: "background 0.15s, color 0.15s, box-shadow 0.15s",
-      }}
-      onMouseEnter={(e) => {
-        if (disabled || active) return;
-        const el = e.currentTarget;
-        el.style.background = isArrow ? "var(--pg-dark)" : "var(--pg-amber)";
-        el.style.color = "white";
-        el.style.boxShadow = "4px 4px 0px var(--border-hard)";
-      }}
-      onMouseLeave={(e) => {
-        if (disabled || active) return;
-        const el = e.currentTarget;
-        el.style.background = "white";
-        el.style.color = "var(--text-primary)";
-        el.style.boxShadow = "2px 2px 0px var(--border-hard)";
-      }}
-    >
-      {children}
-    </motion.button>
-  );
-}
-
-// ─── Pagination ───────────────────────────────
-function Pagination({
-  current,
-  total,
-  onChange,
-}: {
-  current: number;
-  total: number;
-  onChange: (n: number) => void;
-}) {
-  if (total <= 1) return null;
-
-  // Build page number array (max 7 slots)
-  const pages: number[] = [];
-  if (total <= 7) {
-    for (let i = 1; i <= total; i++) pages.push(i);
-  } else {
-    pages.push(1);
-    if (current > 3) pages.push(-1); // ellipsis
-    for (
-      let i = Math.max(2, current - 1);
-      i <= Math.min(total - 1, current + 1);
-      i++
-    )
-      pages.push(i);
-    if (current < total - 2) pages.push(-1); // ellipsis
-    pages.push(total);
-  }
-
-  return (
-    <div className="flex items-center justify-center gap-2 mt-10 flex-wrap">
-      {/* Prev */}
-      <PageBtn
-        isArrow
-        onClick={() => onChange(current - 1)}
-        disabled={current === 1}
-      >
-        <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
-      </PageBtn>
-
-      {/* Pages */}
-      {pages.map((p, i) =>
-        p === -1 ? (
-          <span
-            key={`ellipsis-${i}`}
-            className="w-10 h-10 flex items-center justify-center text-base font-bold select-none"
-            style={{
-              color: "var(--text-faint)",
-              fontFamily: "var(--font-heading)",
-            }}
-          >
-            …
-          </span>
-        ) : (
-          <PageBtn key={p} onClick={() => onChange(p)} active={p === current}>
-            {p}
-          </PageBtn>
-        ),
-      )}
-
-      {/* Next */}
-      <PageBtn
-        isArrow
-        onClick={() => onChange(current + 1)}
-        disabled={current === total}
-      >
-        <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
-      </PageBtn>
-    </div>
-  );
-}
-
-// ─── Inner Page ───────────────────────────────
-function SpeciesPageContent() {
-  const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("all");
-  const [status, setStatus] = useState("all");
-  const [type, setType] = useState("all");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [showFilters, setShowFilters] = useState(false);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-
-  const filtered = useMemo(() => {
-    const q = search.toLowerCase().trim();
-    return (speciesData as Species[]).filter((s) => {
-      if (
-        q &&
-        !s.name.toLowerCase().includes(q) &&
-        !s.latinName.toLowerCase().includes(q)
-      )
-        return false;
-      if (region !== "all" && s.region !== region) return false;
-      if (status !== "all" && s.status !== status) return false;
-      if (type !== "all" && s.type !== type) return false;
-      return true;
-    });
-  }, [search, region, status, type]);
-
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const visible = filtered.slice(
-    (page - 1) * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE,
-  );
-
-  const handlePageChange = useCallback((n: number) => {
-    setLoading(true);
-    setPage(n);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => setLoading(false), 300);
-  }, []);
-
-  const activeCount =
-    (region !== "all" ? 1 : 0) +
-    (status !== "all" ? 1 : 0) +
-    (type !== "all" ? 1 : 0);
-
-  return (
-    <div style={{ background: "var(--pg-bg)" }} className="min-h-screen">
-      {/* ─── Header ─── */}
-      <div
-        className="py-12 relative overflow-hidden"
-        style={{
-          background: "var(--pg-dark)",
-          borderBottom: "2px solid var(--border-hard)",
-        }}
-      >
-        <div className="absolute inset-0 bg-dots-dark opacity-40 pointer-events-none" />
-        <div
-          className="absolute top-8 right-12 w-20 h-20 rounded-full opacity-20"
-          style={{
-            background: "var(--pg-accent)",
-            border: "2px solid var(--pg-accent)",
-          }}
-        />
-        <div
-          className="absolute bottom-4 left-8 w-12 h-12 rounded-lg opacity-20"
-          style={{ background: "var(--pg-amber)", transform: "rotate(15deg)" }}
-        />
-
-        <div className="container-main relative z-10">
-          <span
-            className="section-eyebrow mb-3"
-            style={{ color: "var(--pg-amber)" }}
-          >
-            <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} /> Direktori
-            Spesies
-          </span>
-          <h1
-            className="text-white mb-3"
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 4vw, 3.2rem)",
-              lineHeight: 1.15,
-            }}
-          >
-            Atlas Spesies Nusantara
-          </h1>
-          <p
-            className="text-base max-w-xl leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.60)" }}
-          >
-            {speciesData.length} spesies endemik Indonesia dari 6 wilayah
-            Nusantara. Filter, cari, dan temukan informasi lengkap.
+          <p className="text-sm leading-relaxed line-clamp-3" style={{ color: "var(--text-secondary)" }}>
+            {species.description}
           </p>
-          <div className="flex flex-wrap gap-2.5 mt-5">
-            {[
-              {
-                label: `${(speciesData as Species[]).filter((s) => s.status === "kritis").length} Kritis`,
-                color: "var(--status-cr)",
-              },
-              {
-                label: `${(speciesData as Species[]).filter((s) => s.status === "terancam").length} Terancam`,
-                color: "var(--status-en)",
-              },
-              {
-                label: `${(speciesData as Species[]).filter((s) => s.status === "rentan").length} Rentan`,
-                color: "var(--status-vu)",
-              },
-            ].map((p) => (
-              <span
-                key={p.label}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold"
-                style={{
-                  background: "rgba(255,255,255,0.10)",
-                  border: "2px solid rgba(255,255,255,0.20)",
-                  borderRadius: "var(--radius-full)",
-                  color: "white",
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ background: p.color }}
-                />
-                {p.label}
-              </span>
-            ))}
+          <div className="mt-auto flex flex-wrap items-center gap-2 text-[11px] font-semibold" style={{ color: "var(--text-muted)" }}>
+            <span>{getCatalogRegionText(species)}</span>
+            <span aria-hidden="true">•</span>
+            <span>{species.sourceLabel}</span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}>
+            Lihat detail
+            <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
           </div>
         </div>
-      </div>
+      </article>
+    </Link>
+  );
+}
 
-      {/* ─── Search & Filter ─── */}
-      <div
-        className="sticky top-16 lg:top-[68px] z-30"
+function SpeciesListCard({ species }: { species: CatalogSpecies }) {
+  const status = species.status ? STATUS_CFG[species.status] : null;
+
+  return (
+    <Link href={`/species/${species.id}`} className="block">
+      <article
+        className="overflow-hidden flex gap-0"
         style={{
-          background: "var(--pg-bg)",
-          borderBottom: "2px solid var(--border-hard)",
+          background: "white",
+          border: "2px solid var(--border-hard)",
+          borderRadius: "var(--radius-lg)",
+          boxShadow: "4px 4px 0px var(--border-hard)",
         }}
       >
-        <div className="container-main py-3">
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1">
-              <Search
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4"
-                style={{ color: "var(--text-muted)" }}
-                strokeWidth={2.5}
-              />
-              <input
-                type="text"
-                placeholder="Cari nama spesies atau latin…"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setPage(1);
-                }}
-                className="input-pg pl-10 pr-10"
-                style={{
-                  borderRadius: "var(--radius-full)",
-                  border: "2px solid var(--border-hard)",
-                  boxShadow: "3px 3px 0px var(--border-hard)",
-                }}
-              />
-              {search && (
-                <button
-                  onClick={() => {
-                    setSearch("");
-                    setPage(1);
-                  }}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{
-                    background: "var(--pg-slate-200)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <X className="w-3 h-3" strokeWidth={2.5} />
-                </button>
-              )}
+        <div className="relative flex-shrink-0" style={{ width: "140px", aspectRatio: "4 / 3" }}>
+          <SpeciesImagePanel species={species} compact />
+        </div>
+        <div className="p-4 sm:p-5 flex-1 flex flex-col gap-3 min-w-0">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="latin-name text-[11px] mb-1 truncate">{species.latinName}</p>
+              <h2 className="text-base sm:text-lg font-bold leading-snug" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                {species.name}
+              </h2>
             </div>
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="relative flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-base transition-all"
-              style={{
-                fontFamily: "var(--font-heading)",
-                cursor: "pointer",
-                border: "2px solid var(--border-hard)",
-                background:
-                  showFilters || activeCount > 0 ? "var(--pg-accent)" : "white",
-                color:
-                  showFilters || activeCount > 0
-                    ? "white"
-                    : "var(--text-primary)",
-                boxShadow: "3px 3px 0px var(--border-hard)",
-              }}
-            >
-              <SlidersHorizontal className="w-4 h-4" strokeWidth={2.5} />
-              <span className="hidden sm:inline">Filter</span>
-              {activeCount > 0 && (
+            <div className="flex flex-wrap items-center gap-2 justify-end">
+              <span
+                className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
+                style={{
+                  background: species.type === "flora" ? "#DCFCE7" : "#CCFBF1",
+                  color: species.type === "flora" ? "#166534" : "#0F766E",
+                }}
+              >
+                {species.type}
+              </span>
+              {status && (
                 <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ background: "white", color: "var(--pg-accent)" }}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold"
+                  style={{ background: status.bg, color: status.color, border: `1px solid ${status.color}33` }}
                 >
-                  {activeCount}
+                  {status.icon}
+                  {status.label}
                 </span>
               )}
-            </button>
-            <div
-              className="flex rounded-xl overflow-hidden"
-              style={{ border: "2px solid var(--border-hard)" }}
-            >
-              {(
-                [
-                  [
-                    "grid",
-                    <Grid3X3 key="g" className="w-4 h-4" strokeWidth={2.5} />,
-                  ],
-                  [
-                    "list",
-                    <List key="l" className="w-4 h-4" strokeWidth={2.5} />,
-                  ],
-                ] as const
-              ).map(([mode, icon]) => (
-                <button
-                  key={mode}
-                  onClick={() => setViewMode(mode as "grid" | "list")}
-                  className="p-2.5 transition-all"
-                  style={{
-                    cursor: "pointer",
-                    background: viewMode === mode ? "var(--pg-dark)" : "white",
-                    color: viewMode === mode ? "white" : "var(--text-muted)",
-                  }}
-                >
-                  {icon}
-                </button>
-              ))}
             </div>
           </div>
-
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <div
-                  className="pt-4 pb-3 border-t-2 mt-3 flex flex-col gap-4"
-                  style={{ borderColor: "var(--border-light)" }}
-                >
-                  <div>
-                    <p className="label-pg mb-2">Wilayah</p>
-                    <div className="flex flex-wrap gap-2">
-                      {REGIONS.map((r) => (
-                        <button
-                          key={r.value}
-                          onClick={() => {
-                            setRegion(r.value);
-                            setPage(1);
-                          }}
-                          className={`chip ${region === r.value ? "chip-active" : ""}`}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {r.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <p className="label-pg mb-2">Status</p>
-                      <div className="flex flex-wrap gap-2">
-                        {STATUSES.map((s) => (
-                          <button
-                            key={s.value}
-                            onClick={() => {
-                              setStatus(s.value);
-                              setPage(1);
-                            }}
-                            className={`chip ${status === s.value ? "chip-active" : ""}`}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {s.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="label-pg mb-2">Jenis</p>
-                      <div className="flex flex-wrap gap-2">
-                        {TYPES.map((t) => (
-                          <button
-                            key={t.value}
-                            onClick={() => {
-                              setType(t.value);
-                              setPage(1);
-                            }}
-                            className={`chip ${type === t.value ? "chip-active" : ""}`}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {t.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  {activeCount > 0 && (
-                    <button
-                      onClick={() => {
-                        setRegion("all");
-                        setStatus("all");
-                        setType("all");
-                        setPage(1);
-                      }}
-                      className="self-start text-sm font-bold flex items-center gap-1.5"
-                      style={{
-                        color: "var(--status-cr)",
-                        fontFamily: "var(--font-heading)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <X className="w-3.5 h-3.5" strokeWidth={2.5} /> Reset
-                      semua filter
-                    </button>
-                  )}
-                </div>
-              </motion.div>
+          <p className="text-sm leading-relaxed line-clamp-2" style={{ color: "var(--text-secondary)" }}>
+            {species.description}
+          </p>
+          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold" style={{ color: "var(--text-muted)" }}>
+            <span>{getCatalogRegionText(species)}</span>
+            <span aria-hidden="true">•</span>
+            <span>{species.sourceLabel}</span>
+            {species.statusEN && (
+              <>
+                <span aria-hidden="true">•</span>
+                <span>Status {species.statusEN}</span>
+              </>
             )}
-          </AnimatePresence>
+          </div>
         </div>
-      </div>
-
-      {/* ─── Results ─── */}
-      <div className="container-main py-10">
-        <p
-          className="text-sm font-semibold mb-6"
-          style={{
-            color: "var(--text-muted)",
-            fontFamily: "var(--font-heading)",
-          }}
-        >
-          Menampilkan{" "}
-          <span style={{ color: "var(--text-primary)" }}>{visible.length}</span>{" "}
-          dari{" "}
-          <span style={{ color: "var(--text-primary)" }}>
-            {filtered.length}
-          </span>{" "}
-          spesies
-        </p>
-
-        <AnimatePresence mode="wait">
-          {filtered.length === 0 ? (
-            <motion.div
-              key="empty"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex flex-col items-center justify-center py-20 text-center"
-            >
-              <div className="text-6xl mb-4">🔍</div>
-              <h3
-                className="text-xl font-bold mb-2"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Tidak Ditemukan
-              </h3>
-              <p
-                className="text-base mb-6"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Spesies &ldquo;{search}&rdquo; tidak ada dalam database.
-              </p>
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setRegion("all");
-                  setStatus("all");
-                  setType("all");
-                  setPage(1);
-                }}
-                className="btn-candy px-6 py-2.5 text-base"
-              >
-                Reset Pencarian
-              </button>
-            </motion.div>
-          ) : loading ? (
-            viewMode === "grid" ? (
-              <motion.div
-                key="skel-g"
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5"
-              >
-                {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
-                  <SkeletonCard key={i} />
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div key="skel-l" className="space-y-3">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 rounded-2xl shimmer"
-                    style={{ border: "2px solid var(--border-hard)" }}
-                  />
-                ))}
-              </motion.div>
-            )
-          ) : viewMode === "grid" ? (
-            <motion.div
-              key="grid"
-              variants={stagger}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5"
-            >
-              {visible.map((s, i) => (
-                <SpeciesCard key={s.id} species={s as Species} index={i} />
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="list"
-              variants={stagger}
-              initial="hidden"
-              animate="visible"
-              className="space-y-3"
-            >
-              {visible.map((s, i) => (
-                <SpeciesListItem key={s.id} species={s as Species} index={i} />
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {!loading && filtered.length > 0 && (
-          <Pagination
-            current={page}
-            total={totalPages}
-            onChange={handlePageChange}
-          />
-        )}
-      </div>
-    </div>
+      </article>
+    </Link>
   );
 }
 
-export default function SpeciesPage() {
+export default async function SpeciesPage({ searchParams }: { searchParams: SpeciesSearchParams }) {
+  const params = await searchParams;
+  const query = params.q?.trim() ?? "";
+  const region = REGIONS.some((entry) => entry.value === params.region) ? params.region ?? "all" : "all";
+  const status = STATUSES.some((entry) => entry.value === params.status) ? params.status ?? "all" : "all";
+  const type = TYPES.some((entry) => entry.value === params.type) ? params.type ?? "all" : "all";
+  const view = params.view === "list" ? "list" : "grid";
+
+  const filtered = catalogRecords.filter((species) => {
+    const lowerQuery = query.toLowerCase();
+    const speciesRegions = getCatalogRegions(species);
+
+    if (
+      lowerQuery &&
+      !species.name.toLowerCase().includes(lowerQuery) &&
+      !species.latinName.toLowerCase().includes(lowerQuery)
+    ) {
+      return false;
+    }
+
+    if (region !== "all") {
+      if (region === "nasional") {
+        if (species.region !== "nasional") return false;
+      } else if (!speciesRegions.includes(region)) {
+        return false;
+      }
+    }
+
+    if (status !== "all" && species.status !== status) {
+      return false;
+    }
+
+    if (type !== "all" && species.type !== type) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  const currentPage = Math.min(parsePositiveInt(params.p), totalPages);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const visible = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const visiblePages = getVisiblePages(currentPage, totalPages);
+  const totalCount = catalogRecords.length.toLocaleString("id-ID");
+  const floraCount = catalogRecords.filter((species) => species.type === "flora").length.toLocaleString("id-ID");
+  const faunaCount = catalogRecords.filter((species) => species.type === "fauna").length.toLocaleString("id-ID");
+  const filteredCount = filtered.length.toLocaleString("id-ID");
+  const firstVisible = filtered.length === 0 ? 0 : startIndex + 1;
+  const lastVisible = startIndex + visible.length;
+
   return (
-    <Suspense
-      fallback={
-        <div
-          className="min-h-screen pt-24 flex items-center justify-center"
-          style={{ background: "var(--pg-bg)" }}
-        >
-          <div className="text-center">
-            <div className="text-5xl mb-4 animate-bounce-pop">🌿</div>
-            <p
-              className="font-bold text-lg"
+    <div style={{ background: "var(--pg-bg)" }} className="min-h-screen pb-16">
+      <section
+        className="relative overflow-hidden border-b-2"
+        style={{ background: "var(--pg-dark)", borderColor: "var(--border-hard)" }}
+      >
+        <div className="absolute inset-0 bg-dots-dark opacity-35 pointer-events-none" />
+        <div className="container-main relative z-10 py-14 sm:py-18">
+          <span className="section-eyebrow mb-4" style={{ color: "var(--pg-amber)" }}>
+            <Sparkles className="w-3.5 h-3.5" strokeWidth={2.5} /> Katalog Biodiversitas
+          </span>
+          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div>
+              <h1
+                className="text-white mb-4"
+                style={{
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 800,
+                  fontSize: "clamp(2.2rem, 5vw, 4rem)",
+                  lineHeight: 1.05,
+                }}
+              >
+                Katalog Flora dan Fauna Indonesia
+              </h1>
+              <p className="max-w-3xl text-base sm:text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
+                Jelajahi koleksi flora dan fauna Indonesia melalui direktori yang tersusun rapi menurut wilayah, status konservasi, dan jenis.
+              </p>
+            </div>
+            <div
+              className="rounded-[28px] p-5 sm:p-6"
               style={{
-                fontFamily: "var(--font-heading)",
-                color: "var(--text-muted)",
+                background: "rgba(255,255,255,0.08)",
+                border: "2px solid rgba(255,255,255,0.15)",
+                boxShadow: "6px 6px 0px rgba(0,0,0,0.22)",
               }}
             >
-              Memuat spesies…
+              <div className="grid grid-cols-3 gap-3 text-white">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-1">Total</p>
+                  <p className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>{totalCount}</p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-1">Flora</p>
+                  <p className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>{floraCount}</p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-white/60 mb-1">Fauna</p>
+                  <p className="text-2xl sm:text-3xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>{faunaCount}</p>
+                </div>
+              </div>
+              <div className="mt-4 inline-flex items-start gap-2 rounded-2xl px-3.5 py-3 text-sm leading-relaxed" style={{ background: "rgba(255,255,255,0.08)" }}>
+                <Database className="w-4 h-4 mt-0.5 flex-shrink-0" strokeWidth={2.5} />
+                <span>Pencarian, filter, dan pagination dirancang untuk penelusuran katalog yang cepat dan terarah.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-main py-8 sm:py-10">
+        <form action="/species" method="get" className="grid gap-4 xl:grid-cols-[1.3fr_1fr_auto] xl:items-start">
+          <div>
+            <label className="label-pg mb-2 block" htmlFor="catalog-search">Cari nama umum atau nama latin</label>
+            <div className="relative">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "var(--text-muted)" }} strokeWidth={2.5} />
+              <input
+                id="catalog-search"
+                name="q"
+                type="search"
+                defaultValue={query}
+                placeholder="Misalnya raflesia, orangutan, Acanthus…"
+                className="input-pg pl-10"
+                style={{ borderRadius: "999px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)" }}
+              />
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-3">
+            <div>
+              <label className="label-pg mb-2 block" htmlFor="catalog-region">Wilayah</label>
+              <select id="catalog-region" name="region" defaultValue={region} className="input-pg" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
+                {REGIONS.map((entry) => (
+                  <option key={entry.value} value={entry.value}>{entry.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="label-pg mb-2 block" htmlFor="catalog-status">Status</label>
+              <select id="catalog-status" name="status" defaultValue={status} className="input-pg" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
+                {STATUSES.map((entry) => (
+                  <option key={entry.value} value={entry.value}>{entry.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="label-pg mb-2 block" htmlFor="catalog-type">Jenis</label>
+              <select id="catalog-type" name="type" defaultValue={type} className="input-pg" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
+                {TYPES.map((entry) => (
+                  <option key={entry.value} value={entry.value}>{entry.label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="flex gap-3 xl:justify-end xl:pt-7">
+            <input type="hidden" name="view" value={view} />
+            <button className="btn-candy px-5 py-3 h-fit" type="submit">Terapkan Filter</button>
+            <Link href="/species" className="btn-outline-pg px-5 py-3 h-fit">Reset</Link>
+          </div>
+        </form>
+
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          {TYPES.map((entry) => (
+            <FilterChip
+              key={entry.value}
+              href={buildHref({ q: query, region, status, type: entry.value, view, p: 1 })}
+              active={type === entry.value}
+            >
+              {entry.label}
+            </FilterChip>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold" style={{ color: "var(--text-muted)", fontFamily: "var(--font-heading)" }}>
+              Menampilkan {firstVisible.toLocaleString("id-ID")}–{lastVisible.toLocaleString("id-ID")} dari {filteredCount} entri
+            </p>
+            <p className="text-sm mt-1" style={{ color: "var(--text-faint)" }}>
+              {query ? `Pencarian aktif: “${query}”. ` : ""}
+              Gunakan filter untuk menelusuri katalog secara lebih spesifik.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex overflow-hidden rounded-xl" style={{ border: "2px solid var(--border-hard)" }}>
+              <Link href={buildHref({ q: query, region, status, type, view: "grid", p: currentPage })} className="p-2.5" style={{ background: view === "grid" ? "var(--pg-dark)" : "white", color: view === "grid" ? "white" : "var(--text-muted)" }} aria-label="Tampilan grid">
+                <Grid3X3 className="w-4 h-4" strokeWidth={2.5} />
+              </Link>
+              <Link href={buildHref({ q: query, region, status, type, view: "list", p: currentPage })} className="p-2.5" style={{ background: view === "list" ? "var(--pg-dark)" : "white", color: view === "list" ? "white" : "var(--text-muted)" }} aria-label="Tampilan list">
+                <List className="w-4 h-4" strokeWidth={2.5} />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 rounded-[28px] p-4 sm:p-5" style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}>
+          <div className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+            <Globe className="w-4 h-4 mt-0.5 flex-shrink-0" strokeWidth={2.5} style={{ color: "var(--pg-accent)" }} />
+            <p>
+              Setiap entri menampilkan nama ilmiah, wilayah persebaran, status konservasi, dan rujukan sumber sesuai ketersediaan data.
             </p>
           </div>
         </div>
-      }
-    >
-      <SpeciesPageContent />
-    </Suspense>
+
+        {filtered.length === 0 ? (
+          <div className="mt-10 rounded-[32px] p-10 text-center" style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}>
+            <div className="text-6xl mb-4">🔎</div>
+            <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>Tidak ada entri yang cocok</h2>
+            <p className="text-base max-w-xl mx-auto" style={{ color: "var(--text-secondary)" }}>
+              Coba longgarkan kata kunci atau reset filter wilayah, status, dan jenis untuk melihat cakupan katalog yang lebih luas.
+            </p>
+            <Link href="/species" className="btn-candy mt-6 inline-flex px-6 py-3">Reset semua filter</Link>
+          </div>
+        ) : view === "grid" ? (
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {visible.map((species) => (
+              <SpeciesGridCard key={species.id} species={species} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 space-y-4">
+            {visible.map((species) => (
+              <SpeciesListCard key={species.id} species={species} />
+            ))}
+          </div>
+        )}
+
+        {filtered.length > 0 && (
+          <div className="mt-10 flex items-center justify-center gap-2 flex-wrap">
+            <PaginationLink
+              href={buildHref({ q: query, region, status, type, view, p: Math.max(1, currentPage - 1) })}
+              disabled={currentPage === 1}
+            >
+              <ChevronLeft className="w-4 h-4" strokeWidth={2.5} />
+            </PaginationLink>
+            {visiblePages.map((page, index) =>
+              page === -1 ? (
+                <span key={`ellipsis-${index}`} className="w-10 h-10 flex items-center justify-center text-sm font-bold" style={{ color: "var(--text-faint)" }}>
+                  …
+                </span>
+              ) : (
+                <PaginationLink key={page} href={buildHref({ q: query, region, status, type, view, p: page })} active={page === currentPage}>
+                  {page}
+                </PaginationLink>
+              ),
+            )}
+            <PaginationLink
+              href={buildHref({ q: query, region, status, type, view, p: Math.min(totalPages, currentPage + 1) })}
+              disabled={currentPage === totalPages}
+            >
+              <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
+            </PaginationLink>
+          </div>
+        )}
+      </section>
+    </div>
   );
 }

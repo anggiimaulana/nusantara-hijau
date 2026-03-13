@@ -1,12 +1,14 @@
 "use client";
 
-import { resolveSpeciesImage } from "@/lib/species-images";
+import { getCatalogRegionText, type CatalogSpecies } from "@/lib/biodiversity-catalog";
+import { hasSpeciesImage, resolveSpeciesImage } from "@/lib/species-images";
 import { motion } from "framer-motion";
 import {
   AlertTriangle,
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
+  Database,
   Globe,
   Leaf,
   MapPin,
@@ -17,52 +19,63 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
-// ─── Types ────────────────────────────────────
-interface Species {
-  id: string; name: string; latinName: string; region: string; type: string;
-  status: string; statusEN: string; population: string; habitat: string;
-  threat: string; description: string; image: string; action: string;
-  funFact: string; source: string; color: string;
+interface Props {
+  species: CatalogSpecies;
+  related: CatalogSpecies[];
 }
-interface Props { species: Species; related: Species[] }
 
-// ─── Status Config ────────────────────────────
-const STATUS_CFG: Record<string, {
-  label: string; color: string; bg: string; border: string;
-  icon: React.ReactNode; desc: string;
-}> = {
+const STATUS_CFG: Record<
+  string,
+  {
+    label: string;
+    color: string;
+    bg: string;
+    border: string;
+    icon: React.ReactNode;
+    desc: string;
+  }
+> = {
   kritis: {
-    label: "Kritis (CR)", color: "var(--status-cr)", bg: "var(--status-cr-bg)", border: "var(--status-cr-border)",
+    label: "Kritis (CR)",
+    color: "var(--status-cr)",
+    bg: "var(--status-cr-bg)",
+    border: "var(--status-cr-border)",
     icon: <AlertTriangle className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang sangat tinggi di alam liar",
   },
   terancam: {
-    label: "Terancam (EN)", color: "var(--status-en)", bg: "var(--status-en-bg)", border: "var(--status-en-border)",
+    label: "Terancam (EN)",
+    color: "var(--status-en)",
+    bg: "var(--status-en-bg)",
+    border: "var(--status-en-border)",
     icon: <Shield className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang tinggi di alam liar",
   },
   rentan: {
-    label: "Rentan (VU)", color: "var(--status-vu)", bg: "var(--status-vu-bg)", border: "var(--status-vu-border)",
+    label: "Rentan (VU)",
+    color: "var(--status-vu)",
+    bg: "var(--status-vu-bg)",
+    border: "var(--status-vu-border)",
     icon: <Leaf className="w-4 h-4" strokeWidth={2.5} />,
     desc: "Menghadapi risiko kepunahan yang cukup tinggi di alam liar",
   },
 };
 
-const REGION_LABELS: Record<string, string> = {
-  sumatera: "Sumatera", kalimantan: "Kalimantan", jawa: "Jawa",
-  sulawesi: "Sulawesi", papua: "Papua", "bali-nusra": "Bali & Nusa Tenggara",
-};
-
-// ─── Variants ────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
 };
-const stagger = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.09 } } };
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
+};
 
-// ─── Stat Card ────────────────────────────────
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div
@@ -83,8 +96,7 @@ function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string
   );
 }
 
-// ─── Related Card ────────────────────────────
-function RelatedCard({ sp }: { sp: Species }) {
+function RelatedCard({ sp }: { sp: CatalogSpecies }) {
   return (
     <Link href={`/species/${sp.id}`} className="block group flex-shrink-0 w-[220px] lg:w-full">
       <motion.div
@@ -95,17 +107,34 @@ function RelatedCard({ sp }: { sp: Species }) {
           background: "white",
           border: "2px solid var(--border-hard)",
           borderRadius: "var(--radius-md)",
-          boxShadow: "none"
+          boxShadow: "none",
         }}
       >
         <div className="relative overflow-hidden flex-shrink-0" style={{ aspectRatio: "4/3" }}>
-          <Image
-            src={resolveSpeciesImage(sp.image)}
-            alt={sp.name}
-            fill
-            sizes="220px"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {hasSpeciesImage(sp.image) ? (
+            <Image
+              src={resolveSpeciesImage(sp.image)}
+              alt={sp.name}
+              fill
+              sizes="220px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div
+              className="absolute inset-0 flex flex-col justify-between p-3"
+              style={{ background: `linear-gradient(145deg, ${(sp.color ?? "#0F766E")}22 0%, white 100%)` }}
+            >
+              <span
+                className="inline-flex self-start rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
+                style={{ background: "rgba(255,255,255,0.88)", color: sp.color ?? "#0F766E" }}
+              >
+                {sp.sourceLabel}
+              </span>
+              <p className="text-xs font-bold" style={{ color: "var(--text-primary)", fontFamily: "var(--font-heading)" }}>
+                Arsip visual
+              </p>
+            </div>
+          )}
         </div>
         <div className="p-3">
           <p className="latin-name text-[10px] mb-0.5 truncate">{sp.latinName}</p>
@@ -121,8 +150,7 @@ function RelatedCard({ sp }: { sp: Species }) {
   );
 }
 
-// ─── Related Carousel ────────────────────────
-function RelatedCarousel({ items }: { items: Species[] }) {
+function RelatedCarousel({ items }: { items: CatalogSpecies[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
 
@@ -130,78 +158,46 @@ function RelatedCarousel({ items }: { items: Species[] }) {
     const el = trackRef.current;
     if (!el) return;
 
-    el.scrollBy({
-      left: dir * 260,
-      behavior: "smooth",
-    });
+    el.scrollBy({ left: dir * 260, behavior: "smooth" });
   };
 
   const handleScroll = () => {
     const el = trackRef.current;
     if (!el) return;
-
-    const cardWidth = 236;
-    const newIndex = Math.round(el.scrollLeft / cardWidth);
-    setIndex(newIndex);
+    setIndex(Math.round(el.scrollLeft / 236));
   };
 
   return (
     <div className="relative">
-      {/* Scroll buttons */}
       <button
         onClick={() => scroll(-1)}
-        className="
-    absolute left-2 top-1/2 -translate-y-1/2 z-10
-    w-10 h-10 rounded-full
-    flex items-center justify-center
-    shadow-md transition
-  "
-        style={{
-          background: "white",
-          border: "2px solid var(--border-hard)",
-          boxShadow: "3px 3px 0px var(--border-hard)",
-        }}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition"
+        style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)" }}
       >
         <ChevronLeft className="w-5 h-5" strokeWidth={2.5} />
       </button>
 
       <button
         onClick={() => scroll(1)}
-        className="
-    absolute right-2 top-1/2 -translate-y-1/2 z-10
-    w-10 h-10 rounded-full
-    flex items-center justify-center
-    shadow-md transition
-  "
-        style={{
-          background: "white",
-          border: "2px solid var(--border-hard)",
-          boxShadow: "3px 3px 0px var(--border-hard)",
-        }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition"
+        style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)" }}
       >
         <ChevronRight className="w-5 h-5" strokeWidth={2.5} />
       </button>
 
-      <div
-        ref={trackRef}
-        onScroll={handleScroll}
-        className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
-      >
+      <div ref={trackRef} onScroll={handleScroll} className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
         {items.map((sp) => (
           <RelatedCard key={sp.id} sp={sp} />
         ))}
       </div>
       <div className="flex justify-center gap-2 mt-4">
-        {items.map((_, i) => (
+        {items.map((_, itemIndex) => (
           <div
-            key={i}
+            key={itemIndex}
             className="h-2 rounded-full transition-all"
             style={{
-              width: i === index ? "22px" : "8px",
-              background:
-                i === index
-                  ? "var(--pg-accent)"
-                  : "var(--border-light)",
+              width: itemIndex === index ? "22px" : "8px",
+              background: itemIndex === index ? "var(--pg-accent)" : "var(--border-light)",
             }}
           />
         ))}
@@ -210,41 +206,43 @@ function RelatedCarousel({ items }: { items: Species[] }) {
   );
 }
 
-// ─── Main Component ───────────────────────────
 export default function SpeciesDetailClient({ species, related }: Props) {
-  const st = STATUS_CFG[species.status];
+  const st = species.status ? STATUS_CFG[species.status] : null;
+  const accent = species.color ?? "var(--pg-accent)";
 
   return (
     <div style={{ background: "var(--pg-bg)" }} className="min-h-screen pb-20">
-
-      {/* ─── HERO ─── */}
       <div
         className="relative w-full overflow-hidden"
         style={{ height: "clamp(360px, 55vh, 640px)", borderBottom: "3px solid var(--border-hard)" }}
       >
-        {/* Image */}
-        <Image
-          src={resolveSpeciesImage(species.image)}
-          alt={species.name}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-        {/* Gradient overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, transparent 30%, rgba(30,41,59,0.85) 100%)" }}
-        />
+        {hasSpeciesImage(species.image) ? (
+          <Image
+            src={resolveSpeciesImage(species.image)}
+            alt={species.name}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(circle at top right, ${accent}66, transparent 40%), linear-gradient(140deg, ${accent}26 0%, #10231a 100%)`,
+            }}
+          />
+        )}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 30%, rgba(30,41,59,0.85) 100%)" }} />
 
-        {/* Floating deco */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute top-24 right-8 text-4xl opacity-30 hidden sm:block"
-        >✦</motion.div>
+        >
+          ✦
+        </motion.div>
 
-        {/* Back button */}
         <div className="absolute top-24 left-0 right-0 z-10">
           <div className="container-main">
             <motion.div
@@ -270,7 +268,6 @@ export default function SpeciesDetailClient({ species, related }: Props) {
           </div>
         </div>
 
-        {/* Hero text */}
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-8">
           <div className="container-main">
             <motion.div
@@ -282,37 +279,47 @@ export default function SpeciesDetailClient({ species, related }: Props) {
                 <span
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-bold mb-4"
                   style={{
-                    background: "white", border: "2px solid var(--border-hard)",
-                    color: st.color, boxShadow: "3px 3px 0px var(--border-hard)",
+                    background: "white",
+                    border: "2px solid var(--border-hard)",
+                    color: st.color,
+                    boxShadow: "3px 3px 0px var(--border-hard)",
                   }}
                 >
-                  {st.icon} {st.label}
+                  {st.icon}
+                  {st.label}
                 </span>
               )}
               <h1
                 className="text-white mb-2"
                 style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 800,
-                  fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", lineHeight: 1.1,
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 800,
+                  fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)",
+                  lineHeight: 1.1,
                   textShadow: "0 2px 8px rgba(0,0,0,0.4)",
                 }}
               >
                 {species.name}
               </h1>
               <p className="latin-name text-white/65 text-base">{species.latinName}</p>
+              <div
+                className="mt-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold text-white/90"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                }}
+              >
+                <Database className="w-4 h-4" strokeWidth={2.5} />
+                {species.sourceLabel}
+              </div>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* ─── CONTENT ─── */}
       <div className="container-main py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start">
-
-          {/* ── LEFT: Description + Cards ── */}
           <motion.div initial="hidden" animate="visible" variants={stagger}>
-
-            {/* Description */}
             <motion.div
               variants={fadeUp}
               className="p-7 sm:p-8 rounded-3xl mb-6"
@@ -326,14 +333,12 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               </p>
             </motion.div>
 
-            {/* Fun Fact — subtle amber */}
             {species.funFact && (
               <motion.div
                 variants={fadeUp}
                 className="flex gap-0 rounded-2xl mb-6 overflow-hidden"
                 style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
               >
-                {/* Left accent bar */}
                 <div className="w-1.5 flex-shrink-0" style={{ background: "var(--pg-accent)" }} />
                 <div className="p-6 flex-1">
                   <div className="flex items-center gap-2 mb-3">
@@ -349,14 +354,12 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               </motion.div>
             )}
 
-            {/* Threat — subtle pink */}
             {species.threat && (
               <motion.div
                 variants={fadeUp}
                 className="flex gap-0 rounded-2xl mb-6 overflow-hidden"
                 style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
               >
-                {/* Left accent bar */}
                 <div className="w-1.5 flex-shrink-0" style={{ background: "var(--pg-amber)" }} />
                 <div className="p-6 flex-1">
                   <div className="flex items-center gap-2 mb-3">
@@ -372,33 +375,20 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               </motion.div>
             )}
 
-            {/* Stats grid */}
             <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              {species.population && (
-                <StatCard icon={<Users className="w-4 h-4" strokeWidth={2.5} />} label="Populasi Tersisa" value={species.population} />
-              )}
-              {species.habitat && (
-                <StatCard icon={<MapPin className="w-4 h-4" strokeWidth={2.5} />} label="Habitat" value={species.habitat} />
-              )}
-              {species.region && (
-                <StatCard icon={<Globe className="w-4 h-4" strokeWidth={2.5} />} label="Wilayah" value={REGION_LABELS[species.region] ?? species.region} />
-              )}
-              {species.type && (
-                <StatCard icon={<Zap className="w-4 h-4" strokeWidth={2.5} />} label="Klasifikasi" value={species.type.charAt(0).toUpperCase() + species.type.slice(1)} />
-              )}
+              {species.population && <StatCard icon={<Users className="w-4 h-4" strokeWidth={2.5} />} label="Populasi Tersisa" value={species.population} />}
+              {species.habitat && <StatCard icon={<MapPin className="w-4 h-4" strokeWidth={2.5} />} label="Habitat" value={species.habitat} />}
+              <StatCard icon={<Globe className="w-4 h-4" strokeWidth={2.5} />} label="Wilayah" value={getCatalogRegionText(species)} />
+              <StatCard icon={<Zap className="w-4 h-4" strokeWidth={2.5} />} label="Klasifikasi" value={species.type.charAt(0).toUpperCase() + species.type.slice(1)} />
             </motion.div>
-
-
           </motion.div>
 
-          {/* ── RIGHT: Sidebar ── */}
           <motion.aside
             initial="hidden"
             animate="visible"
             variants={stagger}
             className="flex flex-col gap-5 lg:sticky lg:top-28"
           >
-            {/* Status card — clean with top border accent */}
             {st && (
               <motion.div
                 variants={fadeUp}
@@ -422,7 +412,23 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               </motion.div>
             )}
 
-            {/* Action card — accent */}
+            <motion.div
+              variants={fadeUp}
+              className="p-5 rounded-2xl"
+              style={{ background: "white", border: "2px solid var(--border-hard)", boxShadow: "4px 4px 0px var(--border-hard)" }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "var(--pg-dark)", color: "white" }}>
+                  <Database className="w-4 h-4" strokeWidth={2.5} />
+                </div>
+                <h3 className="font-bold text-sm" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
+                  Sumber Data
+                </h3>
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{species.sourceLabel}</p>
+              <p className="text-xs leading-relaxed mt-2 break-words" style={{ color: "var(--text-faint)" }}>{species.source}</p>
+            </motion.div>
+
             {species.action && (
               <motion.div
                 variants={fadeUp}
@@ -442,7 +448,6 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               </motion.div>
             )}
 
-            {/* Back to listing — bottom of sidebar */}
             <motion.div variants={fadeUp}>
               <Link href="/species" className="btn-outline-pg w-full justify-center py-2.5 text-sm">
                 <ArrowLeft className="w-4 h-4" strokeWidth={2.5} /> Kembali ke Direktori
@@ -451,7 +456,6 @@ export default function SpeciesDetailClient({ species, related }: Props) {
           </motion.aside>
         </div>
 
-        {/* ─── Related Species ─── */}
         {related.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -460,10 +464,7 @@ export default function SpeciesDetailClient({ species, related }: Props) {
             transition={{ duration: 0.6 }}
             className="mt-14"
           >
-            <div
-              className="flex items-center justify-between mb-6 pb-4"
-              style={{ borderBottom: "2px solid var(--border-light)" }}
-            >
+            <div className="flex items-center justify-between mb-6 pb-4" style={{ borderBottom: "2px solid var(--border-light)" }}>
               <h2 className="font-bold text-xl" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
                 Spesies Terkait
               </h2>
@@ -471,15 +472,12 @@ export default function SpeciesDetailClient({ species, related }: Props) {
                 Lihat Semua <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
               </Link>
             </div>
-            {/* Infinite horizontal carousel */}
             <div className="lg:hidden">
               <RelatedCarousel items={related} />
             </div>
-
-            {/* Desktop: grid */}
             <div className="hidden lg:grid lg:grid-cols-4 gap-5 sm:gap-6">
-              {related.map((sp) => (
-                <RelatedCard key={sp.id} sp={sp} />
+              {related.map((item) => (
+                <RelatedCard key={item.id} sp={item} />
               ))}
             </div>
           </motion.div>

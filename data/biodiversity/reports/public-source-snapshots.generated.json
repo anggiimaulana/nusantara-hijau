@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-03-12T13:21:57.875Z",
+  "snapshots": [
+    {
+      "id": "ugm-brin-benchmark",
+      "name": "UGM / BRIN biodiversity benchmark article",
+      "url": "https://ugm.ac.id/en/news/indonesia-records-31750-flora-and-744000-fauna-species-ugm-and-brin-urge-stronger-biodiversity-research/",
+      "fetchedAt": "2026-03-12T13:21:24.762Z",
+      "ok": true,
+      "status": 200,
+      "title": "Indonesia Records 31,750 Flora and 744,000 Fauna Species, UGM and BRIN Urge Stronger Biodiversity Research - Universitas Gadjah Mada",
+      "metrics": {
+        "floraSpecies": "31,750 Flora",
+        "faunaSpecies": "744,000 Fauna"
+      },
+      "excerpt": "Indonesia Records 31,750 Flora and 744,000 Fauna Species, UGM and BRIN Urge Stronger Biodiversity Research - Universitas Gadjah Mada UNIVERSITAS GADJAH MADA en ID Email Library Students Staff Alumni Admissions Admissions Bachelor Postgraduate Financial Aid &#038; Scholarships Live on Campus Cost of Education International Students Education Faculties and Schools Calendar Academic Student Resources SIMASTER application Library Facility Student organizations Health Center International Office Housing area Transportation Coworking Space UGM Channel Study SIMASTER Web Application SIMASTER VNext Student Mobile Apps &#8211; Android SIMASTER VNext Student Mobile Apps &#8211; IOS UGM Online UGM ELOK MOOC Knowledge Channel E-Journal Library Internet access English Language Literacy with AI Support "
+    },
+    {
+      "id": "digital-flora-indonesia",
+      "name": "Digital Flora of Indonesia",
+      "url": "https://www.indonesiaplants.org/",
+      "fetchedAt": "2026-03-12T13:21:35.476Z",
+      "ok": false,
+      "status": null,
+      "title": null,
+      "metrics": null,
+      "excerpt": null,
+      "error": "fetch failed"
+    },
+    {
+      "id": "ssrs-indonesia-biodiversity-hub",
+      "name": "SSRS Indonesia Biodiversity Hub",
+      "url": "https://hub.biodiversitas-indonesia.or.id/",
+      "fetchedAt": "2026-03-12T13:21:36.384Z",
+      "ok": true,
+      "status": 200,
+      "title": "Data Hub - Indonesia Tropical Species Database - SSRS Indonesia Biodiversity Hub",
+      "metrics": {
+        "latestDateMention": "March 11, 2026",
+        "includesAnimalia": true,
+        "includesPlantae": true,
+        "includesFungi": true
+      },
+      "excerpt": "Data Hub - Indonesia Tropical Species Database - SSRS Indonesia Biodiversity Hub Data Hub - Indonesia Tropical Species Database - SSRS Indonesia Biodiversity Hub SSRS INDONESIA BIODIVERSITY HUB Data Hub – Indonesia Tropical Species Database ANIMALIA PLANTAE FUNGI SPECIES GROUP CONTRIBUTION AUTHOR HOMEBASE Search Our Species Data Search keyword: species name, author, etc Search Our species information includes Animalia Plantae Fungi Latest SPECIES Latest From The Species Information Prodasineura autumnalis Animalia Usnil Khotimah March 11, 2026 Termitomyces eurrhizus Fungi Nurah Anggraeni March 7, 2026 Vatica pauciflora Plantae Salsabila Nur’Aini March 2, 2026 Agathis dammara Plantae Salsabila Nur’Aini March 2, 2026 Tectaria decurrens Plantae Danik Septianingrum March 2, 2026 Copera margini"
+    },
+    {
+      "id": "fishbase-indonesia",
+      "name": "FishBase Indonesia checklist",
+      "url": "https://www.fishbase.se/country/CountryChecklist.php?showAll=yes&c_code=360",
+      "fetchedAt": "2026-03-12T13:21:57.792Z",
+      "ok": false,
+      "status": null,
+      "title": null,
+      "metrics": null,
+      "excerpt": null,
+      "error": "terminated"
+    },
+    {
+      "id": "griis-indonesia",
+      "name": "GRIIS Indonesia via GBIF",
+      "url": "https://www.gbif.org/dataset/61fb216d-1216-4287-8b78-fdfef45e8e18",
+      "fetchedAt": "2026-03-12T13:21:57.874Z",
+      "ok": false,
+      "status": null,
+      "title": null,
+      "metrics": null,
+      "excerpt": null,
+      "error": "fetch failed"
+    }
+  ]
+}

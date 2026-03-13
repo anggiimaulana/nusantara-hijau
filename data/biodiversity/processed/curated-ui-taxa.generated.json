@@ -1,0 +1,4227 @@
+{
+  "generatedAt": "2026-03-12T20:44:37.564Z",
+  "recordCount": 52,
+  "records": [
+    {
+      "internalId": "ui:harimau-sumatera",
+      "scientificName": "Panthera tigris sumatrae",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Panthera tigris sumatrae",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Harimau Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Panthera",
+        "species": "tigris sumatrae",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "RIAU",
+          "SUMATERA BARAT",
+          "ACEH",
+          "LAMPUNG",
+          "BENGKULU"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "RIAU"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 400 ekor (2023)",
+        "threatsText": "Deforestasi akibat perluasan perkebunan sawit, perburuan liar untuk perdagangan kulit dan tulang, serta konflik dengan manusia."
+      },
+      "media": {
+        "imagePath": "/images/species/harimau-sumatera.jpg",
+        "accentColor": "#E74C3C"
+      },
+      "narrative": {
+        "description": "Harimau Sumatera adalah satu-satunya subspesies harimau yang masih bertahan di Indonesia dan merupakan harimau terkecil di dunia. Dengan belang yang lebih rapat dibanding subspesies lain, harimau ini merupakan predator puncak yang menjaga keseimbangan ekosistem hutan Sumatera. Populasinya terus menurun drastis akibat hilangnya habitat dan perburuan liar yang tak terkendali.",
+        "habitat": "Hutan hujan tropis dataran rendah hingga pegunungan",
+        "actionText": "Dukung program 'Harimau Kita' oleh WWF Indonesia dan laporkan aktivitas perburuan liar ke BKSDA setempat.",
+        "funFact": "Harimau Sumatera adalah perenang ulung dan tidak menghindari air seperti kebanyakan kucing besar lainnya."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "harimau-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.558Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.558Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:orangutan-sumatera",
+      "scientificName": "Pongo abelii",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Pongo abelii",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Orangutan Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Pongo",
+        "species": "abelii",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "ACEH"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 14.000 ekor (2020)",
+        "threatsText": "Pembukaan lahan untuk perkebunan, pembalakan liar, kebakaran hutan, dan perburuan untuk dijadikan hewan peliharaan."
+      },
+      "media": {
+        "imagePath": "/images/species/orangutan-sumatera.jpg",
+        "accentColor": "#E67E22"
+      },
+      "narrative": {
+        "description": "Orangutan Sumatera adalah primata terbesar di Asia dan salah satu kerabat terdekat manusia dengan kesamaan DNA mencapai 96,9%. Mereka dikenal sangat cerdas, mampu menggunakan alat, dan memiliki struktur sosial yang kompleks. Orangutan berperan penting dalam penyebaran benih tanaman sehingga menjadi 'arsitek hutan' yang tak tergantikan.",
+        "habitat": "Hutan hujan tropis dataran rendah dan lahan gambut di Sumatera bagian utara",
+        "actionText": "Hindari produk yang mengandung minyak sawit tidak berkelanjutan dan dukung Sumatran Orangutan Society (SOS).",
+        "funFact": "Orangutan menghabiskan hampir seluruh hidupnya di atas pohon dan membangun sarang baru dari ranting setiap malam."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "orangutan-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:gajah-sumatera",
+      "scientificName": "Elephas maximus sumatranus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Elephas maximus sumatranus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Gajah Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Elephas",
+        "species": "maximus sumatranus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA",
+          "RIAU",
+          "JAMBI",
+          "SUMATERA SELATAN",
+          "BENGKULU",
+          "LAMPUNG"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "ACEH"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "2.400 - 2.800 individu (2022)",
+        "threatsText": "Kehilangan habitat akibat deforestasi, perburuan gading ilegal, dan konflik satwa-manusia."
+      },
+      "media": {
+        "imagePath": "/images/species/gajah-sumatera.jpg",
+        "accentColor": "#7F8C8D"
+      },
+      "narrative": {
+        "description": "Gajah Sumatera adalah subspesies gajah Asia terkecil dengan telinga lebih besar dan ekor lebih panjang. Mereka memainkan peran krusial sebagai 'arsitek hutan' melalui penyebaran benih dan pembukaan jalan di hutan yang memungkinkan satwa lain bergerak. Gajah Sumatera hidup berkelompok matrilineal yang dipimpin oleh induk betina tertua.",
+        "habitat": "Hutan hujan dataran rendah, hutan sekunder, dan padang rumput di Sumatera",
+        "actionText": "Dukung Wildlife Conservation Society (WCS) Indonesia dan laporkan konflik gajah ke hotline KLHK.",
+        "funFact": "Gajah Sumatera dapat menghasilkan suara infrasonik yang tidak terdengar manusia untuk berkomunikasi hingga jarak 10 km."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "gajah-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:badak-sumatera",
+      "scientificName": "Dicerorhinus sumatrensis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Dicerorhinus sumatrensis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Badak Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Dicerorhinus",
+        "species": "sumatrensis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "ACEH"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 80 individu (2023)",
+        "threatsText": "Perburuan tanduk untuk pengobatan tradisional Cina, hilangnya habitat, dan populasi yang terfragmentasi."
+      },
+      "media": {
+        "imagePath": "/images/species/badak-sumatera.jpg",
+        "accentColor": "#8B4513"
+      },
+      "narrative": {
+        "description": "Badak Sumatera adalah badak terkecil di dunia dan satu-satunya badak berambut. Spesies ini sangat kuno secara evolusi, lebih dekat dengan badak yang hidup pada Era Es daripada badak lain yang masih ada. Badak Sumatera sangat pemalu dan soliter, hidup di hutan lebat yang sulit diakses, sehingga jarang terekam kamera.",
+        "habitat": "Hutan hujan pegunungan dan lereng berbukit di Sumatera",
+        "actionText": "Dukung International Rhino Foundation (IRF) dan program perlindungan di Taman Nasional Way Kambas.",
+        "funFact": "Badak Sumatera memiliki 'telinga berambut' yang unik — bulu telinga mereka membantu mengidentifikasi individu seperti sidik jari."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "badak-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:siamang",
+      "scientificName": "Symphalangus syndactylus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Symphalangus syndactylus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Siamang",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Symphalangus",
+        "species": "syndactylus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA",
+          "SUMATERA BARAT",
+          "JAMBI",
+          "SUMATERA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Diperkirakan menurun drastis",
+        "threatsText": "Deforestasi, perdagangan ilegal, dan konversi lahan untuk perkebunan."
+      },
+      "media": {
+        "imagePath": "/images/species/siamang.jpg",
+        "accentColor": "#2C3E50"
+      },
+      "narrative": {
+        "description": "Siamang adalah jenis gibbon terbesar dengan 'saka' atau selaput yang menghubungkan jari tengah dan manis. Mereka terkenal dengan nyanyian duet yang keras dan kompleks yang digunakan untuk menandai wilayah dan memperkuat ikatan pasangan. Siamang hidup dalam keluarga monogami yang stabil di kanopi hutan.",
+        "habitat": "Hutan hujan tropis pegunungan Sumatera dan Semenanjung Malaya",
+        "actionText": "Dukung konservasi hutan pegunungan Sumatera dan hindari perdagangan primata liar.",
+        "funFact": "Saka (selaput tangan) pada Siamang memungkinkan mereka berayun hingga 15 meter antar pohon."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "siamang",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:owa-berang-berang",
+      "scientificName": "Hylobates albibarbis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Hylobates albibarbis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Owa Berang-berang",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Hylobates",
+        "species": "albibarbis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "KALIMANTAN SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN SELATAN"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Diperkirakan kurang dari 20.000 individu",
+        "threatsText": "Deforestasi untuk perkebunan kelapa sawit dan perdagangan hewan peliharaan ilegal."
+      },
+      "media": {
+        "imagePath": "/images/species/owa-berang-beran.jpg",
+        "accentColor": "#34495E"
+      },
+      "narrative": {
+        "description": "Owa Berang-berang atau Agile Gibbon adalah primata kecil yang sangat lincah. Jantan dewasa memiliki bulu hitam mengkilap dengan janggut putih khas yang memberinya nama 'albibarbis'. Mereka bergerak cepat di kanopi dengan gaya brachiation yang anggun dan hidup dalam kelompok kecil yang terdiri dari pasangan monogami dan anak-anak.",
+        "habitat": "Hutan hujan dataran rendah Kalimantan bagian selatan",
+        "actionText": "Dukung program konservasi hutan Kalimantan dan laporkan perdagangan owa liar.",
+        "funFact": "Owa Berang-berang dapat melompat antar pohon sejauh 8 meter dalam sekali lompatan."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "owa-berang-berang",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:lutung-mentawai",
+      "scientificName": "Presbytis potenziani",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Presbytis potenziani",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Lutung Mentawai",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Presbytis",
+        "species": "potenziani",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 5.000 individu",
+        "threatsText": "Deforestasi, perburuan untuk konsumsi daging, dan habitat terisolasi di kepulauan."
+      },
+      "media": {
+        "imagePath": "/images/species/lutung-mentawai.jpg",
+        "accentColor": "#A0522D"
+      },
+      "narrative": {
+        "description": "Lutung Mentawai adalah monyet endemik Kepulauan Mentawai dengan bulu berwarna coklat kemerahan yang unik. Spesies ini telah berevolusi secara terpisah selama ribuan tahun di pulau-pulau terisolasi. Lutung Mentawai hidup berkelompok dan sangat tergantung pada kanopi hutan untuk makanan dan perlindungan.",
+        "habitat": "Hutan hujan tropis Pulau Mentawai",
+        "actionText": "Dukung konservasi hutan Mentawai dan program ekowisata berkelanjutan di kepulauan.",
+        "funFact": "Lutung Mentawai adalah satu dari empat spesies primata endemik Mentawai yang tidak ditemukan di tempat lain."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "lutung-mentawai",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:beruang-madu",
+      "scientificName": "Helarctos malayanus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Helarctos malayanus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Beruang Madu",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Helarctos",
+        "species": "malayanus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA",
+          "RIAU",
+          "JAMBI",
+          "SUMATERA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "RIAU"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, populasi menurun",
+        "threatsText": "Perburuan untuk bagian tubuh, perdagangan bayi, dan deforestasi."
+      },
+      "media": {
+        "imagePath": "/images/species/beruang-madu.jpg",
+        "accentColor": "#D35400"
+      },
+      "narrative": {
+        "description": "Beruang Madu adalah beruang terkecil di dunia dengan panjang tubuh hanya 1,2-1,5 meter. Mereka memiliki lidah panjang yang sangat kuat untuk menjilat madu dan serangga dari sarang. Beruang ini juga dikenal sebagai 'beruang matahari' karena pola bulan sabit putih di dada mereka.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan Sumatera dan Kalimantan",
+        "actionText": "Dukung Bornean Sun Bear Conservation Centre dan hindari wisata yang mengeksploitasi beruang.",
+        "funFact": "Beruang Madu memiliki lidah sepanjang 20-25 cm yang sangat kuat untuk mengambil madu dari sarang lebah."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "beruang-madu",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:tapir-asia",
+      "scientificName": "Acrocodia indica",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Acrocodia indica",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Tapir Asia",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Acrocodia",
+        "species": "indica",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA UTARA",
+          "RIAU",
+          "JAMBI",
+          "SUMATERA SELATAN",
+          "LAMPUNG"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA UTARA"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Tidak diketahui pasti, menurun drastis",
+        "threatsText": "Kehilangan habitat akibat deforestasi dan perburuan untuk daging dan kulit."
+      },
+      "media": {
+        "imagePath": "/images/species/tapir-asia.jpg",
+        "accentColor": "#5D4037"
+      },
+      "narrative": {
+        "description": "Tapir Asia adalah mamalia herbivora terbesar di Asia Tenggara dan merupakan spesies yang hidup sejak Zaman Es. Tubuhnya seperti babi besar dengan belang putih dan hitam yang unik. Tapir berperan penting sebagai penyebar benih dan 'tukang kebun hutan' yang membantu regenerasi ekosistem.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan Sumatera",
+        "actionText": "Dukung perlindungan hutan dataran rendah Sumatera dan program monitoring tapir.",
+        "funFact": "Bayi Tapir lahir dengan corak belang dan bintik coklat yang berubah menjadi hitam-putih saat dewasa."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "tapir-asia",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:macan-dahan-sumatera",
+      "scientificName": "Neofelis diardi",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Neofelis diardi",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Macan Dahan Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Neofelis",
+        "species": "diardi",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA",
+          "SUMATERA BARAT",
+          "JAMBI"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Deforestasi, perburuan untuk kulit, dan perdagangan ilegal."
+      },
+      "media": {
+        "imagePath": "/images/species/macan-dahan-sumatera.jpg",
+        "accentColor": "#795548"
+      },
+      "narrative": {
+        "description": "Macan Dahan atau Clouded Leopard adalah kucing liar berukuran menengah dengan pola belang awan yang unik. Mereka adalah pendaki pohon luar biasa dengan kaki belakang yang sangat fleksibel. Macan Dahan di Sumatera merupakan subspesies yang berbeda dari yang ada di Kalimantan.",
+        "habitat": "Hutan hujan tropis dataran rendah hingga pegunungan Sumatera dan Kalimantan",
+        "actionText": "Dukung penelitian dan konservasi hutan di Taman Nasional Kerinci Seblat.",
+        "funFact": "Macan Dahan memiliki gigi taring terpanjang dibanding ukuran tubuhnya di antara semua kucing."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "macan-dahan-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kucing-marmar",
+      "scientificName": "Pardofelis marmorata",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Pardofelis marmorata",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kucing Marmar",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Pardofelis",
+        "species": "marmorata",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA BARAT",
+          "JAMBI",
+          "BENGKULU",
+          "SUMATERA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, langka",
+        "threatsText": "Deforestasi dan perburuan untuk perdagangan hewan peliharaan eksotis."
+      },
+      "media": {
+        "imagePath": "/images/species/kucing-marmar.jpg",
+        "accentColor": "#8D6E63"
+      },
+      "narrative": {
+        "description": "Kucing Marmar adalah kucing liar berukuran kecil dengan corak marmer yang indah pada bulunya. Mereka sangat jarang terlihat dan hidup soliter di hutan pegunungan. Spesies ini adalah salah satu kucing paling misterius di dunia dengan informasi biologi yang sangat terbatas.",
+        "habitat": "Hutan hujan tropis pegunungan Sumatera",
+        "actionText": "Dukung penelitian kamera trap untuk mempelajari populasi kucing ini.",
+        "funFact": "Kucing Marmar dapat berenang dan sering berburu di sepanjang sungai kecil di hutan."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kucing-marmar",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:merak-hijau",
+      "scientificName": "Pavo muticus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Pavo muticus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Merak Hijau",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Pavo",
+        "species": "muticus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA SELATAN",
+          "JAMBI",
+          "RIAU"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA SELATAN"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 1.000 ekor di Indonesia",
+        "threatsText": "Perburuan untuk bulu ekor yang indah dan hilangnya habitat akibat perkebunan."
+      },
+      "media": {
+        "imagePath": "/images/species/merak-hijau.jpg",
+        "accentColor": "#27AE60"
+      },
+      "narrative": {
+        "description": "Merak Hijau adalah burung merak terbesar dan termahal dengan bulu berwarna hijau metalik yang mempesona. Ekor jantan yang spektakuler digunakan dalam tarian kawin yang kompleks. Spesies ini memiliki sejarah panjang dalam budaya Indonesia dan sering dijumpai dalam relief candi.",
+        "habitat": "Hutan dataran rendah, padang rumput, dan semak belukar Sumatera bagian timur",
+        "actionText": "Dukung konservasi Taman Nasional Way Kambas dan program pelestarian Merak.",
+        "funFact": "Ekor Merak Hijau jantan bisa mencapai panjang 2 meter dan memiliki lebih dari 200 'mata' bulu."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "merak-hijau",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kukang-sumatera",
+      "scientificName": "Nycticebus coucang",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nycticebus coucang",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kukang Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nycticebus",
+        "species": "coucang",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "ACEH",
+          "SUMATERA UTARA",
+          "RIAU",
+          "JAMBI",
+          "SUMATERA BARAT",
+          "SUMATERA SELATAN",
+          "LAMPUNG"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA UTARA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Perdagangan ilegal sebagai hewan peliharaan dan hilangnya habitat."
+      },
+      "media": {
+        "imagePath": "/images/species/kukang-sumatera.jpg",
+        "accentColor": "#8E44AD"
+      },
+      "narrative": {
+        "description": "Kukang Sumatera adalah primata malam dengan gerakan lambat yang khas. Mereka memiliki sengat berbisa di siku yang digunakan untuk pertahanan. Kukang adalah satu-satunya primata berbisa di dunia dan memiliki perilaku lambat yang membantu mereka berburu serangga secara diam-diam.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Sumatera",
+        "actionText": "Jangan pernah membeli kukang sebagai hewan peliharaan. Laporkan perdagangan ke BKSDA.",
+        "funFact": "Kukang menghasilkan getah beracun dari lengan yang dicampur dengan air liur sebelum menggigit musuh."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kukang-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:tupai-terbang-sumatera",
+      "scientificName": "Iomys horsfieldi",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Iomys horsfieldi",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Tupai Terbang Sumatera",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Iomys",
+        "species": "horsfieldi",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA BARAT",
+          "JAMBI",
+          "BENGKULU",
+          "SUMATERA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti",
+        "threatsText": "Deforestasi dan fragmentasi habitat hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/tupai-terbang-sumatera.jpg",
+        "accentColor": "#E67E22"
+      },
+      "narrative": {
+        "description": "Tupai Terbang Sumatera adalah spesies tupai terbang endemik dengan selaput terbang yang membentang dari leher ke kaki. Mereka dapat meluncur hingga 100 meter antar pohon. Spesies ini adalah penyebar benih penting untuk berbagai pohon hutan dan sangat adaptif di kanopi.",
+        "habitat": "Hutan hujan tropis pegunungan Sumatera bagian barat",
+        "actionText": "Dukung konservasi koridor hutan untuk memastikan konektivitas habitat tupai terbang.",
+        "funFact": "Tupai terbang dapat meluncur hingga 100 meter dalam satu lompatan dengan selaput kulit mereka."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "tupai-terbang-sumatera",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:rafflesia-arnoldii",
+      "scientificName": "Rafflesia arnoldii",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Rafflesia arnoldii",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Rafflesia Arnoldii",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Plantae",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Rafflesia",
+        "species": "arnoldii",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "BENGKULU",
+          "SUMATERA BARAT",
+          "ACEH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "BENGKULU"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Tidak diketahui pasti, tersebar terbatas",
+        "threatsText": "Pengrusakan habitat, pengambilan bunga untuk diperjualbelikan, dan sulitnya proses reproduksi alami."
+      },
+      "media": {
+        "imagePath": "/images/species/rafflesia-arnoldii.jpg",
+        "accentColor": "#C0392B"
+      },
+      "narrative": {
+        "description": "Rafflesia arnoldii adalah bunga tunggal terbesar di dunia dengan diameter bisa mencapai 1 meter dan berat hingga 11 kilogram. Bunga ini bersifat parasit total, tidak memiliki akar, batang, maupun daun — hanya muncul dari inang tanaman merambat Tetrastigma. Mekarnya sangat singkat, hanya 5-7 hari, sehingga menjadi fenomena alam yang langka dan memukau.",
+        "habitat": "Hutan hujan tropis Sumatera, terutama di Bengkulu, Sumatera Barat, dan Aceh",
+        "actionText": "Jangan memetik atau membeli Rafflesia. Dukung ekowisata berkelanjutan di kawasan konservasi Bengkulu.",
+        "funFact": "Rafflesia mengeluarkan bau bangkai untuk menarik lalat sebagai agen penyerbukannya."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "rafflesia-arnoldii",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023 & KLHK",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:bunga-bangkai",
+      "scientificName": "Amorphophallus titanum",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Amorphophallus titanum",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Bunga Bangkai Raksasa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Plantae",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Amorphophallus",
+        "species": "titanum",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sumatera"
+        ],
+        "provinces": [
+          "SUMATERA BARAT",
+          "BENGKULU",
+          "JAMBI",
+          "SUMATERA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SUMATERA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Populasi terbatas dan menurun",
+        "threatsText": "Pengambilan umbi untuk koleksi, hilangnya habitat hutan, dan perubahan iklim."
+      },
+      "media": {
+        "imagePath": "/images/species/bunga-bangkai.jpg",
+        "accentColor": "#2E4053"
+      },
+      "narrative": {
+        "description": "Amorphophallus titanum atau Bunga Bangkai adalah tumbuhan berbunga tak berbatang terbesar di dunia. Bunganya bisa mencapai tinggi 3 meter dan merupakan bunga tunggal terbesar secara vertikal. Bunga ini mekar secara sporadis setiap 7-10 tahun dan mengeluarkan bau bangkai yang sangat kuat untuk menarik kumbang penyerbuk.",
+        "habitat": "Hutan hujan tropis dataran rendah Sumatera pada ketinggian 0-400 mdpl",
+        "actionText": "Dukung Kebun Raya Bogor dan konservasi in-situ di habitat asli Sumatera.",
+        "funFact": "Bunga Bangkai Raksasa adalah bunga 'panas' — suhunya bisa mencapai 36°C untuk menyebarkan bau penyerbuk lebih jauh."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "bunga-bangkai",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kantong-semar",
+      "scientificName": "Nepenthes rajah",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nepenthes rajah",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kantong Semar Raksasa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Plantae",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nepenthes",
+        "species": "rajah",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN UTARA",
+          "KALIMANTAN TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN UTARA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Terbatas di habitat spesifik pegunungan Kalimantan",
+        "threatsText": "Pengumpulan liar oleh kolektor tanaman, kerusakan habitat akibat pertambangan, dan perubahan iklim."
+      },
+      "media": {
+        "imagePath": "/images/species/kantong-semar.jpg",
+        "accentColor": "#27AE60"
+      },
+      "narrative": {
+        "description": "Nepenthes rajah adalah spesies kantong semar terbesar di dunia dengan kantong yang mampu menampung hingga 3,5 liter cairan. Tanaman karnivora ini memangsa serangga, bahkan terkadang mampu menjebak tikus kecil dan katak. Kantong semar memiliki hubungan simbiosis unik dengan berbagai hewan, termasuk kelelawar yang bertengger di tutup kantongnya dan memberikan nutrisi melalui kotorannya.",
+        "habitat": "Lereng pegunungan ultrabasa Kalimantan Utara, terutama di Gunung Kinabalu dan sekitarnya",
+        "actionText": "Jangan membeli kantong semar dari sumber liar. Dukung nurseri yang membudidayakan kantong semar secara legal.",
+        "funFact": "Cairan di dalam kantong Nepenthes rajah bisa digunakan oleh larva nyamuk tertentu sebagai habitat hidup."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kantong-semar",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:bekantan",
+      "scientificName": "Nasalis larvatus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nasalis larvatus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Bekantan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nasalis",
+        "species": "larvatus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN SELATAN",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN SELATAN"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 25.000 ekor",
+        "threatsText": "Konversi hutan mangrove menjadi tambak, pembangunan perkebunan sawit, dan perburuan untuk dikonsumsi."
+      },
+      "media": {
+        "imagePath": "/images/species/bekantan.jpg",
+        "accentColor": "#D35400"
+      },
+      "narrative": {
+        "description": "Bekantan atau Proboscis Monkey adalah monyet endemik Kalimantan yang mudah dikenali dari hidungnya yang besar dan menggantung, terutama pada jantan dewasa. Hidung besar ini berfungsi sebagai resonator suara untuk menarik perhatian betina. Bekantan adalah perenang handal dan sering terlihat melompat dari pohon ke sungai untuk menghindari predator.",
+        "habitat": "Hutan mangrove, rawa gambut, dan hutan riparian di sepanjang sungai Kalimantan",
+        "actionText": "Dukung program konservasi mangrove dan hindari wisata yang mengeksploitasi primata liar.",
+        "funFact": "Bekantan jantan dengan hidung paling besar dianggap paling menarik oleh betina dan memiliki harem terbesar."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "bekantan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:orangutan-kalimantan",
+      "scientificName": "Pongo pygmaeus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Pongo pygmaeus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Orangutan Kalimantan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Pongo",
+        "species": "pygmaeus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Sekitar 104.700 ekor (2020)",
+        "threatsText": "Deforestasi masif akibat perkebunan sawit dan pertambangan, kebakaran hutan, serta perburuan."
+      },
+      "media": {
+        "imagePath": "/images/species/orangutan-kalimantan.jpg",
+        "accentColor": "#E67E22"
+      },
+      "narrative": {
+        "description": "Orangutan Kalimantan adalah salah satu dari tiga spesies orangutan yang ada di dunia dan merupakan mamalia arboreal terbesar. Mereka memiliki kecerdasan luar biasa, mampu memecahkan masalah kompleks dan menggunakan berbagai jenis alat. Dalam 60 tahun terakhir, populasi orangutan Kalimantan telah menurun lebih dari 50% akibat kehilangan habitat yang masif.",
+        "habitat": "Hutan hujan tropis dataran rendah, hutan dipterokarp, dan lahan gambut Kalimantan",
+        "actionText": "Dukung BOSF (Borneo Orangutan Survival Foundation) dan pilih produk bersertifikat RSPO.",
+        "funFact": "Orangutan memiliki masa kanak-kanak terpanjang di antara semua hewan selain manusia, bergantung pada induk hingga usia 8 tahun."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "orangutan-kalimantan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kucing-bayan",
+      "scientificName": "Catopuma badia",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Catopuma badia",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kucing Bayan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Catopuma",
+        "species": "badia",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 2.500 individu dewasa",
+        "threatsText": "Deforestasi untuk perkebunan kelapa sawit dan perdagangan kulit ilegal."
+      },
+      "media": {
+        "imagePath": "/images/species/kucing-bayan.jpg",
+        "accentColor": "#A0522D"
+      },
+      "narrative": {
+        "description": "Kucing Bayan adalah kucing liar endemik Kalimantan yang sangat langka dan misterius. Berwarna coklat kemerahan dengan ekor panjang dan tubuh ramping, mereka adalah predator kecil yang sangat teradaptasi pada kehidupan arboreal. Sangat sedikit informasi yang diketahui tentang biologi spesies ini karena sifatnya yang sangat pemalu dan habitat yang semakin berkurang.",
+        "habitat": "Hutan hujan dataran rendah Kalimantan",
+        "actionText": "Dukung perlindungan hutan dataran rendah Kalimantan dan program monitoring kamera trap.",
+        "funFact": "Kucing Bayan adalah satu dari dua spesies kucing yang sepenuhnya endemik Pulau Borneo."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kucing-bayan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kucing-hutan-kalimantan",
+      "scientificName": "Prionailurus planiceps",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Prionailurus planiceps",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kucing Hutan Kalimantan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Prionailurus",
+        "species": "planiceps",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN SELATAN",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Tidak diketahui pasti, populasi menurun",
+        "threatsText": "Pengeringan lahan gambut untuk perkebunan dan perburuan untuk perdagangan."
+      },
+      "media": {
+        "imagePath": "/images/species/kucing-hutan-kalimantan.jpg",
+        "accentColor": "#5D4037"
+      },
+      "narrative": {
+        "description": "Kucing Hutan Kalimantan adalah kucing berukuran kecil dengan kepala datar yang unik dan telinga kecil. Mereka sangat terikat pada habitat rawa gambut dan sangat jarang terlihat. Spesies ini adalah perenang ulung dan berburu ikan, kodok, dan moluska di perairan dangkal.",
+        "habitat": "Hutan rawa gambut dan hutan riparian Kalimantan",
+        "actionText": "Dukung konservasi lahan gambut Kalimantan dan program restorasi ekosistem rawa.",
+        "funFact": "Kepala datar Kucing Hutan membantu mereka menangkap ikan dengan lebih mudah di air."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kucing-hutan-kalimantan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:bekantan-kalimantan",
+      "scientificName": "Nasalis larvatus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nasalis larvatus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Bekantan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nasalis",
+        "species": "larvatus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN SELATAN",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN SELATAN"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 25.000 ekor",
+        "threatsText": "Konversi hutan mangrove menjadi tambak, pembangunan perkebunan sawit, dan perburuan untuk dikonsumsi."
+      },
+      "media": {
+        "imagePath": "/images/species/bekantan.jpg",
+        "accentColor": "#D35400"
+      },
+      "narrative": {
+        "description": "Bekantan atau Proboscis Monkey adalah monyet endemik Kalimantan yang mudah dikenali dari hidungnya yang besar dan menggantung, terutama pada jantan dewasa. Hidung besar ini berfungsi sebagai resonator suara untuk menarik perhatian betina. Bekantan adalah perenang handal dan sering terlihat melompat dari pohon ke sungai untuk menghindari predator.",
+        "habitat": "Hutan mangrove, rawa gambut, dan hutan riparian di sepanjang sungai Kalimantan",
+        "actionText": "Dukung program konservasi mangrove dan hindari wisata yang mengeksploitasi primata liar.",
+        "funFact": "Bekantan jantan dengan hidung paling besar dianggap paling menarik oleh betina dan memiliki harem terbesar."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "bekantan-kalimantan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:owa-muller",
+      "scientificName": "Hylobates muelleri",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Hylobates muelleri",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Owa Muller",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Hylobates",
+        "species": "muelleri",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN SELATAN",
+          "KALIMANTAN TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN TIMUR"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Diperkirakan menurun pesat",
+        "threatsText": "Deforestasi masif untuk perkebunan kelapa sawit dan perdagangan ilegal."
+      },
+      "media": {
+        "imagePath": "/images/species/owa-muller.jpg",
+        "accentColor": "#7F8C8D"
+      },
+      "narrative": {
+        "description": "Owa Muller adalah gibbon endemik Kalimantan bagian timur dengan bulu abu-abu kecoklatan dan topeng gelap di wajah. Mereka terkenal dengan nyanyian duet yang kompleks antara pasangan yang menjalin ikatan monogami seumur hidup. Owa Muller bergerak sangat cepat di kanopi dengan ayunan brachiation.",
+        "habitat": "Hutan hujan dataran rendah Kalimantan bagian timur dan selatan",
+        "actionText": "Dukung konservasi hutan Kalimantan dan hindari produk sawit tidak berkelanjutan.",
+        "funFact": "Pasangan Owa Muller menyanyikan duet setiap pagi untuk memperkuat ikatan dan menandai wilayah."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "owa-muller",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:tarsius-kalimantan",
+      "scientificName": "Cephalopachus bancanus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Cephalopachus bancanus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Tarsius Kalimantan Barat",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Cephalopachus",
+        "species": "bancanus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN BARAT"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Deforestasi dan fragmentasi habitat untuk perkebunan kelapa sawit."
+      },
+      "media": {
+        "imagePath": "/images/species/tarsius-kalimantan.jpg",
+        "accentColor": "#8E44AD"
+      },
+      "narrative": {
+        "description": "Tarsius Kalimantan Barat adalah primata malam terkecil di dunia dengan mata sebesar otaknya. Mata besar mereka tidak bisa bergerak, sehingga mereka memutar kepala hingga 180 derajat. Tarsius adalah predator serangga yang sangat gesit dan mampu melompat hingga 5 meter antar pohon.",
+        "habitat": "Hutan hujan tropis dataran rendah Kalimantan barat",
+        "actionText": "Dukung perlindungan hutan primer Kalimantan dan penelitian konservasi primata.",
+        "funFact": "Tarsius adalah satu-satunya primata karnivora yang sepenuhnya — mereka hanya makan serangga dan hewan kecil."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "tarsius-kalimantan",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:merak-phengop",
+      "scientificName": "Polyplectron schleiermacheri",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Polyplectron schleiermacheri",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Merak Phengop Kalimantan",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Polyplectron",
+        "species": "schleiermacheri",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN TIMUR"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 10.000 ekor",
+        "threatsText": "Perburuan untuk bulu dan hilangnya habitat akibat deforestasi."
+      },
+      "media": {
+        "imagePath": "/images/species/merak-phengop.jpg",
+        "accentColor": "#9B59B6"
+      },
+      "narrative": {
+        "description": "Merak Phengop Kalimantan adalah burung merak berukuran kecil dengan bulu bermata yang indah. Jantan memiliki bulu ekor yang dapat dikembangkan dalam tarian kawin yang spektakuler. Spesies ini sangat langka dan terancam oleh hilangnya hutan dataran rendah yang cepat.",
+        "habitat": "Hutan hujan dataran rendah Kalimantan bagian timur dan tengah",
+        "actionText": "Dukung konservasi hutan dataran rendah Kalimantan dan penegakan hukum anti-perburuan.",
+        "funFact": "Bulu mata pada ekor Merak Phengop berkilauan seperti permata saat terkena sinar matahari."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "merak-phengop",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:ayam-hutan-bulwer",
+      "scientificName": "Lophura bulweri",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Lophura bulweri",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Ayam Hutan Bulwer",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Lophura",
+        "species": "bulweri",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN UTARA",
+          "KALIMANTAN TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN UTARA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, langka",
+        "threatsText": "Perburuan untuk daging dan hilangnya habitat hutan pegunungan."
+      },
+      "media": {
+        "imagePath": "/images/species/ayam-hutan-bulwer.jpg",
+        "accentColor": "#3498DB"
+      },
+      "narrative": {
+        "description": "Ayam Hutan Bulwer adalah burung endemik Kalimantan dengan jambul biru yang unik dan bulu putih bercorak hitam. Jantan memiliki karunkel (daging menggantung) di leher yang berwarna-warni. Spesies ini hidup di hutan pegunungan yang semakin berkurang.",
+        "habitat": "Hutan pegunungan Kalimantan utara dan timur",
+        "actionText": "Dukung konservasi hutan pegunungan Kalimantan dan program monitoring populasi.",
+        "funFact": "Jambul biru pada Bulwer's Pheasant bisa dikembangkan saat burung terkejut atau berkembang biak."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "ayam-hutan-bulwer",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:enggang-helm",
+      "scientificName": "Rhinoplax vigil",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Rhinoplax vigil",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Enggang Helm",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Rhinoplax",
+        "species": "vigil",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN UTARA"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN BARAT"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Menurun drastis akibat perdagangan",
+        "threatsText": "Perburuan intensif untuk tanduk (casque) yang dihargai tinggi di pasar gelap Tiongkok."
+      },
+      "media": {
+        "imagePath": "/images/species/enggang-helm.jpg",
+        "accentColor": "#1ABC9C"
+      },
+      "narrative": {
+        "description": "Enggang Helm adalah burung enggang terbesar di Asia dengan tanduk (casque) raksasa yang unik di atas paruhnya. Sayapnya menghasilkan suara 'whoosh' yang khas saat terbang. Spesies ini sangat terancam karena perdagangan ilegal tanduknya yang dianggap sebagai 'red ivory' dan dihargai lebih mahal dari gading gajah.",
+        "habitat": "Hutan hujan tropis dataran rendah Kalimantan",
+        "actionText": "Laporkan perdagangan ilegal Enggang Helm dan dukung patroli anti-perburuan di hutan Kalimantan.",
+        "funFact": "Tanduk Enggang Helm tumbuh selama 5 tahun dan terbuat dari keratin padat yang mirip dengan tanduk kerbau."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "enggang-helm",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:enggang-badak",
+      "scientificName": "Buceros rhinoceros",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Buceros rhinoceros",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Enggang Badak",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Buceros",
+        "species": "rhinoceros",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN BARAT"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Perburuan dan hilangnya habitat hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/enggang-badak.jpg",
+        "accentColor": "#E67E22"
+      },
+      "narrative": {
+        "description": "Enggang Badak adalah burung besar dengan tanduk berwarna oranye dan putih yang mencolok. Mereka memainkan peran penting sebagai penyebar benih pohon hutan besar. Pasangan Enggang Badas memiliki ikatan monogami yang kuat dan bersama-sama merawat anak.",
+        "habitat": "Hutan hujan dataran rendah dan bukit Kalimantan",
+        "actionText": "Dukung konservasi hutan dataran rendah Kalimantan dan program monitoring enggang.",
+        "funFact": "Betina Enggang Badas dipenjara dalam lubang pohon selama 3-4 bulan saat mengerami telur."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "enggang-badak",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:pohon-ulin",
+      "scientificName": "Eusideroxylon zwageri",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Eusideroxylon zwageri",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Pohon Ulin",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Plantae",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Eusideroxylon",
+        "species": "zwageri",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "kalimantan"
+        ],
+        "provinces": [
+          "KALIMANTAN BARAT",
+          "KALIMANTAN TENGAH",
+          "KALIMANTAN TIMUR",
+          "KALIMANTAN SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "KALIMANTAN TIMUR"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Populasi menurun akibat eksploitasi berlebihan",
+        "threatsText": "Penebangan ilegal untuk kayu berkualitas tinggi, konversi lahan perkebunan, dan pertambangan."
+      },
+      "media": {
+        "imagePath": "/images/species/pohon-ulin.jpg",
+        "accentColor": "#5D4037"
+      },
+      "narrative": {
+        "description": "Pohon Ulin atau Kayu Besi adalah salah satu pohon dengan kayu terkeras dan paling tahan lama di dunia. Kayu Ulin sangat padat, tahan air, tahan rayap, dan bisa bertahan ratusan tahun bahkan tanpa perlakuan. Pohon ini bisa tumbuh hingga 50 meter dengan diameter batang mencapai 2 meter dan hidup hingga 1.000 tahun.",
+        "habitat": "Hutan hujan dataran rendah dan hutan kerangas di Kalimantan dan Sumatera",
+        "actionText": "Pilih produk kayu Ulin bersertifikat SVLK dan dukung program reboisasi oleh KLHK.",
+        "funFact": "Kayu Ulin sangat keras sehingga paku akan patah jika dipukul ke dalamnya — perlu bor khusus untuk membuat lubang."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "pohon-ulin",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2021",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:badak-jawa",
+      "scientificName": "Rhinoceros sondaicus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Rhinoceros sondaicus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Badak Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Rhinoceros",
+        "species": "sondaicus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "BANTEN"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Sekitar 76 ekor (2023)",
+        "threatsText": "Populasi kecil dengan satu lokasi tunggal sangat rentan terhadap bencana alam, penyakit, dan perubahan habitat akibat invasi tanaman Arenga."
+      },
+      "media": {
+        "imagePath": "/images/species/badak-jawa.jpg",
+        "accentColor": "#7F8C8D"
+      },
+      "narrative": {
+        "description": "Badak Jawa adalah salah satu mamalia paling langka di Bumi. Dengan hanya sekitar 76 individu yang tersisa di satu lokasi di dunia, Taman Nasional Ujung Kulon menjadi benteng terakhir keberlangsungan hidup spesies ini. Badak Jawa adalah hewan soliter dan sangat pemalu, sehingga dokumentasinya sangat terbatas dan sebagian besar hanya melalui kamera perangkap.",
+        "habitat": "Hutan hujan tropis dataran rendah di Taman Nasional Ujung Kulon, Banten",
+        "actionText": "Dukung Yayasan Badak Indonesia (YABI) dan program pengendalian tanaman invasif Arenga di Ujung Kulon.",
+        "funFact": "Badak Jawa tidak pernah berhasil dibiakkan di penangkaran — seluruh populasinya hidup liar di alam bebas."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "badak-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023 & YABI",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:elang-jawa",
+      "scientificName": "Nisaetus bartelsi",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nisaetus bartelsi",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Elang Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nisaetus",
+        "species": "bartelsi",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "JAWA TIMUR",
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Diperkirakan 300-600 pasang",
+        "threatsText": "Kehilangan habitat hutan akibat alih fungsi lahan, perburuan untuk diperjualbelikan sebagai hewan peliharaan."
+      },
+      "media": {
+        "imagePath": "/images/species/elang-jawa.jpg",
+        "accentColor": "#F39C12"
+      },
+      "narrative": {
+        "description": "Elang Jawa adalah elang endemik Pulau Jawa yang diyakini menjadi inspirasi lambang negara Garuda Pancasila. Elang gagah ini merupakan predator puncak di ekosistem hutan pegunungan Jawa. Dengan jambul yang mencolok dan sorot mata tajamnya, Elang Jawa menjadi simbol kekuatan dan kebanggaan alam Indonesia.",
+        "habitat": "Hutan pegunungan tropis Pulau Jawa, dari Ujung Kulon hingga Banyuwangi",
+        "actionText": "Laporkan perdagangan ilegal Elang Jawa ke Wildlife Conservation Society (WCS) Indonesia.",
+        "funFact": "Elang Jawa hanya bertelur satu butir setiap dua tahun, menjadikan laju reproduksinya sangat lambat."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "elang-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023 & WCS",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:macan-tutul-jawa",
+      "scientificName": "Panthera pardus melas",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Panthera pardus melas",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Macan Tutul Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Panthera",
+        "species": "pardus melas",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "JAWA TIMUR"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 250 individu dewasa",
+        "threatsText": "Deforestasi, perburuan, dan konflik dengan manusia yang menyebabkan pengurusan populasi."
+      },
+      "media": {
+        "imagePath": "/images/species/macan-tutul-jawa.jpg",
+        "accentColor": "#2C3E50"
+      },
+      "narrative": {
+        "description": "Macan Tutul Jawa adalah subspesies macan tutul endemik Pulau Jawa dan salah satu kucing liar paling langka di dunia. Mereka memiliki bintik-bintik hitam yang lebih padat dibanding subspesies lain dan sering disebut 'macan kumbang'. Dengan populasi yang sangat kecil dan terfragmentasi, spesies ini berada di ambang kepunahan.",
+        "habitat": "Hutan pegunungan dan hutan dataran rendah Pulau Jawa",
+        "actionText": "Dukung program monitoring macan tutul di Taman Nasional Gunung Gede Pangrango dan Gunung Halimun Salak.",
+        "funFact": "Macan Tutul Jawa bisa membawa mangsa tiga kali berat tubuhnya ke atas pohon."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "macan-tutul-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kukang-jawa",
+      "scientificName": "Nycticebus javanicus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Nycticebus javanicus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kukang Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Nycticebus",
+        "species": "javanicus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "JAWA TIMUR",
+          "BANTEN",
+          "DI YOGYAKARTA"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Tidak diketahui pasti, menurun drastis",
+        "threatsText": "Perdagangan ilegal sebagai hewan peliharaan, hilangnya habitat, dan stres penangkaran yang tinggi."
+      },
+      "media": {
+        "imagePath": "/images/species/kukang-jawa.jpg",
+        "accentColor": "#8E44AD"
+      },
+      "narrative": {
+        "description": "Kukang Jawa adalah primata malam endemik Jawa yang sangat terancam. Spesies ini memiliki sengat berbisa di lengan yang dihasilkan dari kelenjar di siku dan diaktifkan melalui gigitan. Kukang Jawa memiliki corak putih khas di wajah yang membedakannya dari spesies kukang lainnya.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Jawa bagian barat",
+        "actionText": "Jangan pernah membeli kukang sebagai hewan peliharaan. Laporkan perdagangan ilegal ke otoritas.",
+        "funFact": "Gigitan Kukang Jawa bisa menyebabkan syok anafilaktik pada manusia akibat protein beracun di air liur."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kukang-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:owa-jawa",
+      "scientificName": "Hylobates moloch",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Hylobates moloch",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Owa Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Hylobates",
+        "species": "moloch",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 5.000 individu",
+        "threatsText": "Deforestasi, perdagangan ilegal, dan fragmentasi habitat."
+      },
+      "media": {
+        "imagePath": "/images/species/owa-jawa.jpg",
+        "accentColor": "#95A5A6"
+      },
+      "narrative": {
+        "description": "Owa Jawa adalah satu-satunya spesies gibbon yang hidup di Pulau Jawa. Dengan bulu abu-abu perak yang khas dan topeng hitam di wajah, Owa Jawa terkenal dengan nyanyian duet yang indah antara pasangan. Mereka hidup dalam keluarga monogami dan sangat tergantung pada kanopi hutan utuh.",
+        "habitat": "Hutan hujan tropis pegunungan di Jawa barat dan tengah",
+        "actionText": "Dukung Javan Gibbon Center dan program pelepasliaran owa di Gunung Gede Pangrango.",
+        "funFact": "Nyanyian Owa Jawa bisa terdengar hingga jarak 1 km dan digunakan untuk memperkuat ikatan pasangan."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "owa-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:lutung-jawa",
+      "scientificName": "Trachypithecus auratus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Trachypithecus auratus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Lutung Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Trachypithecus",
+        "species": "auratus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA TENGAH",
+          "JAWA TIMUR",
+          "JAWA BARAT",
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, populasi menurun",
+        "threatsText": "Hilangnya koridor hutan, perburuan, dan perdagangan sebagai hewan peliharaan."
+      },
+      "media": {
+        "imagePath": "/images/species/lutung-jawa.jpg",
+        "accentColor": "#8E44AD"
+      },
+      "narrative": {
+        "description": "Lutung Jawa atau Silver Leaf Monkey dikenal dengan bulu bayinya yang berwarna oranye cerah, sangat kontras dengan bulu dewasanya yang hitam mengkilap. Perubahan warna ini terjadi secara bertahap dalam beberapa bulan pertama kehidupan. Lutung Jawa adalah hewan arboreal yang hidup berkelompok dengan sistem sosial matrilineal.",
+        "habitat": "Hutan tropis dan hutan sekunder di Jawa, Bali, dan Lombok",
+        "actionText": "Dukung program rehabilitasi satwa di Pusat Primata Schmutzer dan Javan Langur Center.",
+        "funFact": "Bayi Lutung Jawa yang berwarna oranye terang berfungsi sebagai 'sinyal sosial' untuk mempererat ikatan kelompok."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "lutung-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:surili-jawa",
+      "scientificName": "Presbytis comata",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Presbytis comata",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Surili Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Presbytis",
+        "species": "comata",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 10.000 individu",
+        "threatsText": "Deforestasi, perburuan, dan hilangnya koridor hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/surili-jawa.jpg",
+        "accentColor": "#7F8C8D"
+      },
+      "narrative": {
+        "description": "Surili Jawa atau Grizzled Leaf Monkey adalah monyet endemik Jawa dengan bulu abu-abu berbintik dan rambut berdiri di kepala. Spesies ini hidup di hutan pegunungan dan sangat terancam oleh hilangnya habitat. Surili memakan daun muda dan buah-buahan di kanopi hutan.",
+        "habitat": "Hutan pegunungan di Jawa bagian barat dan tengah",
+        "actionText": "Dukung konservasi hutan pegunungan Jawa dan program reboisasi koridor satwa.",
+        "funFact": "Surili Jawa memiliki lambung kompleks seperti sapi untuk mencerna daun yang sulit dicerna."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "surili-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:banteng-jawa",
+      "scientificName": "Bos javanicus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Bos javanicus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Banteng Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Bos",
+        "species": "javanicus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA TIMUR",
+          "JAWA TENGAH",
+          "BANTEN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA TIMUR"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Sekitar 600-800 individu liar",
+        "threatsText": "Perburuan, penyakit dari ternak, dan hilangnya habitat padang rumput."
+      },
+      "media": {
+        "imagePath": "/images/species/banteng-jawa.jpg",
+        "accentColor": "#5D4037"
+      },
+      "narrative": {
+        "description": "Banteng Jawa adalah sapi liar endemik Jawa yang merupakan leluhur sapi domestik. Jantan memiliki warna coklat gelap yang hampir hitam dengan 'kaus' putih di kaki, sementara betina berwarna coklat kemerahan. Banteng adalah herbivora besar yang memainkan peran penting dalam ekosistem padang rumput.",
+        "habitat": "Hutan dan padang rumput di Taman Nasional Ujung Kulon dan Alas Purwo",
+        "actionText": "Dukung program konservasi Banteng di Taman Nasional Ujung Kulon dan Alas Purwo.",
+        "funFact": "Banteng Jawa adalah satu-satunya sapi liar liar yang masih ada di Asia Tenggara."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "banteng-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.561Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.561Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kancil-jawa",
+      "scientificName": "Tragulus javanicus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Tragulus javanicus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kancil Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Tragulus",
+        "species": "javanicus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH",
+          "JAWA TIMUR",
+          "DI YOGYAKARTA"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Data tidak cukup, dianggap langka",
+        "threatsText": "Perburuan dan hilangnya habitat hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/kancil-jawa.jpg",
+        "accentColor": "#8D6E63"
+      },
+      "narrative": {
+        "description": "Kancil Jawa adalah ruminansia terkecil di dunia dengan berat hanya 1-2 kg. Hewan kecil ini memiliki taring tajam yang digunakan untuk pertahanan meskipun mereka pemakan tumbuhan. Kancil sangat aktif di malam hari dan hidup soliter di lantai hutan.",
+        "habitat": "Hutan tropis dataran rendah dan hutan sekunder di Jawa",
+        "actionText": "Dukung penelitian dan monitoring populasi Kancil Jawa di habitat aslinya.",
+        "funFact": "Kancil Jawa tidak memiliki rahim — embrio berkembang di ovarium dan menyatu dengan dinding seperti marsupial."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kancil-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:trulek-jawa",
+      "scientificName": "Vanellus macropterus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Vanellus macropterus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Trulek Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Vanellus",
+        "species": "macropterus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA TIMUR",
+          "JAWA TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA TIMUR"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Mungkin sudah punah, tidak terlihat sejak 1940",
+        "threatsText": "Konversi lahan pertanian dan hilangnya habitat rawa."
+      },
+      "media": {
+        "imagePath": "/images/species/trulek-jawa.jpg",
+        "accentColor": "#7F8C8D"
+      },
+      "narrative": {
+        "description": "Trulek Jawa adalah burung cikalang endemik Jawa yang kemungkinan besar sudah punah. Burung ini terakhir kali terlihat pada tahun 1940 dan belum pernah dikonfirmasi sejak itu meskipun telah dilakukan banyak survei. Kehilangan habitat rawa untuk pertanian adalah penyebab utama kepunahannya.",
+        "habitat": "Rawa dan sawah dataran rendah Jawa bagian timur",
+        "actionText": "Dukung penelitian untuk mencari populasi yang tersisa dan konservasi sisa rawa di Jawa Timur.",
+        "funFact": "Trulek Jawa mungkin merupakan satu-satunya burung endemik Indonesia yang punah pada abad ke-20."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "trulek-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:ciung-wanara",
+      "scientificName": "Cissa thalassina",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Cissa thalassina",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Ciung Wanara",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Cissa",
+        "species": "thalassina",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 250 individu",
+        "threatsText": "Perdagangan ilegal dan hilangnya habitat hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/ciung-wanara.jpg",
+        "accentColor": "#27AE60"
+      },
+      "narrative": {
+        "description": "Ciung Wanara atau Javan Green Magpie adalah burung gagak berwarna hijau cerah yang sangat langka. Burung ini hanya ditemukan di hutan pegunungan Jawa Barat. Spesies ini sangat terancam oleh perdagangan ilegal untuk pasar burung hias karena warnanya yang mencolok.",
+        "habitat": "Hutan pegunungan di Jawa Barat",
+        "actionText": "Dukung program penangkaran Ciung Wanara di Cikananga Wildlife Center.",
+        "funFact": "Ciung Wanara memiliki warna merah terang di sayap yang hanya terlihat saat terbang."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "ciung-wanara",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:burung-poksai-jawa",
+      "scientificName": "Garrulax rufifrons",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Garrulax rufifrons",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Burung Poksai Jawa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Garrulax",
+        "species": "rufifrons",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "jawa"
+        ],
+        "provinces": [
+          "JAWA BARAT",
+          "JAWA TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "JAWA BARAT"
+      },
+      "conservation": {
+        "iucnCode": "CR",
+        "iucnLabelId": "kritis",
+        "populationText": "Kurang dari 250 individu",
+        "threatsText": "Perdagangan ilegal sebagai burung kicau dan hilangnya habitat."
+      },
+      "media": {
+        "imagePath": "/images/species/burung-poksai-jawa.jpg",
+        "accentColor": "#E74C3C"
+      },
+      "narrative": {
+        "description": "Burung Poksai Jawa adalah burung kicau endemik dengan suara yang sangat merdu. Mereka hidup berkelompok kecil di lantai dan semak-semak hutan pegunungan. Spesies ini sangat terancam oleh perdagangan ilegal untuk pasar burung hias.",
+        "habitat": "Hutan pegunungan di Jawa Barat dan tengah",
+        "actionText": "Jangan membeli burung dari pasar liar dan laporkan perdagangan ilegal.",
+        "funFact": "Burung Poksai Jawa bernyanyi dengan suara yang sangat keras untuk ukuran tubuhnya."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "burung-poksai-jawa",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:anoa",
+      "scientificName": "Bubalus depressicornis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Bubalus depressicornis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Anoa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Bubalus",
+        "species": "depressicornis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH",
+          "SULAWESI TENGGARA",
+          "SULAWESI SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 5.000 ekor",
+        "threatsText": "Perburuan untuk daging dan tanduk, serta kehilangan habitat akibat konversi lahan."
+      },
+      "media": {
+        "imagePath": "/images/species/anoa.jpg",
+        "accentColor": "#795548"
+      },
+      "narrative": {
+        "description": "Anoa adalah kerbau kerdil endemik Sulawesi yang merupakan sapi liar terkecil di dunia. Terdapat dua spesies: Anoa Dataran Rendah dan Anoa Pegunungan. Hewan pemalu ini jarang terlihat di alam liar karena sifatnya yang sangat soliter dan menghindari manusia. Anoa memiliki tanduk lurus yang berbeda dari kerbau pada umumnya.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Sulawesi dan Pulau Buton",
+        "actionText": "Dukung penegakan hukum anti-perburuan dan program konservasi di Taman Nasional Lore Lindu.",
+        "funFact": "Anoa adalah satu-satunya sapi liar yang ditemukan di Sulawesi dan telah berevolusi secara terpisah selama jutaan tahun."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "anoa",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:babirusa",
+      "scientificName": "Babyrousa celebensis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Babyrousa celebensis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Babirusa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Babyrousa",
+        "species": "celebensis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI UTARA",
+          "SULAWESI TENGAH",
+          "GORONTALO"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI UTARA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, diperkirakan menurun",
+        "threatsText": "Perburuan untuk dikonsumsi, hilangnya habitat, dan konflik dengan petani."
+      },
+      "media": {
+        "imagePath": "/images/species/babirusa.jpg",
+        "accentColor": "#A0522D"
+      },
+      "narrative": {
+        "description": "Babirusa atau 'babi rusa' adalah babi liar unik yang memiliki taring melengkung ke atas yang menembus kulitnya sendiri dan tumbuh melewati kepala. Pada jantan, taring atas ini bisa melingkar balik hingga menembus tengkorak jika tidak aus. Babirusa adalah hewan yang sangat kuno secara evolusi dan dianggap sebagai mata rantai antara babi dan rusa.",
+        "habitat": "Hutan hujan tropis, tepi sungai, dan hutan sekunder di Sulawesi",
+        "actionText": "Dukung program perlindungan di Cagar Alam Morowali dan Taman Nasional Bogani Nani Wartabone.",
+        "funFact": "Taring spektakuler Babirusa tidak digunakan untuk berkelahi, melainkan diduga berfungsi sebagai display untuk menarik betina."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "babirusa",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:maleo",
+      "scientificName": "Macrocephalon maleo",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Macrocephalon maleo",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Maleo",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Macrocephalon",
+        "species": "maleo",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH",
+          "SULAWESI UTARA",
+          "SULAWESI SELATAN",
+          "GORONTALO"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Diperkirakan 4.000-7.000 pasang dewasa",
+        "threatsText": "Pengambilan telur oleh manusia, predasi telur oleh babi hutan, dan hilangnya pantai peneluran."
+      },
+      "media": {
+        "imagePath": "/images/species/maleo.jpg",
+        "accentColor": "#F1C40F"
+      },
+      "narrative": {
+        "description": "Maleo adalah burung endemik Sulawesi yang sangat unik karena tidak mengerami telurnya sendiri. Burung ini memanfaatkan panas matahari di pantai berpasir atau energi panas bumi di dekat gunung berapi untuk menginkubasi telurnya yang berukuran sangat besar — lima kali ukuran telur ayam. Anak Maleo lahir sudah bisa terbang sejak hari pertama.",
+        "habitat": "Hutan tropis dataran rendah Sulawesi dengan pantai berpasir atau tanah panas vulkanik untuk bertelur",
+        "actionText": "Dukung Wildlife Conservation Society (WCS) Indonesia dalam program perlindungan sarang Maleo di Sulawesi.",
+        "funFact": "Telur Maleo berukuran lima kali telur ayam dan anak yang baru menetas sudah bisa terbang dalam hitungan jam."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "maleo",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023 & WCS",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:cenderawasih",
+      "scientificName": "Paradisaea apoda",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Paradisaea apoda",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Cenderawasih",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Paradisaea",
+        "species": "apoda",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "papua"
+        ],
+        "provinces": [
+          "PAPUA",
+          "PAPUA BARAT"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "PAPUA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Perburuan, perdagangan, dan konversi lahan."
+      },
+      "media": {
+        "imagePath": "/images/species/monyet-tonkean.jpg",
+        "accentColor": "#E91E63"
+      },
+      "narrative": {
+        "description": "Monyet Tonkean adalah monyet endemik Sulawesi dengan wajah merah muda yang khas. Mereka hidup dalam kelompok besar yang fission-fusion dengan struktur sosial yang fleksibel. Tonkean Macaque dikenal karena perilaku rekonsiliasi yang kompleks setelah konflik.",
+        "habitat": "Hutan pegunungan dan dataran rendah di Sulawesi bagian tengah dan selatan",
+        "actionText": "Dukung penelitian konservasi primata di Sulawesi dan ekowisata berkelanjutan.",
+        "funFact": "Monyet Tonkean memiliki struktur sosial yang sangat toleran dengan tingkat agresi rendah."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "cenderawasih",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kasuari",
+      "scientificName": "Casuarius casuarius",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Casuarius casuarius",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kasuari",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Casuarius",
+        "species": "casuarius",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "papua"
+        ],
+        "provinces": [
+          "PAPUA",
+          "PAPUA SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "PAPUA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Perburuan untuk daging, perdagangan, dan deforestasi."
+      },
+      "media": {
+        "imagePath": "/images/species/kuskus-beruang.jpg",
+        "accentColor": "#78909C"
+      },
+      "narrative": {
+        "description": "Kuskus Beruang adalah marsupial terbesar di Sulawesi dengan bulu tebal berwarna abu-abu keperakan. Mereka adalah herbivora arboreal yang menghabiskan hampir seluruh waktunya di kanopi. Kuskus Beruang memiliki cakar tajam dan ekor prehensil untuk memanjat pohon.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Sulawesi bagian utara dan tengah",
+        "actionText": "Dukung konservasi hutan Sulawesi dan program monitoring kuskus beruang.",
+        "funFact": "Kuskus Beruang adalah satu-satunya marsupial besar di Asia dan telah hidup di Sulawesi selama jutaan tahun."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kasuari",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:kanguru-pohon",
+      "scientificName": "Dendrolagus pulcherrimus",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Dendrolagus pulcherrimus",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Kanguru Pohon Mantel Emas",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Dendrolagus",
+        "species": "pulcherrimus",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "papua"
+        ],
+        "provinces": [
+          "PAPUA PEGUNUNGAN",
+          "PAPUA"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "PAPUA PEGUNUNGAN"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, langka",
+        "threatsText": "Deforestasi, perburuan, dan fragmentasi habitat."
+      },
+      "media": {
+        "imagePath": "/images/species/musang-sulawesi.jpg",
+        "accentColor": "#5D4037"
+      },
+      "narrative": {
+        "description": "Musang Sulawesi adalah musang endemik Sulawesi terbesar dengan ekor panjang yang unik memiliki cincin hitam-putih. Spesies ini adalah predator kecil hingga menengah yang berburu di lantai hutan dan pohon. Musang Sulawesi sangat jarang terlihat dan informasi tentangnya sangat terbatas.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan Sulawesi bagian utara dan tengah",
+        "actionText": "Dukung penelitian kamera trap untuk mempelajari populasi dan ekologi musang ini.",
+        "funFact": "Musang Sulawesi adalah satu-satunya musang endemik di Sulawesi dan telah berevolusi terpisah jutaan tahun."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "kanguru-pohon",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:tarsius-spektral",
+      "scientificName": "Tarsius tarsier",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Tarsius tarsier",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Tarsius Spektral",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Tarsius",
+        "species": "tarsier",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI UTARA",
+          "SULAWESI TENGAH",
+          "GORONTALO"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI UTARA"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti",
+        "threatsText": "Deforestasi dan fragmentasi habitat."
+      },
+      "media": {
+        "imagePath": "/images/species/tarsius-spektral.jpg",
+        "accentColor": "#8E44AD"
+      },
+      "narrative": {
+        "description": "Tarsius Spektral atau Spectral Tarsier adalah primata malam dengan mata sebesar otaknya. Mereka adalah primata karnivora murni yang berburu serangga, kadal, dan kelelawar kecil. Tarsius memiliki leher sangat fleksibel dan bisa memutar kepala 180 derajat.",
+        "habitat": "Hutan hujan tropis dataran rendah dan sekunder di Sulawesi bagian utara",
+        "actionText": "Dukung konservasi hutan primer Sulawesi dan penelitian primata malam.",
+        "funFact": "Tarsius adalah satu-satunya primata yang sepenuhnya karnivora — tidak makan tumbuhan sama sekali."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "tarsius-spektral",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:tarsius-peleng",
+      "scientificName": "Tarsius pelengensis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Tarsius pelengensis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Tarsius Peleng",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Tarsius",
+        "species": "pelengensis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Tidak diketahui pasti, terbatas di Pulau Peleng",
+        "threatsText": "Deforestasi dan perburuan di pulau kecil yang terisolasi."
+      },
+      "media": {
+        "imagePath": "/images/species/tarsius-peleng.jpg",
+        "accentColor": "#9B59B6"
+      },
+      "narrative": {
+        "description": "Tarsius Peleng adalah spesies tarsius endemik Pulau Peleng dengan daerah sebaran yang sangat terbatas. Spesies ini telah beradaptasi dengan hutan pulau kecil yang unik. Tarsius Peleng lebih kecil dari kerabatnya di Sulawesi utama dan memiliki pola suara yang berbeda.",
+        "habitat": "Hutan hujan Pulau Peleng di Teluk Tomini",
+        "actionText": "Dukung konservasi hutan Pulau Peleng dan penelitian biologi tarsius.",
+        "funFact": "Tarsius Peleng memiliki panggilan yang sangat unik yang membedakannya dari spesies tarsius lainnya."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "tarsius-peleng",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:enggang-knob",
+      "scientificName": "Rhyticeros cassidix",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Rhyticeros cassidix",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Enggang Knob",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Rhyticeros",
+        "species": "cassidix",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH",
+          "SULAWESI TENGGARA",
+          "SULAWESI SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti, menurun",
+        "threatsText": "Perburuan dan hilangnya habitat hutan."
+      },
+      "media": {
+        "imagePath": "/images/species/enggang-knob.jpg",
+        "accentColor": "#E67E22"
+      },
+      "narrative": {
+        "description": "Enggang Knob atau Knobbed Hornbill adalah burung besar dengan tanduk (casque) yang menonjol di atas paruh. Mereka memainkan peran penting sebagai penyebar benih pohon hutan buah-buahan. Pasangan Enggang Knob monogami dan betina dipenjara dalam lubang pohon saat mengerami telur.",
+        "habitat": "Hutan hujan tropis dataran rendah dan bukit di Sulawesi bagian tengah, selatan, dan tenggara",
+        "actionText": "Dukung konservasi hutan Sulawesi dan program monitoring enggang.",
+        "funFact": "Enggang Knob betina dipenjara di lubang pohon selama 3-4 bulan — jantan memberinya makan melalui celah sempit."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "enggang-knob",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:burung-tanah-sulawesi",
+      "scientificName": "Zoothera heinrichi",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Zoothera heinrichi",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Burung Tanah Sulawesi",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Zoothera",
+        "species": "heinrichi",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH",
+          "SULAWESI SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "VU",
+        "iucnLabelId": "rentan",
+        "populationText": "Tidak diketahui pasti",
+        "threatsText": "Hilangnya habitat hutan pegunungan."
+      },
+      "media": {
+        "imagePath": "/images/species/burung-tanah-sulawesi.jpg",
+        "accentColor": "#795548"
+      },
+      "narrative": {
+        "description": "Burung Tanah Sulawesi atau Geomalia adalah burung endemik yang unik dengan perilaku mirip burung tanah di tempat lain. Spesies ini sangat terbatas di hutan pegunungan Sulawesi dengan ketinggian tinggi. Mereka memakan invertebrata di lantai hutan.",
+        "habitat": "Hutan pegunungan di Sulawesi bagian tengah dan selatan",
+        "actionText": "Dukung konservasi hutan pegunungan Sulawesi dan penelitian ornitologi.",
+        "funFact": "Geomalia adalah satu-satunya anggota genus Zoothera yang ditemukan di Indonesia timur."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "burung-tanah-sulawesi",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    },
+    {
+      "internalId": "ui:anoa-pegunungan",
+      "scientificName": "Bubalus depressicornis",
+      "scientificNameAuthorship": null,
+      "acceptedName": "Bubalus depressicornis",
+      "taxonomicStatus": "curated-ui-subset",
+      "commonNames": [
+        {
+          "name": "Anoa",
+          "language": "id",
+          "preferred": true
+        }
+      ],
+      "taxonomy": {
+        "kingdom": "Animalia",
+        "phylum": null,
+        "class": null,
+        "order": null,
+        "family": null,
+        "genus": "Bubalus",
+        "species": "depressicornis",
+        "rank": "species"
+      },
+      "distribution": {
+        "country": "Indonesia",
+        "regions": [
+          "sulawesi"
+        ],
+        "provinces": [
+          "SULAWESI TENGAH",
+          "SULAWESI TENGGARA",
+          "SULAWESI SELATAN"
+        ],
+        "presenceType": "present",
+        "distributionNotes": "SULAWESI TENGAH"
+      },
+      "conservation": {
+        "iucnCode": "EN",
+        "iucnLabelId": "terancam",
+        "populationText": "Kurang dari 5.000 ekor",
+        "threatsText": "Perburuan untuk daging dan tanduk, serta kehilangan habitat akibat konversi lahan."
+      },
+      "media": {
+        "imagePath": "/images/species/anoa.jpg",
+        "accentColor": "#795548"
+      },
+      "narrative": {
+        "description": "Anoa adalah kerbau kerdil endemik Sulawesi yang merupakan sapi liar terkecil di dunia. Terdapat dua spesies: Anoa Dataran Rendah dan Anoa Pegunungan. Hewan pemalu ini jarang terlihat di alam liar karena sifatnya yang sangat soliter dan menghindari manusia. Anoa memiliki tanduk lurus yang berbeda dari kerbau pada umumnya.",
+        "habitat": "Hutan hujan tropis dataran rendah dan pegunungan di Sulawesi dan Pulau Buton",
+        "actionText": "Dukung penegakan hukum anti-perburuan dan program konservasi di Taman Nasional Lore Lindu.",
+        "funFact": "Anoa adalah satu-satunya sapi liar yang ditemukan di Sulawesi dan telah berevolusi secara terpisah selama jutaan tahun."
+      },
+      "sources": [
+        {
+          "sourceId": "curated-ui-subset",
+          "sourceUrl": "data/species.json",
+          "externalId": "anoa-pegunungan",
+          "retrievedAt": "2026-03-12T20:44:37.562Z",
+          "license": null,
+          "fieldsTrusted": [
+            "scientificName",
+            "commonNames",
+            "distribution",
+            "conservation",
+            "media",
+            "narrative"
+          ]
+        }
+      ],
+      "provenance": {
+        "generatedAt": "2026-03-12T20:44:37.562Z",
+        "pipelineStage": "curated-ui-subset",
+        "rawSnapshotPath": null,
+        "notes": [
+          "This processed file is generated from the curated UI subset.",
+          "It is not the canonical Indonesia biodiversity master dataset.",
+          "Source statement: IUCN Red List 2023",
+          "Repository schema: data/species.schema.json"
+        ]
+      }
+    }
+  ]
+}

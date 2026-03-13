@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Heart, Instagram, Leaf, Twitter } from "lucide-react";
+import { Github, Instagram, Leaf, Twitter } from "lucide-react";
 import Link from "next/link";
 
 const SPECIES_LINKS = [
   { label: "Harimau Sumatera", href: "/species/harimau-sumatera" },
   { label: "Orangutan Kalimantan", href: "/species/orangutan-kalimantan" },
-  { label: "Komodo", href: "/species/komodo" },
-  { label: "Cenderawasih", href: "/species/cenderawasih" },
+  { label: "Badak Jawa", href: "/species/badak-jawa" },
+  { label: "Rafflesia Arnoldii", href: "/species/rafflesia-arnoldii" },
   { label: "Lihat Semua →", href: "/species" },
 ];
 
@@ -64,7 +64,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Atlas digital keanekaragaman hayati Indonesia. Dokumentasi flora & fauna endemik Nusantara.
+              Atlas digital biodiversitas Indonesia untuk penjelajahan flora, fauna, dan lanskap hayati Nusantara.
             </p>
 
             {/* Social icons */}
@@ -163,7 +163,7 @@ export default function Footer() {
               }}
             >
               <p className="text-base mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
-                Data spesies kami bersumber dari IUCN Red List & KLHK. Bersama jaga kekayaan hayati Nusantara.
+                Dikembangkan sebagai ruang eksplorasi dan apresiasi terhadap kekayaan biodiversitas Indonesia.
               </p>
               <div
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-bold"
@@ -173,7 +173,7 @@ export default function Footer() {
                   border: "1.5px solid rgba(255,255,255,0.2)",
                 }}
               >
-                🌿 IUCN Red List Data
+                🌿 Referensi Terpilih
               </div>
             </div>
           </div>

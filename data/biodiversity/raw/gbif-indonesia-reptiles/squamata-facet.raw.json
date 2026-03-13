@@ -1,0 +1,54 @@
+{
+  "offset": 0,
+  "limit": 0,
+  "endOfRecords": false,
+  "count": 83936,
+  "results": [],
+  "facets": [
+    {
+      "field": "SPECIES_KEY",
+      "counts": [
+        {
+          "name": "2447367",
+          "count": 6452
+        },
+        {
+          "name": "2460886",
+          "count": 3494
+        },
+        {
+          "name": "9537238",
+          "count": 3188
+        },
+        {
+          "name": "5816059",
+          "count": 2666
+        },
+        {
+          "name": "2470685",
+          "count": 2207
+        },
+        {
+          "name": "9125207",
+          "count": 1768
+        },
+        {
+          "name": "2466849",
+          "count": 1677
+        },
+        {
+          "name": "2453368",
+          "count": 1573
+        },
+        {
+          "name": "5225525",
+          "count": 1528
+        },
+        {
+          "name": "2459346",
+          "count": 1519
+        }
+      ]
+    }
+  ]
+}

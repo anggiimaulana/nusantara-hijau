@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-03-12T20:47:09.117Z",
+  "sourceId": "mdd-indonesia",
+  "sourceUrl": "https://www.mammaldiversity.org/country/ID/",
+  "metrics": {
+    "livingSpecies": 793,
+    "extinctSpecies": 4,
+    "orders": 17,
+    "families": 58,
+    "genera": 241
+  },
+  "orderSummaries": [
+    {
+      "subclass": "Prototheria",
+      "infraclass": "Australosphenida",
+      "order": "Monotremata",
+      "familyCount": 1,
+      "genusCount": 2,
+      "livingSpecies": 4,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Marsupialia",
+      "order": "Dasyuromorphia",
+      "familyCount": 2,
+      "genusCount": 8,
+      "livingSpecies": 16,
+      "extinctSpecies": 1
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Marsupialia",
+      "order": "Peramelemorphia",
+      "familyCount": 1,
+      "genusCount": 5,
+      "livingSpecies": 9,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Marsupialia",
+      "order": "Diprotodontia",
+      "familyCount": 6,
+      "genusCount": 15,
+      "livingSpecies": 51,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Proboscidea",
+      "familyCount": 1,
+      "genusCount": 1,
+      "livingSpecies": 1,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Sirenia",
+      "familyCount": 1,
+      "genusCount": 1,
+      "livingSpecies": 1,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Dermoptera",
+      "familyCount": 1,
+      "genusCount": 1,
+      "livingSpecies": 1,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Scandentia",
+      "familyCount": 2,
+      "genusCount": 2,
+      "livingSpecies": 15,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Primates",
+      "familyCount": 5,
+      "genusCount": 11,
+      "livingSpecies": 66,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Lagomorpha",
+      "familyCount": 1,
+      "genusCount": 1,
+      "livingSpecies": 1,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Rodentia",
+      "familyCount": 4,
+      "genusCount": 75,
+      "livingSpecies": 245,
+      "extinctSpecies": 3
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Eulipotyphla",
+      "familyCount": 2,
+      "genusCount": 5,
+      "livingSpecies": 51,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Chiroptera",
+      "familyCount": 10,
+      "genusCount": 55,
+      "livingSpecies": 237,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Pholidota",
+      "familyCount": 1,
+      "genusCount": 1,
+      "livingSpecies": 1,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Carnivora",
+      "familyCount": 8,
+      "genusCount": 25,
+      "livingSpecies": 36,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Perissodactyla",
+      "familyCount": 2,
+      "genusCount": 3,
+      "livingSpecies": 3,
+      "extinctSpecies": 0
+    },
+    {
+      "subclass": "Theria",
+      "infraclass": "Placentalia",
+      "order": "Artiodactyla",
+      "familyCount": 10,
+      "genusCount": 30,
+      "livingSpecies": 55,
+      "extinctSpecies": 0
+    }
+  ],
+  "provenance": {
+    "pipelineStage": "source-summary",
+    "rawSnapshotPath": "data\\biodiversity\\raw\\mdd-indonesia\\country-id.raw.html",
+    "notes": [
+      "Derived from the MDD Indonesia country page.",
+      "Current scope is country-level mammal summary plus order counts, not full taxa-level export."
+    ]
+  }
+}

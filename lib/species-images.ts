@@ -67,6 +67,10 @@ const AVAILABLE_SPECIES_IMAGES = new Set<string>([
   "/images/species/yaki.jpg",
 ]);
 
+export function hasSpeciesImage(imagePath?: string | null): boolean {
+  return Boolean(imagePath && AVAILABLE_SPECIES_IMAGES.has(imagePath));
+}
+
 export function resolveSpeciesImage(imagePath?: string | null): string {
   if (!imagePath) return SPECIES_IMAGE_FALLBACK;
   return AVAILABLE_SPECIES_IMAGES.has(imagePath) ? imagePath : SPECIES_IMAGE_FALLBACK;

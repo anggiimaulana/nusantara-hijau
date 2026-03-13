@@ -1,6 +1,7 @@
 "use client";
 
 import speciesData from "@/data/species.json";
+import publicCatalogSummary from "@/data/biodiversity/processed/public-catalog-summary.generated.json";
 import { resolveSpeciesImage } from "@/lib/species-images";
 import { motion, useInView } from "framer-motion";
 import {
@@ -119,7 +120,10 @@ const STATS = [
   { value: "17.000+", label: "Pulau" },
   { value: "515+", label: "Mamalia Endemik" },
   { value: "#2", label: "Negara Megabiodiversitas" },
-  { value: `${speciesData.length}+`, label: "Spesies Terdokumentasi" },
+  {
+    value: publicCatalogSummary.recordCount.toLocaleString("id-ID"),
+    label: "Rekaman Biodiversitas",
+  },
   { value: "37%", label: "Hutan Tropis Asia" },
   { value: "1.500+", label: "Spesies Burung" },
 ];
@@ -482,12 +486,12 @@ export default function HomePage() {
                 className="text-sm md:text-base lg:text-lg mb-8 max-w-lg"
                 style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}
               >
-                Indonesia menyimpan keanekaragaman hayati terkaya di dunia.
-                Kenali{" "}
+                Indonesia menyimpan salah satu lanskap biodiversitas terkaya di dunia.
+                Telusuri ragam{" "}
                 <strong style={{ color: "var(--text-primary)" }}>
-                  flora dan fauna endemik
+                  flora dan fauna Nusantara
                 </strong>{" "}
-                Nusantara - sebelum terlambat.
+                melalui katalog yang dirancang untuk eksplorasi yang lebih mendalam.
               </motion.p>
 
               <motion.div
@@ -516,7 +520,7 @@ export default function HomePage() {
                   { label: "17.000+ Pulau", color: "var(--pg-amber)" },
                   { label: "#2 Megabiodiversitas", color: "var(--pg-mint)" },
                   {
-                    label: `${speciesData.length} Spesies`,
+                    label: `${publicCatalogSummary.recordCount.toLocaleString("id-ID")} Rekaman`,
                     color: "var(--pg-pink)",
                   },
                 ].map((p) => (
@@ -624,17 +628,17 @@ export default function HomePage() {
                   color: "white",
                   zIndex: 10,
                 }}
-              >
-                <div
-                  className="text-2xl sm:text-3xl font-bold leading-none"
-                  style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  {speciesData.length}+
-                </div>
-                <div className="text-[11px] font-bold uppercase tracking-wide opacity-80 mt-0.5">
-                  Spesies
-                </div>
-              </motion.div>
+                  <div
+                    className="text-2xl sm:text-3xl font-bold leading-none"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                  {publicCatalogSummary.recordCount.toLocaleString("id-ID")}
+                  </div>
+                  <div className="text-[11px] font-bold uppercase tracking-wide opacity-80 mt-0.5">
+                  Rekaman
+                  </div>
+                </motion.div>
 
               {/* Floating badge — region */}
               <motion.div
@@ -816,15 +820,15 @@ export default function HomePage() {
                 className="text-3xl sm:text-4xl font-bold mb-3"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Sebaran Spesies{" "}
-                <span style={{ color: "var(--pg-accent)" }}>per Provinsi</span>
+                Sebaran Biodiversitas{" "}
+                <span style={{ color: "var(--pg-accent)" }}>per Wilayah</span>
               </h2>
               <p
                 className="text-sm max-w-lg"
                 style={{ color: "var(--text-secondary)" }}
               >
-                Klik pada provinsi mana saja untuk melihat spesies endemik yang
-                hidup di wilayah tersebut.
+                Pilih provinsi untuk menelusuri ragam flora dan fauna yang tercatat
+                pada wilayah terkait.
               </p>
             </motion.div>
 

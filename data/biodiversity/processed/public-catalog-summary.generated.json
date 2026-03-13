@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-03-13T06:13:20.793Z",
+  "recordCount": 9013,
+  "byType": {
+    "flora": 3224,
+    "fauna": 5789
+  },
+  "bySource": {
+    "curated": 50,
+    "dfi": 3220,
+    "mdd": 770,
+    "fishbase": 4973
+  }
+}

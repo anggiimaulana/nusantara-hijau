@@ -1,0 +1,1158 @@
+{
+  "generatedAt": "2026-03-12T20:45:03.958Z",
+  "sourceId": "digital-flora-indonesia-angiosperms",
+  "sourceUrl": "https://www.indonesiaplants.org/angiosperms/",
+  "familyCount": 230,
+  "families": [
+    {
+      "family": "Acanthaceae",
+      "url": "https://indonesiaplants.org/angiosperms/acanthaceae/",
+      "slug": "acanthaceae"
+    },
+    {
+      "family": "Achariaceae",
+      "url": "https://indonesiaplants.org/angiosperms/achariaceae/",
+      "slug": "achariaceae"
+    },
+    {
+      "family": "Acoraceae",
+      "url": "https://indonesiaplants.org/angiosperms/acoraceae/",
+      "slug": "acoraceae"
+    },
+    {
+      "family": "Actinidiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/actinidiaceae/",
+      "slug": "actinidiaceae"
+    },
+    {
+      "family": "Aizoaceae",
+      "url": "https://indonesiaplants.org/angiosperms/aizoaceae/",
+      "slug": "aizoaceae"
+    },
+    {
+      "family": "Alismataceae",
+      "url": "https://indonesiaplants.org/angiosperms/alismataceae/",
+      "slug": "alismataceae"
+    },
+    {
+      "family": "Altingiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/altingiaceae/",
+      "slug": "altingiaceae"
+    },
+    {
+      "family": "Amaranthaceae",
+      "url": "https://indonesiaplants.org/angiosperms/amaranthaceae/",
+      "slug": "amaranthaceae"
+    },
+    {
+      "family": "Amaryllidaceae",
+      "url": "https://indonesiaplants.org/angiosperms/amaryllidaceae/",
+      "slug": "amaryllidaceae"
+    },
+    {
+      "family": "Anacardiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/anacardiaceae/",
+      "slug": "anacardiaceae"
+    },
+    {
+      "family": "Ancistrocladaceae",
+      "url": "https://indonesiaplants.org/angiosperms/ancistrocladaceae/",
+      "slug": "ancistrocladaceae"
+    },
+    {
+      "family": "Anisophylleaceae",
+      "url": "https://indonesiaplants.org/angiosperms/anisophylleaceae/",
+      "slug": "anisophylleaceae"
+    },
+    {
+      "family": "Annonaceae",
+      "url": "https://indonesiaplants.org/angiosperms/annonaceae/",
+      "slug": "annonaceae"
+    },
+    {
+      "family": "Apiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/apiaceae/",
+      "slug": "apiaceae"
+    },
+    {
+      "family": "Apocynaceae",
+      "url": "https://indonesiaplants.org/angiosperms/apocynaceae/",
+      "slug": "apocynaceae"
+    },
+    {
+      "family": "Aponogetonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/aponogetonaceae/",
+      "slug": "aponogetonaceae"
+    },
+    {
+      "family": "Aquifoliaceae",
+      "url": "https://indonesiaplants.org/angiosperms/aquifoliaceae/",
+      "slug": "aquifoliaceae"
+    },
+    {
+      "family": "Araceae",
+      "url": "https://indonesiaplants.org/angiosperms/araceae/",
+      "slug": "araceae"
+    },
+    {
+      "family": "Araliaceae",
+      "url": "https://indonesiaplants.org/angiosperms/araliaceae/",
+      "slug": "araliaceae"
+    },
+    {
+      "family": "Arecaceae",
+      "url": "https://indonesiaplants.org/angiosperms/arecaceae/",
+      "slug": "arecaceae"
+    },
+    {
+      "family": "Aristolochiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/aristolochiaceae/",
+      "slug": "aristolochiaceae"
+    },
+    {
+      "family": "Asparagaceae",
+      "url": "https://indonesiaplants.org/angiosperms/asparagaceae/",
+      "slug": "asparagaceae"
+    },
+    {
+      "family": "Asphodelaceae",
+      "url": "https://indonesiaplants.org/angiosperms/asphodelaceae/",
+      "slug": "asphodelaceae"
+    },
+    {
+      "family": "Asteliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/asteliaceae/",
+      "slug": "asteliaceae"
+    },
+    {
+      "family": "Asteraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/asteraceae/",
+      "slug": "asteraceae"
+    },
+    {
+      "family": "Balanophoraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/balanophoraceae/",
+      "slug": "balanophoraceae"
+    },
+    {
+      "family": "Balsaminaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/balsaminaceae/",
+      "slug": "balsaminaceae"
+    },
+    {
+      "family": "Basellaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/basellaceae/",
+      "slug": "basellaceae"
+    },
+    {
+      "family": "Begoniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/begoniaceae/",
+      "slug": "begoniaceae"
+    },
+    {
+      "family": "Berberidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/berberidaceae/",
+      "slug": "berberidaceae"
+    },
+    {
+      "family": "Bignoniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/bignoniaceae/",
+      "slug": "bignoniaceae"
+    },
+    {
+      "family": "Bonnetiaceae",
+      "url": "https://indonesiaplants.org/angiosperms/bonnetiaceae/",
+      "slug": "bonnetiaceae"
+    },
+    {
+      "family": "Boraginaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/boraginaceae/",
+      "slug": "boraginaceae"
+    },
+    {
+      "family": "Brassicaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/brassicaceae/",
+      "slug": "brassicaceae"
+    },
+    {
+      "family": "Burmanniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/burmanniaceae/",
+      "slug": "burmanniaceae"
+    },
+    {
+      "family": "Burseraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/burseraceae/",
+      "slug": "burseraceae"
+    },
+    {
+      "family": "Buxaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/buxaceae/",
+      "slug": "buxaceae"
+    },
+    {
+      "family": "Byblidaceae",
+      "url": "https://indonesiaplants.org/angiosperms/byblidaceae/",
+      "slug": "byblidaceae"
+    },
+    {
+      "family": "Calophyllaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/calophyllaceae/",
+      "slug": "calophyllaceae"
+    },
+    {
+      "family": "Campanulaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/campanulaceae/",
+      "slug": "campanulaceae"
+    },
+    {
+      "family": "Cannabaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cannabaceae/",
+      "slug": "cannabaceae"
+    },
+    {
+      "family": "Capparaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/capparaceae/",
+      "slug": "capparaceae"
+    },
+    {
+      "family": "Caprifoliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/caprifoliaceae/",
+      "slug": "caprifoliaceae"
+    },
+    {
+      "family": "Cardiopteridaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cardiopteridaceae/",
+      "slug": "cardiopteridaceae"
+    },
+    {
+      "family": "Caryophyllaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/caryophyllaceae/",
+      "slug": "caryophyllaceae"
+    },
+    {
+      "family": "Casuarinaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/casuarinaceae/",
+      "slug": "casuarinaceae"
+    },
+    {
+      "family": "Celastraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/celastraceae/",
+      "slug": "celastraceae"
+    },
+    {
+      "family": "Centroplacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/centroplacaceae/",
+      "slug": "centroplacaceae"
+    },
+    {
+      "family": "Ceratophyllaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ceratophyllaceae/",
+      "slug": "ceratophyllaceae"
+    },
+    {
+      "family": "Chloranthaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/chloranthaceae/",
+      "slug": "chloranthaceae"
+    },
+    {
+      "family": "Chrysobalanaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/chrysobalanaceae/",
+      "slug": "chrysobalanaceae"
+    },
+    {
+      "family": "Cleomaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cleomaceae/",
+      "slug": "cleomaceae"
+    },
+    {
+      "family": "Clethraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/clethraceae/",
+      "slug": "clethraceae"
+    },
+    {
+      "family": "Clusiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/clusiaceae/",
+      "slug": "clusiaceae"
+    },
+    {
+      "family": "Colchicaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/colchicaceae/",
+      "slug": "colchicaceae"
+    },
+    {
+      "family": "Combretaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/combretaceae/",
+      "slug": "combretaceae"
+    },
+    {
+      "family": "Commelinaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/commelinaceae/",
+      "slug": "commelinaceae"
+    },
+    {
+      "family": "Connaraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/connaraceae/",
+      "slug": "connaraceae"
+    },
+    {
+      "family": "Convolvulaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/convolvulaceae/",
+      "slug": "convolvulaceae"
+    },
+    {
+      "family": "Cordiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cordiaceae/",
+      "slug": "cordiaceae"
+    },
+    {
+      "family": "Cornaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cornaceae/",
+      "slug": "cornaceae"
+    },
+    {
+      "family": "Corynocarpaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/corynocarpaceae/",
+      "slug": "corynocarpaceae"
+    },
+    {
+      "family": "Costaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/costaceae/",
+      "slug": "costaceae"
+    },
+    {
+      "family": "Crassulaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/crassulaceae/",
+      "slug": "crassulaceae"
+    },
+    {
+      "family": "Crypteroniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/crypteroniaceae/",
+      "slug": "crypteroniaceae"
+    },
+    {
+      "family": "Ctenolophonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ctenolophonaceae/",
+      "slug": "ctenolophonaceae"
+    },
+    {
+      "family": "Cucurbitaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cucurbitaceae/",
+      "slug": "cucurbitaceae"
+    },
+    {
+      "family": "Cunoniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cunoniaceae/",
+      "slug": "cunoniaceae"
+    },
+    {
+      "family": "Cymodoceaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cymodoceaceae/",
+      "slug": "cymodoceaceae"
+    },
+    {
+      "family": "Cyperaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/cyperaceae/",
+      "slug": "cyperaceae"
+    },
+    {
+      "family": "Daphniphyllaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/daphniphyllaceae/",
+      "slug": "daphniphyllaceae"
+    },
+    {
+      "family": "Dichapetalaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/dichapetalaceae/",
+      "slug": "dichapetalaceae"
+    },
+    {
+      "family": "Dilleniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/dilleniaceae/",
+      "slug": "dilleniaceae"
+    },
+    {
+      "family": "Dioscoreaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/dioscoreaceae/",
+      "slug": "dioscoreaceae"
+    },
+    {
+      "family": "Dipterocarpaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/dipterocarpaceae/",
+      "slug": "dipterocarpaceae"
+    },
+    {
+      "family": "Droseraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/droseraceae/",
+      "slug": "droseraceae"
+    },
+    {
+      "family": "Ebenaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ebenaceae/",
+      "slug": "ebenaceae"
+    },
+    {
+      "family": "Elaeagnaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/elaeagnaceae/",
+      "slug": "elaeagnaceae"
+    },
+    {
+      "family": "Elaeocarpaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/elaeocarpaceae/",
+      "slug": "elaeocarpaceae"
+    },
+    {
+      "family": "Elatinaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/elatinaceae/",
+      "slug": "elatinaceae"
+    },
+    {
+      "family": "Ericaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ericaceae/",
+      "slug": "ericaceae"
+    },
+    {
+      "family": "Eriocaulaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/eriocaulaceae/",
+      "slug": "eriocaulaceae"
+    },
+    {
+      "family": "Erythroxylaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/erythroxylaceae/",
+      "slug": "erythroxylaceae"
+    },
+    {
+      "family": "Escalloniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/escalloniaceae/",
+      "slug": "escalloniaceae"
+    },
+    {
+      "family": "Euphorbiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/euphorbiaceae/",
+      "slug": "euphorbiaceae"
+    },
+    {
+      "family": "Fabaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/fabaceae/",
+      "slug": "fabaceae"
+    },
+    {
+      "family": "Fagaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/fagaceae/",
+      "slug": "fagaceae"
+    },
+    {
+      "family": "Flagellariaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/flagellariaceae/",
+      "slug": "flagellariaceae"
+    },
+    {
+      "family": "Gelsemiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/gelsemiaceae/",
+      "slug": "gelsemiaceae"
+    },
+    {
+      "family": "Gentianaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/gentianaceae/",
+      "slug": "gentianaceae"
+    },
+    {
+      "family": "Geraniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/geraniaceae/",
+      "slug": "geraniaceae"
+    },
+    {
+      "family": "Gesneriaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/gesneriaceae/",
+      "slug": "gesneriaceae"
+    },
+    {
+      "family": "Goodeniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/goodeniaceae/",
+      "slug": "goodeniaceae"
+    },
+    {
+      "family": "Gunneraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/gunneraceae/",
+      "slug": "gunneraceae"
+    },
+    {
+      "family": "Haemodoraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/haemodoraceae/",
+      "slug": "haemodoraceae"
+    },
+    {
+      "family": "Haloragaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/haloragaceae/",
+      "slug": "haloragaceae"
+    },
+    {
+      "family": "Hamamelidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hamamelidaceae/",
+      "slug": "hamamelidaceae"
+    },
+    {
+      "family": "Hanguanaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hanguanaceae/",
+      "slug": "hanguanaceae"
+    },
+    {
+      "family": "Hernandiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hernandiaceae/",
+      "slug": "hernandiaceae"
+    },
+    {
+      "family": "Himantandraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/himantandraceae/",
+      "slug": "himantandraceae"
+    },
+    {
+      "family": "Hydrangeaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hydrangeaceae/",
+      "slug": "hydrangeaceae"
+    },
+    {
+      "family": "Hydrocharitaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hydrocharitaceae/",
+      "slug": "hydrocharitaceae"
+    },
+    {
+      "family": "Hypericaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hypericaceae/",
+      "slug": "hypericaceae"
+    },
+    {
+      "family": "Hypoxidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/hypoxidaceae/",
+      "slug": "hypoxidaceae"
+    },
+    {
+      "family": "Icacinaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/icacinaceae/",
+      "slug": "icacinaceae"
+    },
+    {
+      "family": "Iridaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/iridaceae/",
+      "slug": "iridaceae"
+    },
+    {
+      "family": "Irvingiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/irvingiaceae/",
+      "slug": "irvingiaceae"
+    },
+    {
+      "family": "Ixonanthaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ixonanthaceae/",
+      "slug": "ixonanthaceae"
+    },
+    {
+      "family": "Joinvilleaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/joinvilleaceae/",
+      "slug": "joinvilleaceae"
+    },
+    {
+      "family": "Juglandaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/juglandaceae/",
+      "slug": "juglandaceae"
+    },
+    {
+      "family": "Juncaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/juncaceae/",
+      "slug": "juncaceae"
+    },
+    {
+      "family": "Lamiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lamiaceae/",
+      "slug": "lamiaceae"
+    },
+    {
+      "family": "Lauraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lauraceae/",
+      "slug": "lauraceae"
+    },
+    {
+      "family": "Lecythidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lecythidaceae/",
+      "slug": "lecythidaceae"
+    },
+    {
+      "family": "Lentibulariaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lentibulariaceae/",
+      "slug": "lentibulariaceae"
+    },
+    {
+      "family": "Linaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/linaceae/",
+      "slug": "linaceae"
+    },
+    {
+      "family": "Linderniaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/linderniaceae/",
+      "slug": "linderniaceae"
+    },
+    {
+      "family": "Loganiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/loganiaceae/",
+      "slug": "loganiaceae"
+    },
+    {
+      "family": "Lophopyxidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lophopyxidaceae/",
+      "slug": "lophopyxidaceae"
+    },
+    {
+      "family": "Loranthaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/loranthaceae/",
+      "slug": "loranthaceae"
+    },
+    {
+      "family": "Lowiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lowiaceae/",
+      "slug": "lowiaceae"
+    },
+    {
+      "family": "Lythraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/lythraceae/",
+      "slug": "lythraceae"
+    },
+    {
+      "family": "Magnoliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/magnoliaceae/",
+      "slug": "magnoliaceae"
+    },
+    {
+      "family": "Malpighiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/malpighiaceae/",
+      "slug": "malpighiaceae"
+    },
+    {
+      "family": "Malvaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/malvaceae/",
+      "slug": "malvaceae"
+    },
+    {
+      "family": "Marantaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/marantaceae/",
+      "slug": "marantaceae"
+    },
+    {
+      "family": "Mayacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/mayacaceae/",
+      "slug": "mayacaceae"
+    },
+    {
+      "family": "Mazaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/mazaceae/",
+      "slug": "mazaceae"
+    },
+    {
+      "family": "Melastomataceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/melastomataceae/",
+      "slug": "melastomataceae"
+    },
+    {
+      "family": "Meliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/meliaceae/",
+      "slug": "meliaceae"
+    },
+    {
+      "family": "Menispermaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/menispermaceae/",
+      "slug": "menispermaceae"
+    },
+    {
+      "family": "Mitrastemonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/mitrastemonaceae/",
+      "slug": "mitrastemonaceae"
+    },
+    {
+      "family": "Molluginaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/molluginaceae/",
+      "slug": "molluginaceae"
+    },
+    {
+      "family": "Monimiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/monimiaceae/",
+      "slug": "monimiaceae"
+    },
+    {
+      "family": "Moraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/moraceae/",
+      "slug": "moraceae"
+    },
+    {
+      "family": "Moringaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/moringaceae/",
+      "slug": "moringaceae"
+    },
+    {
+      "family": "Musaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/musaceae/",
+      "slug": "musaceae"
+    },
+    {
+      "family": "Myricaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/myricaceae/",
+      "slug": "myricaceae"
+    },
+    {
+      "family": "Myristicaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/myristicaceae/",
+      "slug": "myristicaceae"
+    },
+    {
+      "family": "Myrtaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/myrtaceae/",
+      "slug": "myrtaceae"
+    },
+    {
+      "family": "Nartheciaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nartheciaceae/",
+      "slug": "nartheciaceae"
+    },
+    {
+      "family": "Nepenthaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nepenthaceae/",
+      "slug": "nepenthaceae"
+    },
+    {
+      "family": "Nothofagaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nothofagaceae/",
+      "slug": "nothofagaceae"
+    },
+    {
+      "family": "Nyctaginaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nyctaginaceae/",
+      "slug": "nyctaginaceae"
+    },
+    {
+      "family": "Nymphaeaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nymphaeaceae/",
+      "slug": "nymphaeaceae"
+    },
+    {
+      "family": "Nyssaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/nyssaceae/",
+      "slug": "nyssaceae"
+    },
+    {
+      "family": "Ochnaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ochnaceae/",
+      "slug": "ochnaceae"
+    },
+    {
+      "family": "Olacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/olacaceae/",
+      "slug": "olacaceae"
+    },
+    {
+      "family": "Oleaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/oleaceae/",
+      "slug": "oleaceae"
+    },
+    {
+      "family": "Onagraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/onagraceae/",
+      "slug": "onagraceae"
+    },
+    {
+      "family": "Orchidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/orchidaceae/",
+      "slug": "orchidaceae"
+    },
+    {
+      "family": "Orobanchaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/orobanchaceae/",
+      "slug": "orobanchaceae"
+    },
+    {
+      "family": "Oxalidaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/oxalidaceae/",
+      "slug": "oxalidaceae"
+    },
+    {
+      "family": "Pandaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pandaceae/",
+      "slug": "pandaceae"
+    },
+    {
+      "family": "Pandanaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pandanaceae/",
+      "slug": "pandanaceae"
+    },
+    {
+      "family": "Papaveraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/papaveraceae/",
+      "slug": "papaveraceae"
+    },
+    {
+      "family": "Passifloraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/passifloraceae/",
+      "slug": "passifloraceae"
+    },
+    {
+      "family": "Pedaliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pedaliaceae-2/",
+      "slug": "pedaliaceae-2"
+    },
+    {
+      "family": "Pentaphragmataceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pentaphragmataceae/",
+      "slug": "pentaphragmataceae"
+    },
+    {
+      "family": "Pentaphylacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pentaphylacaceae/",
+      "slug": "pentaphylacaceae"
+    },
+    {
+      "family": "Peraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/peraceae/",
+      "slug": "peraceae"
+    },
+    {
+      "family": "Petiveriaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/petiveriaceae/",
+      "slug": "petiveriaceae"
+    },
+    {
+      "family": "Petrosaviaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/petrosaviaceae/",
+      "slug": "petrosaviaceae"
+    },
+    {
+      "family": "Phyllanthaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/phyllanthaceae/",
+      "slug": "phyllanthaceae"
+    },
+    {
+      "family": "Phytolaccaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/phytolaccaceae/",
+      "slug": "phytolaccaceae"
+    },
+    {
+      "family": "Picrodendraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/picrodendraceae/",
+      "slug": "picrodendraceae"
+    },
+    {
+      "family": "Piperaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/piperaceae/",
+      "slug": "piperaceae"
+    },
+    {
+      "family": "Pittosporaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pittosporaceae/",
+      "slug": "pittosporaceae"
+    },
+    {
+      "family": "Plantaginaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/plantaginaceae/",
+      "slug": "plantaginaceae"
+    },
+    {
+      "family": "Plumbaginaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/plumbaginaceae/",
+      "slug": "plumbaginaceae"
+    },
+    {
+      "family": "Poaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/poaceae/",
+      "slug": "poaceae"
+    },
+    {
+      "family": "Podostemaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/podostemaceae/",
+      "slug": "podostemaceae"
+    },
+    {
+      "family": "Polygalaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/polygalaceae/",
+      "slug": "polygalaceae"
+    },
+    {
+      "family": "Polygonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/polygonaceae/",
+      "slug": "polygonaceae"
+    },
+    {
+      "family": "Pontederiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/pontederiaceae/",
+      "slug": "pontederiaceae"
+    },
+    {
+      "family": "Portulacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/portulacaceae/",
+      "slug": "portulacaceae"
+    },
+    {
+      "family": "Potamogetonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/potamogetonaceae/",
+      "slug": "potamogetonaceae"
+    },
+    {
+      "family": "Primulaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/primulaceae/",
+      "slug": "primulaceae"
+    },
+    {
+      "family": "Proteaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/proteaceae/",
+      "slug": "proteaceae"
+    },
+    {
+      "family": "Putranjivaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/putranjivaceae/",
+      "slug": "putranjivaceae"
+    },
+    {
+      "family": "Rafflesiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rafflesiaceae/",
+      "slug": "rafflesiaceae"
+    },
+    {
+      "family": "Ranunculaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ranunculaceae/",
+      "slug": "ranunculaceae"
+    },
+    {
+      "family": "Resedaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/resedaceae/",
+      "slug": "resedaceae"
+    },
+    {
+      "family": "Restionaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/restionaceae/",
+      "slug": "restionaceae"
+    },
+    {
+      "family": "Rhamnaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rhamnaceae/",
+      "slug": "rhamnaceae"
+    },
+    {
+      "family": "Rhizophoraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rhizophoraceae/",
+      "slug": "rhizophoraceae"
+    },
+    {
+      "family": "Ripogonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ripogonaceae/",
+      "slug": "ripogonaceae"
+    },
+    {
+      "family": "Rosaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rosaceae/",
+      "slug": "rosaceae"
+    },
+    {
+      "family": "Rousseaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rousseaceae/",
+      "slug": "rousseaceae"
+    },
+    {
+      "family": "Rubiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rubiaceae/",
+      "slug": "rubiaceae"
+    },
+    {
+      "family": "Ruppiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ruppiaceae/",
+      "slug": "ruppiaceae"
+    },
+    {
+      "family": "Rutaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/rutaceae/",
+      "slug": "rutaceae"
+    },
+    {
+      "family": "Sabiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/sabiaceae/",
+      "slug": "sabiaceae"
+    },
+    {
+      "family": "Salicaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/salicaceae/",
+      "slug": "salicaceae"
+    },
+    {
+      "family": "Salvadoraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/salvadoraceae/",
+      "slug": "salvadoraceae"
+    },
+    {
+      "family": "Santalaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/santalaceae/",
+      "slug": "santalaceae"
+    },
+    {
+      "family": "Sapindaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/sapindaceae/",
+      "slug": "sapindaceae"
+    },
+    {
+      "family": "Sapotaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/sapotaceae/",
+      "slug": "sapotaceae"
+    },
+    {
+      "family": "Saxifragaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/saxifragaceae/",
+      "slug": "saxifragaceae"
+    },
+    {
+      "family": "Schisandraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/schisandraceae/",
+      "slug": "schisandraceae"
+    },
+    {
+      "family": "Schoepfiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/schoepfiaceae/",
+      "slug": "schoepfiaceae"
+    },
+    {
+      "family": "Scrophulariaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/scrophulariaceae/",
+      "slug": "scrophulariaceae"
+    },
+    {
+      "family": "Simaroubaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/simaroubaceae/",
+      "slug": "simaroubaceae"
+    },
+    {
+      "family": "Smilacaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/smilacaceae/",
+      "slug": "smilacaceae"
+    },
+    {
+      "family": "Solanaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/solanaceae/",
+      "slug": "solanaceae"
+    },
+    {
+      "family": "Sphenocleaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/sphenocleaceae/",
+      "slug": "sphenocleaceae"
+    },
+    {
+      "family": "Staphyleaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/staphyleaceae/",
+      "slug": "staphyleaceae"
+    },
+    {
+      "family": "Stemonaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/stemonaceae/",
+      "slug": "stemonaceae"
+    },
+    {
+      "family": "Stemonuraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/stemonuraceae/",
+      "slug": "stemonuraceae"
+    },
+    {
+      "family": "Stylidiaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/stylidiaceae/",
+      "slug": "stylidiaceae"
+    },
+    {
+      "family": "Styracaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/styracaceae/",
+      "slug": "styracaceae"
+    },
+    {
+      "family": "Symplocaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/symplocaceae/",
+      "slug": "symplocaceae"
+    },
+    {
+      "family": "Talinaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/talinaceae/",
+      "slug": "talinaceae"
+    },
+    {
+      "family": "Tetramelaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/tetramelaceae/",
+      "slug": "tetramelaceae"
+    },
+    {
+      "family": "Tetrameristaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/tetrameristaceae/",
+      "slug": "tetrameristaceae"
+    },
+    {
+      "family": "Theaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/theaceae/",
+      "slug": "theaceae"
+    },
+    {
+      "family": "Thymelaeaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/thymelaeaceae/",
+      "slug": "thymelaeaceae"
+    },
+    {
+      "family": "Torricelliaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/torricelliaceae/",
+      "slug": "torricelliaceae"
+    },
+    {
+      "family": "Triuridaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/triuridaceae/",
+      "slug": "triuridaceae"
+    },
+    {
+      "family": "Typhaceae",
+      "url": "https://indonesiaplants.org/angiosperms/typhaceae/",
+      "slug": "typhaceae"
+    },
+    {
+      "family": "Ulmaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/ulmaceae/",
+      "slug": "ulmaceae"
+    },
+    {
+      "family": "Urticaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/urticaceae/",
+      "slug": "urticaceae"
+    },
+    {
+      "family": "Verbenaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/verbenaceae/",
+      "slug": "verbenaceae"
+    },
+    {
+      "family": "Viburnaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/viburnaceae/",
+      "slug": "viburnaceae"
+    },
+    {
+      "family": "Violaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/violaceae/",
+      "slug": "violaceae"
+    },
+    {
+      "family": "Vitaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/vitaceae/",
+      "slug": "vitaceae"
+    },
+    {
+      "family": "Winteraceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/winteraceae/",
+      "slug": "winteraceae"
+    },
+    {
+      "family": "Xyridaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/xyridaceae/",
+      "slug": "xyridaceae"
+    },
+    {
+      "family": "Zingiberaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/zingiberaceae/",
+      "slug": "zingiberaceae"
+    },
+    {
+      "family": "Zygophyllaceae",
+      "url": "https://www.indonesiaplants.org/angiosperms/zygophyllaceae/",
+      "slug": "zygophyllaceae"
+    }
+  ]
+}

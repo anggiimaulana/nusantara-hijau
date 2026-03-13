@@ -1,5 +1,6 @@
 "use client";
 
+import publicCatalogSummary from "@/data/biodiversity/processed/public-catalog-summary.generated.json";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -38,7 +39,7 @@ const FACTS = [
   { value: "#2", label: "Negara Megabiodiversitas", color: "var(--pg-accent)" },
   { value: "515+", label: "Spesies Mamalia Endemik", color: "var(--pg-pink)" },
   { value: "1.500+", label: "Spesies Burung Tercatat", color: "var(--pg-mint)" },
-  { value: "7.500+", label: "Spesies Tumbuhan Berbunga", color: "var(--pg-amber)" },
+  { value: publicCatalogSummary.recordCount.toLocaleString("id-ID"), label: "Rekaman Biodiversitas", color: "var(--pg-amber)" },
   { value: "37%", label: "Hutan Tropis Asia ada di sini", color: "var(--pg-accent)" },
 ];
 
@@ -97,8 +98,7 @@ export default function AboutPage() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.60)" }}>
-              Platform edukasi digital untuk mengenal, mencintai, dan melestarikan
-              keanekaragaman hayati Indonesia. Dibuat untuk TECHSOFT 2026.
+              Platform edukasi digital yang dirancang untuk menghadirkan informasi flora dan fauna Indonesia secara lebih terstruktur, menarik, dan mudah dijelajahi.
             </motion.p>
           </motion.div>
         </div>
@@ -287,7 +287,7 @@ export default function AboutPage() {
                 Mulai Menjelajah Warisan Alam
               </h2>
               <p className="text-sm mb-8 max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.75)" }}>
-                Kenali lebih dari 50 spesies endemik Indonesia dan ambil bagian dalam pelestarian alam Nusantara.
+                Jelajahi katalog biodiversitas Indonesia dan temukan ragam flora serta fauna dari berbagai wilayah Nusantara.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <Link href="/species" className="btn-ghost-dark py-3.5 px-8">

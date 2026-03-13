@@ -1,62 +1,48 @@
 import SpeciesDetailClient from "@/components/SpeciesDetailClient";
-import speciesData from "@/data/species.json";
+import { catalogRecords, getCatalogRegions, type CatalogSpecies } from "@/lib/biodiversity-catalog";
 import { notFound } from "next/navigation";
 
-// ============================================
-// TYPES
-// ============================================
-interface Species {
-  id: string;
-  name: string;
-  latinName: string;
-  region: string;
-  type: string;
-  status: string;
-  statusEN: string;
-  population: string;
-  habitat: string;
-  threat: string;
-  description: string;
-  image: string;
-  action: string;
-  funFact: string;
-  source: string;
-  color: string;
-}
 type SpeciesPageParams = Promise<{ id: string }>;
 
-// ============================================
-// STATIC PARAMS
-// ============================================
-export async function generateStaticParams() {
-  return speciesData.map((s) => ({ id: s.id }));
+function getSpeciesById(id: string) {
+  return catalogRecords.find((species) => species.id === id);
 }
 
-// ============================================
-// METADATA
-// ============================================
+function getRelatedSpecies(species: CatalogSpecies) {
+  const ownRegions = new Set(getCatalogRegions(species));
+
+  const related = catalogRecords.filter((candidate) => {
+    if (candidate.id === species.id) return false;
+
+    const candidateRegions = getCatalogRegions(candidate);
+    const sharesRegion = candidateRegions.some((region) => ownRegions.has(region));
+    const sharesType = candidate.type === species.type;
+
+    return sharesRegion || sharesType;
+  });
+
+  return related.slice(0, 4);
+}
+
 export async function generateMetadata({ params }: { params: SpeciesPageParams }) {
   const { id } = await params;
-  const species = speciesData.find((s) => s.id === id) as Species | undefined;
-  if (!species) return { title: "Spesies tidak ditemukan" };
+  const species = getSpeciesById(id);
+
+  if (!species) {
+    return { title: "Spesies tidak ditemukan" };
+  }
+
   return {
     title: `${species.name} — ${species.latinName}`,
     description: species.description.substring(0, 160),
   };
 }
 
-// ============================================
-// DETAIL PAGE
-// ============================================
 export default async function SpeciesDetailPage({ params }: { params: SpeciesPageParams }) {
   const { id } = await params;
-  const species = speciesData.find((s) => s.id === id) as Species | undefined;
+  const species = getSpeciesById(id);
 
   if (!species) notFound();
 
-  const related = speciesData
-    .filter((s) => s.region === species.region && s.id !== species.id)
-    .slice(0, 3) as Species[];
-
-  return <SpeciesDetailClient species={species} related={related} />;
+  return <SpeciesDetailClient species={species} related={getRelatedSpecies(species)} />;
 }

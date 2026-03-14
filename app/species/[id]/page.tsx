@@ -11,17 +11,24 @@ function getSpeciesById(id: string) {
 function getRelatedSpecies(species: CatalogSpecies) {
   const ownRegions = new Set(getCatalogRegions(species));
 
-  const related = catalogRecords.filter((candidate) => {
-    if (candidate.id === species.id) return false;
+  // Sort candidates to prioritize regional matches
+  const candidates = catalogRecords
+    .filter((candidate) => candidate.id !== species.id)
+    .map((candidate) => {
+      const candidateRegions = getCatalogRegions(candidate);
+      const sharesRegion = candidateRegions.some((region) => ownRegions.has(region));
+      const sharesType = candidate.type === species.type;
+      
+      let score = 0;
+      if (sharesRegion) score += 10;
+      if (sharesType) score += 5;
+      
+      return { candidate, score };
+    })
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score);
 
-    const candidateRegions = getCatalogRegions(candidate);
-    const sharesRegion = candidateRegions.some((region) => ownRegions.has(region));
-    const sharesType = candidate.type === species.type;
-
-    return sharesRegion || sharesType;
-  });
-
-  return related.slice(0, 4);
+  return candidates.slice(0, 4).map(item => item.candidate);
 }
 
 export async function generateMetadata({ params }: { params: SpeciesPageParams }) {

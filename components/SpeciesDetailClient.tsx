@@ -1,6 +1,6 @@
 "use client";
 
-import { getCatalogRegionText, type CatalogSpecies } from "@/lib/biodiversity-catalog";
+import { getCatalogRegionText, getCatalogRegions, type CatalogSpecies } from "@/lib/biodiversity-catalog";
 import { hasSpeciesImage, resolveSpeciesImage } from "@/lib/species-images";
 import { motion } from "framer-motion";
 import {
@@ -213,18 +213,33 @@ export default function SpeciesDetailClient({ species, related }: Props) {
   return (
     <div style={{ background: "var(--pg-bg)" }} className="min-h-screen pb-20">
       <div
-        className="relative w-full overflow-hidden"
-        style={{ height: "clamp(360px, 55vh, 640px)", borderBottom: "3px solid var(--border-hard)" }}
+        className="relative w-full overflow-hidden flex justify-center"
+        style={{ height: "clamp(280px, 48vh, 640px)", borderBottom: "3px solid var(--border-hard)", backgroundColor: "var(--pg-dark)" }}
       >
         {hasSpeciesImage(species.image) ? (
-          <Image
-            src={resolveSpeciesImage(species.image)}
-            alt={species.name}
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
+          <>
+            {/* Blurred background for premium feel */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={resolveSpeciesImage(species.image)}
+                alt={`${species.name} background`}
+                fill
+                className="object-cover blur-2xl opacity-40 scale-110"
+                priority
+              />
+            </div>
+            {/* Contained image to prevent pixelation on large screens */}
+            <div className="relative z-1 w-full h-full lg:max-w-[1024px] mx-auto shadow-2xl">
+              <Image
+                src={resolveSpeciesImage(species.image)}
+                alt={species.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover sm:object-cover lg:object-contain drop-shadow-2xl"
+                priority
+              />
+            </div>
+          </>
         ) : (
           <div
             className="absolute inset-0"
@@ -233,7 +248,7 @@ export default function SpeciesDetailClient({ species, related }: Props) {
             }}
           />
         )}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 30%, rgba(30,41,59,0.85) 100%)" }} />
+        <div className="absolute inset-0 z-10" style={{ background: "linear-gradient(to bottom, transparent 30%, rgba(30,41,59,0.85) 100%)" }} />
 
         <motion.div
           animate={{ rotate: 360 }}
@@ -468,7 +483,7 @@ export default function SpeciesDetailClient({ species, related }: Props) {
               <h2 className="font-bold text-xl" style={{ fontFamily: "var(--font-heading)", color: "var(--text-primary)" }}>
                 Spesies Terkait
               </h2>
-              <Link href="/species" className="text-sm font-bold flex items-center gap-1" style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}>
+              <Link href={`/species?region=${getCatalogRegions(species)[0] || "all"}`} className="text-sm font-bold flex items-center gap-1" style={{ color: "var(--pg-accent)", fontFamily: "var(--font-heading)" }}>
                 Lihat Semua <ChevronRight className="w-3.5 h-3.5" strokeWidth={2.5} />
               </Link>
             </div>

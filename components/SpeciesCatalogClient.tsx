@@ -19,8 +19,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
 const ITEMS_PER_PAGE = 15;
 const REGIONS = [
@@ -156,7 +157,7 @@ function PaginationLink({ active, disabled, children, onClick }: { active?: bool
   );
 }
 
-function SpeciesImagePanel({ species, compact = false }: { species: CatalogSpecies; compact?: boolean }) {
+function SpeciesImagePanel({ species, compact = false, priority = false }: { species: CatalogSpecies; compact?: boolean, priority?: boolean }) {
   const hasImage = hasSpeciesImage(species.image);
   const accent = species.color ?? SOURCE_ACCENTS[species.sourceKey] ?? "var(--pg-accent)";
 
@@ -168,6 +169,7 @@ function SpeciesImagePanel({ species, compact = false }: { species: CatalogSpeci
         fill
         className="object-cover"
         sizes={compact ? "130px" : "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"}
+        priority={priority}
       />
     );
   }
@@ -223,8 +225,8 @@ function SpeciesGridCard({ species, index }: { species: CatalogSpecies, index: n
         }}
       >
         <div className="relative overflow-hidden" style={{ aspectRatio: "3 / 2" }}>
-          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 z-0">
-            <SpeciesImagePanel species={species} />
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 z-0 bg-slate-50">
+            <SpeciesImagePanel species={species} priority={index < 6} />
           </div>
           {status && (
             <span
@@ -299,8 +301,8 @@ function SpeciesListCard({ species, index }: { species: CatalogSpecies, index: n
         }}
       >
         <div className="relative flex-shrink-0 overflow-hidden" style={{ width: "140px", aspectRatio: "4 / 3" }}>
-          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 z-0">
-            <SpeciesImagePanel species={species} compact />
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105 z-0 bg-slate-50">
+            <SpeciesImagePanel species={species} compact priority={index < 4} />
           </div>
         </div>
         <div className="p-4 sm:p-5 flex-1 flex flex-col gap-3 min-w-0 bg-white z-10">
@@ -352,7 +354,8 @@ function SpeciesListCard({ species, index }: { species: CatalogSpecies, index: n
   );
 }
 
-export default function SpeciesCatalogClient() {
+function SpeciesCatalogContent() {
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("all");
   const [status, setStatus] = useState("all");
@@ -360,6 +363,26 @@ export default function SpeciesCatalogClient() {
   const [view, setView] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilter, setShowFilter] = useState(false);
+
+  // Initialize from URL params
+  useEffect(() => {
+    const urlRegion = searchParams.get("region");
+    const urlType = searchParams.get("type");
+    const urlStatus = searchParams.get("status");
+
+    if (urlRegion && urlRegion !== "all") {
+      setRegion(urlRegion);
+      setShowFilter(true);
+    }
+    if (urlType && urlType !== "all") {
+      setType(urlType);
+      setShowFilter(true);
+    }
+    if (urlStatus && urlStatus !== "all") {
+      setStatus(urlStatus);
+      setShowFilter(true);
+    }
+  }, [searchParams]);
 
   const isFilterActive = query !== "" || region !== "all" || status !== "all" || type !== "all";
 
@@ -662,5 +685,17 @@ export default function SpeciesCatalogClient() {
         )}
       </section>
     </div>
+  );
+}
+
+export default function SpeciesCatalogClient() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-pg-bg">
+        <div className="w-10 h-10 border-4 border-pg-accent border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <SpeciesCatalogContent />
+    </Suspense>
   );
 }

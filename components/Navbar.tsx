@@ -77,7 +77,7 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
               {NAV_LINKS.map((link) => {
-                const active = pathname === link.href;
+                const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
                 return (
                   <Link
                     key={link.href}
@@ -162,7 +162,7 @@ export default function Navbar() {
         <div className="flex flex-col h-full p-6 pt-20">
           <nav className="flex flex-col gap-2">
             {NAV_LINKS.map((link, i) => {
-              const active = pathname === link.href;
+              const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
                 <motion.div
                   key={link.href}

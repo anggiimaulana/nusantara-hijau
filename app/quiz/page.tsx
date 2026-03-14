@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type QuizState = "WELCOME" | "PLAYING" | "ENDED";
 
@@ -49,13 +49,8 @@ export default function QuizPage() {
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
-  const [isClient, setIsClient] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedLevel, setSelectedLevel] = useState<QuizLevel | null>(null);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const handleStart = (level: QuizLevel) => {
     setSelectedLevel(level);
@@ -131,23 +126,6 @@ export default function QuizPage() {
       };
     }
   };
-
-  if (!isClient) {
-    return (
-      <div
-        className="min-h-screen flex items-center justify-center pt-24 pb-12"
-        style={{ background: "var(--pg-bg)" }}
-      >
-        <div
-          className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin"
-          style={{
-            borderColor: "var(--pg-accent)",
-            borderTopColor: "transparent",
-          }}
-        ></div>
-      </div>
-    );
-  }
 
   const levels = [
     {

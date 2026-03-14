@@ -214,6 +214,7 @@ interface Sp {
   name: string;
   latinName: string;
   region: string;
+  province: string[];
   regions: string[];
   status: string | null;
   image: string | null;
@@ -253,20 +254,41 @@ function toTitle(s: string) {
     .join(" ");
 }
 
+function normalizeProvinceLabel(raw: string): string {
+  const key = raw.toUpperCase().trim();
+  const map: Record<string, string> = {
+    "NANGGROE ACEH DARUSSALAM": "ACEH",
+    "SUMATRA UTARA": "SUMATERA UTARA",
+    "SUMATRA BARAT": "SUMATERA BARAT",
+    "SUMATRA SELATAN": "SUMATERA SELATAN",
+    "KEP. RIAU": "KEPULAUAN RIAU",
+    "DAERAH ISTIMEWA YOGYAKARTA": "DI YOGYAKARTA",
+    JAKARTA: "DKI JAKARTA",
+    "NUSATENGGARA BARAT": "NUSA TENGGARA BARAT",
+    "NUSATENGGARA TIMUR": "NUSA TENGGARA TIMUR",
+    "IRIAN JAYA BARAT": "PAPUA BARAT",
+    "IRIAN JAYA TENGAH": "PAPUA TENGAH",
+    "IRIAN JAYA TIMUR": "PAPUA",
+  };
+  return map[key] ?? key;
+}
+
 const MAP_RECORDS: Sp[] = catalogRecords.map((species) => ({
   id: species.id,
   name: species.name,
   latinName: species.latinName,
   region: species.region,
+  province: species.province,
   regions: getCatalogRegions(species),
   status: species.status,
   image: species.image,
 }));
 
 function getSpecies(prov: string): Sp[] {
-  const region = getRegion(prov);
-  if (region === "unknown") return [];
-  return MAP_RECORDS.filter((sp) => sp.regions.includes(region));
+  const normalizedProvince = normalizeProvinceLabel(prov);
+  return MAP_RECORDS.filter((sp) =>
+    sp.province.some((provinceName) => normalizeProvinceLabel(provinceName) === normalizedProvince),
+  );
 }
 function getTop(prov: string, n = 3): Sp[] {
   const ord: Record<string, number> = { kritis: 0, terancam: 1, rentan: 2 };

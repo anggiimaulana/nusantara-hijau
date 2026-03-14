@@ -1,9 +1,8 @@
 "use client";
 
 import speciesData from "@/data/species.json";
-import publicCatalogSummary from "@/data/biodiversity/processed/public-catalog-summary.generated.json";
 import { resolveSpeciesImage } from "@/lib/species-images";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import {
   AlertTriangle,
   ArrowRight,
@@ -18,7 +17,7 @@ import {
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ─── Dynamic Map ──────────────────────────────
 function MapSkeleton() {
@@ -64,6 +63,8 @@ interface Species {
   name: string;
   latinName: string;
   region: string;
+  province: string[];
+  provinceMain: string;
   type: string;
   status: string;
   statusEN: string;
@@ -116,13 +117,42 @@ const featured = FEATURED_IDS.map((id) =>
   speciesData.find((s) => s.id === id),
 ).filter(Boolean) as Species[];
 
+function speciesPriority(species: Species) {
+  const statusRank: Record<string, number> = { kritis: 0, terancam: 1, rentan: 2 };
+  return statusRank[species.status] ?? 9;
+}
+
+function titleCaseProvince(raw: string) {
+  return raw
+    .toLowerCase()
+    .split(" ")
+    .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+    .join(" ");
+}
+
+const provinceRepresentatives = Object.values(
+  (speciesData as Species[]).reduce<Record<string, Species>>((acc, species) => {
+    const province = species.provinceMain?.trim() || species.province?.[0]?.trim();
+    if (!province) return acc;
+
+    const prev = acc[province];
+    if (!prev || speciesPriority(species) < speciesPriority(prev)) {
+      acc[province] = species;
+    }
+    return acc;
+  }, {}),
+).sort((a, b) => a.provinceMain.localeCompare(b.provinceMain, "id"));
+
+const curatedSpeciesCount = speciesData.length;
+const curatedSpeciesCountText = curatedSpeciesCount.toLocaleString("id-ID");
+
 const STATS = [
   { value: "17.000+", label: "Pulau" },
   { value: "515+", label: "Mamalia Endemik" },
   { value: "#2", label: "Negara Megabiodiversitas" },
   {
-    value: publicCatalogSummary.recordCount.toLocaleString("id-ID"),
-    label: "Rekaman Biodiversitas",
+    value: curatedSpeciesCountText,
+    label: "Spesies Kurasi",
   },
   { value: "37%", label: "Hutan Tropis Asia" },
   { value: "1.500+", label: "Spesies Burung" },
@@ -333,6 +363,144 @@ function FeaturedCarousel({ items }: { items: Species[] }) {
   );
 }
 
+function HeroProvinceSlider({
+  items,
+  curatedCountText,
+}: {
+  items: Species[];
+  curatedCountText: string;
+}) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (items.length <= 1) return;
+    const intervalId = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % items.length);
+    }, 5200);
+    return () => window.clearInterval(intervalId);
+  }, [items.length]);
+
+  const current = items[index];
+  const status = STATUS_CFG[current.status];
+  const provinceName = titleCaseProvince(current.provinceMain);
+  const typeLabel = current.type === "flora" ? "Flora" : "Fauna";
+
+  return (
+    <div className="relative w-full max-w-[420px] md:max-w-full mx-auto md:mx-0" style={{ paddingBottom: "2.5rem" }}>
+      <div
+        className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full rounded-3xl bg-dots"
+        style={{ zIndex: 0, opacity: 0.6 }}
+      />
+
+      <div
+        className="relative rounded-3xl overflow-hidden"
+        style={{
+          border: "3px solid var(--border-hard)",
+          boxShadow: "10px 10px 0px var(--border-hard)",
+          aspectRatio: "5/4",
+          zIndex: 1,
+        }}
+      >
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={current.id}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.03, filter: "blur(2px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.985, filter: "blur(1px)" }}
+            transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={resolveSpeciesImage(current.image)}
+              alt={`${current.name} — ${current.latinName}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 500px"
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={`${current.id}-meta`}
+            className="absolute bottom-2 left-3 sm:bottom-3 sm:left-4 max-w-[80%] p-2.5 sm:p-3 rounded-xl"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              background: "rgba(255,253,245,0.9)",
+              border: "2px solid var(--border-hard)",
+              boxShadow: "3px 3px 0px var(--border-hard)",
+            }}
+          >
+            {status && (
+              <div
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold mb-1.5"
+                style={{
+                  background: status.bg,
+                  border: `1.5px solid ${status.border}`,
+                  color: status.color,
+                }}
+              >
+                {status.icon} Status {status.label} ({current.statusEN})
+              </div>
+            )}
+            <h3 className="font-bold text-xs sm:text-sm mb-0.5" style={{ fontFamily: "var(--font-heading)" }}>
+              {current.name}
+            </h3>
+            <p className="latin-name text-[10px] mb-1">{current.latinName}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wide" style={{ color: "var(--text-secondary)" }}>
+              {typeLabel} Perwakilan • Provinsi {provinceName}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 p-3 sm:p-4 rounded-2xl"
+        style={{
+          background: "var(--pg-accent)",
+          border: "2px solid var(--border-hard)",
+          boxShadow: "var(--shadow-hard)",
+          color: "white",
+          zIndex: 10,
+        }}
+      >
+        <div className="text-2xl sm:text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-heading)" }}>
+          {curatedCountText}
+        </div>
+        <div className="text-[11px] font-bold uppercase tracking-wide opacity-80 mt-0.5">Spesies</div>
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        className="absolute -bottom-2 -left-2 sm:left-0 p-3 sm:p-3.5 rounded-2xl flex items-center gap-2 sm:gap-2.5"
+        style={{
+          background: "var(--pg-amber)",
+          border: "2px solid var(--border-hard)",
+          boxShadow: "var(--shadow-hard)",
+          zIndex: 10,
+        }}
+      >
+        <TreePine className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" strokeWidth={2.5} />
+        <div>
+          <div className="text-xs font-bold" style={{ fontFamily: "var(--font-heading)" }}>
+            {items.length} Provinsi
+          </div>
+          <div className="text-[10px] font-bold uppercase tracking-wide opacity-70">
+            Slide {index + 1}/{items.length}
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 // ─── Stat Card ────────────────────────────────
 function StatCard({
   value,
@@ -520,7 +688,7 @@ export default function HomePage() {
                   { label: "17.000+ Pulau", color: "var(--pg-amber)" },
                   { label: "#2 Megabiodiversitas", color: "var(--pg-mint)" },
                   {
-                    label: `${publicCatalogSummary.recordCount.toLocaleString("id-ID")} Rekaman`,
+                    label: `${curatedSpeciesCountText} Spesies`,
                     color: "var(--pg-pink)",
                   },
                 ].map((p) => (
@@ -546,7 +714,6 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* ── Right: Hero Image ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -555,124 +722,12 @@ export default function HomePage() {
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="relative w-full max-w-[420px] md:max-w-full mx-auto md:mx-0"
-              style={{ paddingBottom: "2.5rem" }}
+              className="relative"
             >
-              {/* Dot pattern background */}
-              <div
-                className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full rounded-3xl bg-dots"
-                style={{ zIndex: 0, opacity: 0.6 }}
+              <HeroProvinceSlider
+                items={provinceRepresentatives}
+                curatedCountText={curatedSpeciesCountText}
               />
-
-              {/* Main image */}
-              <div
-                className="relative rounded-3xl overflow-hidden"
-                style={{
-                  border: "3px solid var(--border-hard)",
-                  boxShadow: "10px 10px 0px var(--border-hard)",
-                  aspectRatio: "5/4",
-                  zIndex: 1,
-                }}
-              >
-                <Image
-                  src="/images/species/harimau-sumatera.jpg"
-                  alt="Harimau Sumatera — Panthera tigris sumatrae"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 500px"
-                  className="object-cover"
-                  priority
-                />
-                {/* Caption sticker */}
-                <div
-                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-3 sm:p-4 rounded-2xl"
-                  style={{
-                    background: "rgba(255,253,245,0.95)",
-                    border: "2px solid var(--border-hard)",
-                    boxShadow: "4px 4px 0px var(--border-hard)",
-                  }}
-                >
-                  <div
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold mb-2"
-                    style={{
-                      background: "var(--status-cr-bg)",
-                      border: "1.5px solid var(--status-cr-border)",
-                      color: "var(--status-cr)",
-                    }}
-                  >
-                    <AlertTriangle className="w-3 h-3" strokeWidth={2.5} />{" "}
-                    Status Kritis (CR)
-                  </div>
-                  <h3
-                    className="font-bold text-sm md:text-base mb-0.5"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    Harimau Sumatera
-                  </h3>
-                  <p className="latin-name text-xs">Panthera tigris sumatrae</p>
-                </div>
-              </div>
-
-              {/* Floating badge — count */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -top-3 -right-3 sm:-top-5 sm:-right-5 p-3 sm:p-4 rounded-2xl"
-                style={{
-                  background: "var(--pg-accent)",
-                  border: "2px solid var(--border-hard)",
-                  boxShadow: "var(--shadow-hard)",
-                  color: "white",
-                  zIndex: 10,
-                }}
-                >
-                  <div
-                    className="text-2xl sm:text-3xl font-bold leading-none"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                  {publicCatalogSummary.recordCount.toLocaleString("id-ID")}
-                  </div>
-                  <div className="text-[11px] font-bold uppercase tracking-wide opacity-80 mt-0.5">
-                  Rekaman
-                  </div>
-                </motion.div>
-
-              {/* Floating badge — region */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1.5,
-                }}
-                className="absolute -bottom-2 -left-2 sm:left-0 p-3 sm:p-3.5 rounded-2xl flex items-center gap-2 sm:gap-2.5"
-                style={{
-                  background: "var(--pg-amber)",
-                  border: "2px solid var(--border-hard)",
-                  boxShadow: "var(--shadow-hard)",
-                  zIndex: 10,
-                }}
-              >
-                <TreePine
-                  className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
-                  strokeWidth={2.5}
-                />
-                <div>
-                  <div
-                    className="text-xs font-bold"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    6 Wilayah
-                  </div>
-                  <div className="text-[10px] font-bold uppercase tracking-wide opacity-70">
-                    Nusantara
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </div>

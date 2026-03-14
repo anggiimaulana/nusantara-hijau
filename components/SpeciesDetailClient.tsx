@@ -258,31 +258,6 @@ export default function SpeciesDetailClient({ species, related }: Props) {
           ✦
         </motion.div>
 
-        <div className="absolute top-24 left-0 right-0 z-10">
-          <div className="container-main">
-            <motion.div
-              whileHover={{ x: -3, scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
-              style={{ display: "inline-flex" }}
-            >
-              <Link
-                href="/species"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm text-white"
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  background: "var(--pg-dark)",
-                  border: "2px solid rgba(255,255,255,0.25)",
-                  boxShadow: "3px 3px 0px rgba(0,0,0,0.35)",
-                }}
-              >
-                <ArrowLeft className="w-4 h-4" strokeWidth={2.5} />
-                Kembali
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-
         <div className="absolute bottom-0 left-0 right-0 z-10 pb-8">
           <div className="container-main">
             <motion.div

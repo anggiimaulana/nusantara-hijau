@@ -1,10 +1,12 @@
-import publicCatalogData from "@/data/biodiversity/processed/public-catalog.generated.json";
+import curatedSpeciesData from "@/data/species.json";
 
 export interface CatalogSpecies {
   id: string;
   name: string;
   latinName: string;
   region: string;
+  province: string[];
+  provinceMain: string;
   regions: string[];
   type: "flora" | "fauna";
   status: string | null;
@@ -34,7 +36,51 @@ export const CATALOG_REGION_LABELS: Record<string, string> = {
   nasional: "Nasional / Multiwilayah",
 };
 
-export const catalogRecords = publicCatalogData.records as CatalogSpecies[];
+const curatedRecords = curatedSpeciesData as Array<{
+  id: string;
+  name: string;
+  latinName: string;
+  region: string;
+  province: string[];
+  provinceMain: string;
+  type: "flora" | "fauna";
+  status?: string;
+  statusEN?: string;
+  description: string;
+  image?: string;
+  color?: string;
+  population?: string;
+  habitat?: string;
+  threat?: string;
+  action?: string;
+  funFact?: string;
+  source?: string;
+}>;
+
+export const catalogRecords: CatalogSpecies[] = curatedRecords.map((record) => ({
+  id: record.id,
+  name: record.name,
+  latinName: record.latinName,
+  region: record.region,
+  province: record.province,
+  provinceMain: record.provinceMain,
+  regions: record.region ? [record.region] : [],
+  type: record.type,
+  status: record.status ?? null,
+  statusEN: record.statusEN ?? null,
+  description: record.description,
+  image: record.image ?? null,
+  color: record.color ?? null,
+  population: record.population ?? null,
+  habitat: record.habitat ?? null,
+  threat: record.threat ?? null,
+  action: record.action ?? null,
+  funFact: record.funFact ?? null,
+  source: record.source ?? "IUCN Red List 2023",
+  sourceKey: "curated",
+  sourceLabel: "Kurasi NusantaraHijau",
+  detailRich: true,
+}));
 
 export function getCatalogRegions(species: CatalogSpecies): string[] {
   if (species.regions?.length) return species.regions;

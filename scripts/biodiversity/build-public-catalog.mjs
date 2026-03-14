@@ -227,16 +227,27 @@ async function main() {
   ]);
 
   const seenScientificNames = new Set();
+  const seenIds = new Set();
   const records = [];
 
-  const addRecord = (record) => {
+  const addRecord = (record, { dedupeByScientificName = true } = {}) => {
+    if (!record?.id || seenIds.has(record.id)) return;
+
     const normalized = normalizeScientificName(record.latinName);
-    if (!normalized || seenScientificNames.has(normalized)) return;
-    seenScientificNames.add(normalized);
+    if (dedupeByScientificName) {
+      if (!normalized || seenScientificNames.has(normalized)) return;
+      seenScientificNames.add(normalized);
+    } else if (normalized) {
+      seenScientificNames.add(normalized);
+    }
+
+    seenIds.add(record.id);
     records.push(record);
   };
 
-  curated.map(mapCuratedEntry).forEach(addRecord);
+  curated
+    .map(mapCuratedEntry)
+    .forEach((record) => addRecord(record, { dedupeByScientificName: false }));
   dfi.records.map((record) => mapExternalRecord(record, "dfi", "flora")).forEach(addRecord);
   mdd.records.map((record) => mapExternalRecord(record, "mdd", "fauna")).forEach(addRecord);
   fishbase.records

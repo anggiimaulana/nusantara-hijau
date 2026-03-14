@@ -1,6 +1,6 @@
 "use client";
 
-import publicCatalogSummary from "@/data/biodiversity/processed/public-catalog-summary.generated.json";
+import speciesData from "@/data/species.json";
 import { motion } from "framer-motion";
 import {
   BookOpen,
@@ -39,7 +39,7 @@ const FACTS = [
   { value: "#2", label: "Negara Megabiodiversitas", color: "var(--pg-accent)" },
   { value: "515+", label: "Spesies Mamalia Endemik", color: "var(--pg-pink)" },
   { value: "1.500+", label: "Spesies Burung Tercatat", color: "var(--pg-mint)" },
-  { value: publicCatalogSummary.recordCount.toLocaleString("id-ID"), label: "Rekaman Biodiversitas", color: "var(--pg-amber)" },
+  { value: speciesData.length.toLocaleString("id-ID"), label: "Spesies Kurasi", color: "var(--pg-amber)" },
   { value: "37%", label: "Hutan Tropis Asia ada di sini", color: "var(--pg-accent)" },
 ];
 

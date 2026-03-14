@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
@@ -46,6 +46,11 @@ const TYPES = [
   { value: "flora", label: "Flora" },
   { value: "fauna", label: "Fauna" },
 ] as const;
+
+function getInitialParam(value: string | null, allowed: readonly { value: string }[]) {
+  if (!value) return "all";
+  return allowed.some((entry) => entry.value === value) ? value : "all";
+}
 const STATUS_CFG: Record<
   string,
   { label: string; color: string; icon: React.ReactNode; bg: string }
@@ -356,40 +361,54 @@ function SpeciesListCard({ species, index }: { species: CatalogSpecies, index: n
 
 function SpeciesCatalogContent() {
   const searchParams = useSearchParams();
+  const initialRegion = getInitialParam(searchParams.get("region"), REGIONS);
+  const initialType = getInitialParam(searchParams.get("type"), TYPES);
+  const initialStatus = getInitialParam(searchParams.get("status"), STATUSES);
+
   const [query, setQuery] = useState("");
-  const [region, setRegion] = useState("all");
-  const [status, setStatus] = useState("all");
-  const [type, setType] = useState("all");
+  const [region, setRegion] = useState(initialRegion);
+  const [status, setStatus] = useState(initialStatus);
+  const [type, setType] = useState(initialType);
   const [view, setView] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
-  const [showFilter, setShowFilter] = useState(false);
-
-  // Initialize from URL params
-  useEffect(() => {
-    const urlRegion = searchParams.get("region");
-    const urlType = searchParams.get("type");
-    const urlStatus = searchParams.get("status");
-
-    if (urlRegion && urlRegion !== "all") {
-      setRegion(urlRegion);
-      setShowFilter(true);
-    }
-    if (urlType && urlType !== "all") {
-      setType(urlType);
-      setShowFilter(true);
-    }
-    if (urlStatus && urlStatus !== "all") {
-      setStatus(urlStatus);
-      setShowFilter(true);
-    }
-  }, [searchParams]);
+  const [showFilter, setShowFilter] = useState(
+    initialRegion !== "all" || initialType !== "all" || initialStatus !== "all",
+  );
 
   const isFilterActive = query !== "" || region !== "all" || status !== "all" || type !== "all";
 
-  // Jika ada filter yang berubah, balik ke halaman 1
-  useEffect(() => {
+  const updateQuery = (value: string) => {
     setCurrentPage(1);
-  }, [query, region, status, type, view]);
+    setQuery(value);
+  };
+
+  const updateRegion = (value: string) => {
+    setCurrentPage(1);
+    setRegion(value);
+  };
+
+  const updateStatus = (value: string) => {
+    setCurrentPage(1);
+    setStatus(value);
+  };
+
+  const updateType = (value: string) => {
+    setCurrentPage(1);
+    setType(value);
+  };
+
+  const updateView = (value: "grid" | "list") => {
+    setCurrentPage(1);
+    setView(value);
+  };
+
+  const resetFilters = () => {
+    setCurrentPage(1);
+    setQuery("");
+    setRegion("all");
+    setStatus("all");
+    setType("all");
+  };
 
   const filtered = useMemo(() => {
     return catalogRecords.filter((species) => {
@@ -523,7 +542,7 @@ function SpeciesCatalogContent() {
             {TYPES.map((entry) => (
               <FilterChip
                 key={entry.value}
-                onClick={() => setType(entry.value)}
+                onClick={() => updateType(entry.value)}
                 active={type === entry.value}
               >
                 {entry.label}
@@ -542,7 +561,7 @@ function SpeciesCatalogContent() {
                   exit={{ opacity: 0, scale: 0.8, x: -10 }}
                   whileHover={{ filter: "brightness(0.9)" }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => { setQuery(""); setRegion("all"); setStatus("all"); setType("all"); }}
+                  onClick={resetFilters}
                   className="btn-outline-pg px-5 py-3 h-fit whitespace-nowrap cursor-pointer transition-all shadow-sm"
                 >
                   Reset
@@ -570,7 +589,7 @@ function SpeciesCatalogContent() {
                       id="catalog-search"
                       type="search"
                       value={query}
-                      onChange={(e) => setQuery(e.target.value)}
+                       onChange={(e) => updateQuery(e.target.value)}
                       placeholder="Misalnya raflesia, orangutan, Acanthus…"
                       className="input-pg pl-10"
                       style={{ borderRadius: "999px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", transition: 'all 0.2s ease-in-out' }}
@@ -580,7 +599,7 @@ function SpeciesCatalogContent() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="label-pg mb-2 block" htmlFor="catalog-region">Wilayah</label>
-                    <select id="catalog-region" value={region} onChange={(e) => setRegion(e.target.value)} className="input-pg cursor-pointer" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
+                     <select id="catalog-region" value={region} onChange={(e) => updateRegion(e.target.value)} className="input-pg cursor-pointer" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
                       {REGIONS.map((entry) => (
                         <option key={entry.value} value={entry.value}>{entry.label}</option>
                       ))}
@@ -588,7 +607,7 @@ function SpeciesCatalogContent() {
                   </div>
                   <div>
                     <label className="label-pg mb-2 block" htmlFor="catalog-status">Status</label>
-                    <select id="catalog-status" value={status} onChange={(e) => setStatus(e.target.value)} className="input-pg cursor-pointer" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
+                     <select id="catalog-status" value={status} onChange={(e) => updateStatus(e.target.value)} className="input-pg cursor-pointer" style={{ borderRadius: "18px", border: "2px solid var(--border-hard)", boxShadow: "3px 3px 0px var(--border-hard)", backgroundColor: "white", color: "var(--text-primary)" }}>
                       {STATUSES.map((entry) => (
                         <option key={entry.value} value={entry.value}>{entry.label}</option>
                       ))}
@@ -614,10 +633,10 @@ function SpeciesCatalogContent() {
           </div>
           <div className="flex items-center gap-3">
             <div className="flex overflow-hidden rounded-xl" style={{ border: "2px solid var(--border-hard)" }}>
-              <button onClick={() => setView("grid")} className="p-2.5 transition-all hover:brightness-90 cursor-pointer" style={{ background: view === "grid" ? "var(--pg-dark)" : "white", color: view === "grid" ? "white" : "var(--text-muted)" }} aria-label="Tampilan grid">
+              <button onClick={() => updateView("grid")} className="p-2.5 transition-all hover:brightness-90 cursor-pointer" style={{ background: view === "grid" ? "var(--pg-dark)" : "white", color: view === "grid" ? "white" : "var(--text-muted)" }} aria-label="Tampilan grid">
                 <Grid3X3 className="w-4 h-4" strokeWidth={2.5} />
               </button>
-              <button onClick={() => setView("list")} className="p-2.5 transition-all hover:brightness-90 cursor-pointer" style={{ background: view === "list" ? "var(--pg-dark)" : "white", color: view === "list" ? "white" : "var(--text-muted)" }} aria-label="Tampilan list">
+              <button onClick={() => updateView("list")} className="p-2.5 transition-all hover:brightness-90 cursor-pointer" style={{ background: view === "list" ? "var(--pg-dark)" : "white", color: view === "list" ? "white" : "var(--text-muted)" }} aria-label="Tampilan list">
                 <List className="w-4 h-4" strokeWidth={2.5} />
               </button>
             </div>
@@ -640,7 +659,7 @@ function SpeciesCatalogContent() {
             <p className="text-base max-w-xl mx-auto" style={{ color: "var(--text-secondary)" }}>
               Coba longgarkan kata kunci atau reset filter wilayah, status, dan jenis untuk melihat cakupan katalog yang lebih luas.
             </p>
-            <button onClick={() => { setQuery(""); setRegion("all"); setStatus("all"); setType("all"); }} className="btn-candy mt-6 inline-flex px-6 py-3 cursor-pointer hover:brightness-90 transition-all">Reset semua filter</button>
+            <button onClick={resetFilters} className="btn-candy mt-6 inline-flex px-6 py-3 cursor-pointer hover:brightness-90 transition-all">Reset semua filter</button>
           </div>
         ) : view === "grid" ? (
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
